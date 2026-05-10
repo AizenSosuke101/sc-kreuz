@@ -1,0 +1,663 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0e0e0e;
+  --black2:#1a1a1a;
+  --black3:#2a2a2a;
+  --white:#ffffff;
+  --gray1:#f6f6f6;
+  --gray2:#ebebeb;
+  --gray3:#c8c8c8;
+  --gray4:#888;
+  --blue:#1a5faa;
+  --bluehov:#134d8e;
+}
+html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
+body{background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Barlow',system-ui,sans-serif}
+h1,h2,h3,h4,.hero-h1,.hero-badge-year,.raum-name,.s-name,.a-name,.k-h,.sec-h2,.hdr-name strong,.sn-name,.v-stat-n,.vi-v,.ft-bname strong{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+
+/* ── SIDENAV ─────────────────────────── */
+#sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
+#sn-overlay.open{opacity:1;pointer-events:all}
+#sidenav{
+  position:fixed;top:0;left:0;width:268px;height:100vh;
+  background:var(--black);z-index:9999;
+  transform:translateX(-100%);transition:.28s ease;
+  display:flex;flex-direction:column;overflow-y:auto;
+}
+#sidenav.open{transform:translateX(0)}
+.sn-head{
+  padding:18px 18px 16px;
+  background:var(--black2);
+  border-bottom:2px solid var(--blue);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.sn-brand{display:flex;align-items:center;gap:11px}
+.sn-logo-wrap{
+  width:40px;height:40px;background:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.sn-name{font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;letter-spacing:.4px}
+.sn-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.sn-close:hover{color:#fff}
+.sn-sec{padding:10px 0 4px}
+.sn-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding:10px 18px 5px}
+.sn-link{
+  display:flex;align-items:center;gap:12px;padding:10px 14px;margin:3px 10px;
+  font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);
+  border-radius:10px;cursor:pointer;transition:.18s;
+}
+.sn-link:hover,.sn-link.act{color:#fff;background:rgba(255,255,255,.1)}
+.sn-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:6px 18px}
+.sn-foot{margin-top:auto;padding:14px 18px;font-size:10px;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+
+/* ── HEADER ──────────────────────────── */
+#hdr{
+  background:var(--black);height:64px;
+  display:flex;align-items:center;padding:0 20px;gap:14px;
+  position:sticky;top:0;z-index:800;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.hburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+.hburger:hover span{background:var(--blue)}
+.hdr-brand{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.hdr-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-name{color:#fff;min-width:0}
+.hdr-name strong{display:block;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.hdr-name span{font-size:10px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.5px}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-book-hdr{
+  background:var(--blue);color:#fff;
+  padding:8px 16px;font-size:12px;font-weight:700;
+  border:none;border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap;
+}
+.btn-book-hdr:hover{background:var(--bluehov);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,95,170,.4)}
+.btn-ghost-hdr{
+  background:none;color:rgba(255,255,255,.8);
+  padding:8px 14px;font-size:12px;font-weight:600;
+  border:1.5px solid rgba(255,255,255,.2);border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap;
+}
+.btn-ghost-hdr:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* ── HERO ────────────────────────────── */
+#hero{
+  position:relative;min-height:500px;overflow:hidden;
+  display:flex;align-items:flex-end;
+  background:var(--black);
+}
+.hero-photo{
+  position:absolute;inset:0;
+  background-image:url('sportheim_ausen_weit_weg.png');
+  background-size:cover;background-position:center 40%;
+  filter:brightness(.92) contrast(1.08);
+  transition:.3s;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,.05) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;
+  padding:60px clamp(20px,5vw,72px) 56px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  padding:5px 13px;border-radius:20px;margin-bottom:16px;
+  backdrop-filter:blur(6px);
+}
+.hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--blue);border-radius:50%}
+.hero-h1{
+  font-size:clamp(28px,4.5vw,52px);font-weight:900;color:#fff;
+  line-height:1.08;letter-spacing:-.5px;margin-bottom:14px;
+}
+.hero-h1 em{font-style:normal;color:var(--gray3)}
+.hero-desc{
+  font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;
+  margin-bottom:28px;max-width:500px;font-weight:400;
+}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-main{
+  background:#fff;color:var(--black);
+  padding:13px 30px;font-size:14px;font-weight:700;letter-spacing:.5px;
+  border:none;border-radius:8px;cursor:pointer;transition:.25s;
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
+}
+.btn-hero-main:hover{background:var(--gray2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.btn-hero-sec{
+  background:transparent;color:#fff;
+  padding:13px 24px;font-size:14px;font-weight:600;
+  border:1.5px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;transition:.25s;
+}
+.btn-hero-sec:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-badge{
+  position:absolute;top:28px;right:28px;z-index:3;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15);border-radius:12px;
+  padding:12px 16px;text-align:center;
+}
+.hero-badge-year{font-size:22px;font-weight:900;color:#fff;line-height:1}
+.hero-badge-lbl{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* ── INFOSTRIP ───────────────────────── */
+#infostrip{background:var(--black2);border-bottom:1px solid var(--black3)}
+.is-inner{display:flex;gap:0;flex-wrap:wrap}
+.is-item{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 24px;color:#fff;
+  border-right:1px solid rgba(255,255,255,.07);
+}
+.is-item:last-child{border-right:none}
+.is-icon{font-size:18px;opacity:.7}
+.is-item strong{display:block;font-size:12.5px;font-weight:700}
+.is-item span{font-size:10.5px;color:rgba(255,255,255,.45)}
+
+/* ── SECTION BASE ────────────────────── */
+.sec{padding:64px clamp(20px,5vw,72px)}
+.sec-white{background:var(--white)}
+.sec-gray{background:var(--gray1)}
+.sec-black{background:var(--black)}
+.sec-inner{width:100%}
+.sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.sec-label-light{color:var(--gray3)}
+.sec-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;letter-spacing:-.3px}
+.sec-h2 b{font-weight:800;color:var(--black)}
+.sec-h2-light{color:var(--white)}
+.sec-sub{font-size:14px;color:var(--gray4);margin-top:6px;margin-bottom:26px;font-weight:400}
+.sec-sub-light{color:rgba(255,255,255,.5)}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.sec-more{font-size:12.5px;font-weight:700;color:#fff;background:var(--black);padding:9px 18px;border-radius:7px;transition:.2s}
+.sec-more:hover{background:var(--blue);transform:translateY(-1px)}
+
+/* ── RÄUME ───────────────────────────── */
+.raum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.raum-card{
+  background:var(--white);border:1px solid var(--gray2);border-radius:10px;
+  overflow:hidden;transition:.22s;display:flex;flex-direction:column;
+}
+.raum-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.09);transform:translateY(-3px)}
+.raum-img{
+  aspect-ratio:4/3;background:var(--black2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:46px;position:relative;opacity:1;
+}
+.raum-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 60%)}
+.raum-lbl{
+  position:absolute;top:10px;left:10px;
+  background:var(--white);color:var(--black);
+  font-size:9px;font-weight:800;padding:3px 9px;border-radius:4px;letter-spacing:.8px;text-transform:uppercase;
+  z-index:2;
+}
+.raum-body{padding:16px;flex:1;display:flex;flex-direction:column}
+.raum-name{font-size:15px;font-weight:800;color:var(--black);margin-bottom:4px}
+.raum-desc{font-size:12px;color:var(--gray4);line-height:1.6;margin-bottom:8px;flex:1}
+.raum-cap{font-size:12px;font-weight:600;color:var(--black);margin-bottom:10px}
+.raum-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.rtag{background:var(--gray1);border:1px solid var(--gray2);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;color:var(--gray4)}
+.raum-btn{
+  display:block;width:100%;text-align:center;
+  background:var(--black);color:#fff;
+  padding:11px;font-size:13px;font-weight:700;letter-spacing:.4px;border-radius:7px;
+  border:none;cursor:pointer;transition:.25s;
+}
+.raum-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,95,170,.4)}
+
+/* ── ANLASS ──────────────────────────── */
+.anlass-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.anlass-item{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:20px 18px;
+  cursor:pointer;transition:.22s;
+}
+.anlass-item:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.a-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.a-desc{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.55}
+
+/* ── ÜBER DEN VEREIN ─────────────────── */
+.verein-grid{display:grid;grid-template-columns:1fr 280px;gap:44px;align-items:center}
+.vt p{font-size:14px;color:#444;line-height:1.78;margin-bottom:12px}
+.v-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.v-stat{border-left:3px solid var(--black);padding-left:14px}
+.v-stat-n{font-size:24px;font-weight:900;color:var(--black);line-height:1}
+.v-stat-l{font-size:11px;color:var(--gray4);margin-top:3px}
+.v-card{
+  background:var(--black);border-radius:12px;overflow:hidden;
+}
+.v-logo-zone{
+  height:220px;background:#111;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.v-logo-zone .logo-bg{width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.v-logo-caption{font-size:11px;color:rgba(255,255,255,.35);font-style:italic;letter-spacing:.5px}
+.v-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--black3)}
+.vi{background:#1a1a1a;padding:11px 14px}
+.vi-l{font-size:9.5px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:rgba(255,255,255,.3)}
+.vi-v{font-size:13px;font-weight:700;color:#fff;margin-top:2px}
+
+/* ── SPORT CARDS ─────────────────────── */
+.sport-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.sport-card{
+  background:#fff;border:1px solid var(--gray2);border-radius:10px;
+  overflow:hidden;display:flex;flex-direction:column;transition:.2s;
+}
+.sport-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.12);border-color:var(--black);transform:translateY(-4px)}
+.sport-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.s-body{padding:16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.s-name{font-size:15px;font-weight:800;color:var(--black)}
+.s-desc{font-size:12px;color:var(--gray4);line-height:1.55;flex:1}
+.s-link{font-size:12px;font-weight:700;color:#fff;background:var(--black);padding:8px 16px;border-radius:6px;align-self:flex-start;transition:.2s;display:inline-block}
+.s-link:hover{background:var(--blue);transform:translateY(-1px)}
+
+/* ── KONTAKT ─────────────────────────── */
+.kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch}
+.k-h{font-size:18px;font-weight:800;color:var(--black);margin-bottom:20px}
+.k-list{display:flex;flex-direction:column;gap:14px}
+.k-item{display:flex;align-items:flex-start;gap:13px}
+.k-ico{width:38px;height:38px;background:var(--gray1);border-radius:8px;border:1px solid var(--gray2);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.k-info strong{display:block;font-size:12.5px;color:var(--black);font-weight:600;margin-bottom:2px}
+.k-info span,.k-info a{font-size:12.5px;color:var(--gray4)}
+.k-info a{color:var(--blue)}
+.k-map{background:var(--gray1);border:1px solid var(--gray2);border-radius:10px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px}
+.k-map-ico{font-size:42px}
+.k-map strong{font-size:14px;font-weight:700;color:var(--black)}
+.k-map span{font-size:12px;color:var(--gray4);line-height:1.6}
+
+/* ── FOOTER ──────────────────────────── */
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0}
+.ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
+.fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
+.fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
+.fc ul{display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:12.5px;color:rgba(255,255,255,.45);transition:.15s}
+.fc ul li a:hover{color:#fff}
+.fc ul li a::before{content:'›  ';color:var(--gray3);opacity:.6}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ft-badge{width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-bname strong{display:block;font-size:14px;font-weight:800;color:#fff}
+.ft-bname span{font-size:10px;color:rgba(255,255,255,.35)}
+.ft-bot{width:100%;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+.ft-bot a{color:rgba(255,255,255,.25)}
+.ft-bot a:hover{color:var(--gray3)}
+.ft-links{display:flex;gap:16px}
+
+/* ── GENERAL BUTTONS ─────────────────── */
+.btn-black{
+  display:inline-block;background:var(--black);color:#fff;
+  padding:12px 24px;font-size:13.5px;font-weight:700;letter-spacing:.3px;
+  border-radius:8px;border:none;cursor:pointer;transition:.25s;
+}
+.btn-black:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,95,170,.35)}
+.btn-outline{
+  display:inline-block;background:transparent;color:var(--black);
+  padding:12px 24px;font-size:13.5px;font-weight:600;letter-spacing:.3px;
+  border-radius:8px;border:2px solid var(--black);cursor:pointer;transition:.25s;
+}
+.btn-outline:hover{background:var(--black);color:#fff;transform:translateY(-2px)}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:768px){
+  #hero{min-height:420px}
+  .hero-badge{top:16px;right:16px;padding:9px 12px}
+  .hero-badge-year{font-size:18px}
+  .verein-grid{grid-template-columns:1fr}
+  .v-card{display:none}
+  .kontakt-grid{grid-template-columns:1fr}
+  .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .btn-ghost-hdr{display:none}
+  .hdr-name span{display:none}
+  .sec{padding:44px clamp(16px,4vw,36px)}
+}
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .is-inner{flex-direction:column}
+  .is-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:10px 20px}
+  .is-item:last-child{border-bottom:none}
+  .hero-h1{font-size:clamp(24px,7vw,36px)}
+  .hero-desc{font-size:13px}
+  .btn-book-hdr{font-size:11px;padding:7px 12px}
+  .v-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<!-- SIDE NAV OVERLAY -->
+<div id="sn-overlay" onclick="closeSN()"></div>
+<nav id="sidenav">
+  <div class="sn-head">
+    <div class="sn-brand">
+      <div class="sn-logo-wrap">
+        <img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz Logo">
+      </div>
+      <div class="sn-name">SC Kreuz<br>Bayreuth e.V.</div>
+    </div>
+    <button class="sn-close" onclick="closeSN()">✕</button>
+  </div>
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Hauptmenü</p>
+    <div class="sn-link act">Startseite</div>
+    <div class="sn-link">Räume buchen</div>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Sportabteilungen</p>
+    <div class="sn-link">Fußball</div>
+    <div class="sn-link">Dart</div>
+    <div class="sn-link">Events &amp; Kerwa</div>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Verein</p>
+    <div class="sn-link">Über den Verein</div>
+    <div class="sn-link">Mitglied werden</div>
+    <div class="sn-link">Kontakt</div>
+    <div class="sn-link">Impressum</div>
+  </div>
+  <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2025<br>Gegründet 1928 · Bezirk Oberfranken</div>
+</nav>
+
+<!-- HEADER -->
+<header id="hdr">
+  <button class="hburger" onclick="openSN()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="hdr-brand">
+    <div class="hdr-logo-wrap">
+      <img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz Logo">
+    </div>
+    <div class="hdr-name">
+      <strong>SC Kreuz Bayreuth</strong>
+      <span>e.V. · Gegründet 1928</span>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a href="Buchen_Sportheimgaststätte.html"><button class="btn-book-hdr">Jetzt buchen</button></a>
+    <button class="btn-ghost-hdr">Mitglied werden!</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-badge">
+    <div class="hero-badge-year">seit 1928</div>
+    <div class="hero-badge-lbl">Tradition</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sportheimgaststätte &amp; Vereinsräume</div>
+    <h1 class="hero-h1">SC Kreuz Bayreuth<br><em>Unser Zuhause.</em></h1>
+    <p class="hero-desc">
+      Feiern Sie Geburtstage, Hochzeiten oder Firmenfeiern direkt am Sportplatz.
+      Unsere Räume bieten den perfekten Rahmen – gemütlich, günstig und mitten in Bayreuth.
+    </p>
+    <div class="hero-ctas">
+      <a href="Buchen_Sportheimgaststätte.html">
+        <button class="btn-hero-main">
+          Jetzt Raum buchen
+        </button>
+      </a>
+      <button class="btn-hero-sec" onclick="document.getElementById('raeume').scrollIntoView({behavior:'smooth'})">
+        Räume ansehen ↓
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div id="infostrip">
+  <div class="is-inner">
+    <div class="is-item">
+      <div><strong>Bayreuth</strong><span>Oberfranken, Bayern</span></div>
+    </div>
+    <div class="is-item">
+      <div><strong>Online buchen</strong><span>Direkt &amp; unkompliziert</span></div>
+    </div>
+    <div class="is-item">
+      <div><strong>Seit 1928</strong><span>Ihr Verein in Bayreuth</span></div>
+    </div>
+    <div class="is-item">
+      <div><strong>Buchungsanfrage</strong><span>Schnell &amp; unkompliziert</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RÄUME SECTION -->
+<section class="sec sec-gray" id="raeume">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <p class="sec-label">Unsere Räumlichkeiten</p>
+        <h2 class="sec-h2">Räume &amp; Säle mieten</h2>
+        <p class="sec-sub">Für jeden Anlass der passende Raum – klicken Sie auf „Jetzt buchen" für eine Anfrage.</p>
+      </div>
+      <a href="Buchen_Sportheimgaststätte.html" class="sec-more">Alle Infos &amp; Buchung →</a>
+    </div>
+    <div class="raum-grid">
+
+      <div class="raum-card">
+        <div class="raum-img" style="background-image:url('grosser_saal.jpg');background-size:cover;background-position:center">
+          <div class="raum-img-overlay"></div>
+          <span class="raum-lbl">Beliebt</span>
+        </div>
+        <div class="raum-body">
+          <div class="raum-name">Großer Saal</div>
+          <p class="raum-desc">Für große Feiern, Hochzeiten und Vereinsfeste. Mit Bühne, Tanzfläche und professioneller Ausstattung.</p>
+          <div class="raum-tags">
+            <span class="rtag">Bühne</span><span class="rtag">Tanzfläche</span><span class="rtag">Bar</span><span class="rtag">Küche</span><span class="rtag">Parkplatz</span>
+          </div>
+          <a href="Buchen_Sportheimgaststätte.html"><button class="raum-btn">Jetzt buchen →</button></a>
+        </div>
+      </div>
+
+      <div class="raum-card">
+        <div class="raum-img" style="background:linear-gradient(160deg,#222 0%,#444 100%)">
+          <div class="raum-img-overlay"></div>
+        </div>
+        <div class="raum-body">
+          <div class="raum-name">Gastraum</div>
+          <p class="raum-desc">Gemütliche Atmosphäre für Geburtstage, Stammtische und kleine Betriebsfeiern mit Terrasse.</p>
+          <div class="raum-tags">
+            <span class="rtag">Theke</span><span class="rtag">Beamer</span><span class="rtag">Kicker</span><span class="rtag">Terrasse</span>
+          </div>
+          <a href="Buchen_Sportheimgaststätte.html"><button class="raum-btn">Jetzt buchen →</button></a>
+        </div>
+      </div>
+
+      <div class="raum-card">
+        <div class="raum-img" style="background:linear-gradient(160deg,#1a1a1a 0%,#333 100%)">
+          <div class="raum-img-overlay"></div>
+        </div>
+        <div class="raum-body">
+          <div class="raum-name">Kleiner Saal</div>
+          <p class="raum-desc">Für Schulungen, Präsentationen, Meetings und Vereinsversammlungen – modern ausgestattet.</p>
+          <div class="raum-tags">
+            <span class="rtag">Beamer</span><span class="rtag">Whiteboard</span><span class="rtag">WLAN</span><span class="rtag">Klimaanlage</span>
+          </div>
+          <a href="Buchen_Sportheimgaststätte.html"><button class="raum-btn">Jetzt buchen →</button></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VEREIN -->
+<section class="sec sec-white">
+  <div class="sec-inner">
+    <div class="verein-grid">
+      <div class="vt">
+        <p class="sec-label">Unser Verein</p>
+        <h2 class="sec-h2" style="margin-bottom:16px">SC Kreuz Bayreuth e.V.<br>– seit 1928</h2>
+        <p>Der SC Kreuz Bayreuth e.V. ist ein traditionsreicher Sportverein mit langer Geschichte in der Wagnerstadt Bayreuth. Seit der Gründung im Jahr 1928 bietet der Verein seinen Mitgliedern und der gesamten Region eine sportliche Heimat.</p>
+        <p>Als aktiver Teil des Bezirks Oberfranken im Bayerischen Fußball-Verband (BFV) pflegen wir nicht nur den Sport, sondern auch das gemeinschaftliche Miteinander – mit Fußball, Dart, der traditionellen Kerwa und vielen weiteren Veranstaltungen.</p>
+        <div class="v-stats">
+          <div class="v-stat"><div class="v-stat-n">1928</div><div class="v-stat-l">Gründungsjahr</div></div>
+          <div class="v-stat"><div class="v-stat-n">3</div><div class="v-stat-l">Sportabteilungen</div></div>
+          <div class="v-stat"><div class="v-stat-n">95+</div><div class="v-stat-l">Jahre Vereinsgeschichte</div></div>
+          <div class="v-stat"><div class="v-stat-n">BFV</div><div class="v-stat-l">Mitglied Bay. Fußball-Verband</div></div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-black" style="font-size:13px;padding:10px 20px">Mehr über den Verein →</button>
+          <button class="btn-outline" style="font-size:13px;padding:10px 20px">Werde gerne Mitglied</button>
+        </div>
+      </div>
+      <div class="v-card">
+        <div class="v-logo-zone">
+          <div class="logo-bg">
+            <img src="logo.jpg" width="90" height="90" style="object-fit:contain;border-radius:50%" alt="SCK Logo">
+          </div>
+          <p class="v-logo-caption">SC Kreuz Bayreuth e.V.</p>
+        </div>
+        <div class="v-info-grid">
+          <div class="vi"><div class="vi-l">Gegründet</div><div class="vi-v">1928</div></div>
+          <div class="vi"><div class="vi-l">Bezirk</div><div class="vi-v">Oberfranken</div></div>
+          <div class="vi"><div class="vi-l">Ort</div><div class="vi-v">Bayreuth</div></div>
+          <div class="vi"><div class="vi-l">Verband</div><div class="vi-v">BFV</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPORTARTEN -->
+<section class="sec sec-gray">
+  <div class="sec-inner">
+    <div style="margin-bottom:24px">
+      <p class="sec-label">Unsere Abteilungen</p>
+      <h2 class="sec-h2">Sport &amp; Gemeinschaft</h2>
+    </div>
+    <div class="sport-grid">
+      <div class="sport-card">
+        <img src="rasen1.jpg" alt="Fußball" class="sport-img">
+        <div class="s-body">
+          <div class="s-name">Fußball</div>
+          <p class="s-desc">Aktive Mannschaften im BFV-Spielbetrieb, Bezirk Oberfranken – das Herzstück des SC Kreuz.</p>
+          <a href="Fussball.html" class="s-link">Zu Fußball →</a>
+        </div>
+      </div>
+      <div class="sport-card">
+        <img src="dart1.png" alt="Dart" class="sport-img">
+        <div class="s-body">
+          <div class="s-name">Dart</div>
+          <p class="s-desc">Präzision, Spaß und Geselligkeit. Anfänger und erfahrene Spieler herzlich willkommen.</p>
+          <a href="Dart.html" class="s-link">Zu Dart →</a>
+        </div>
+      </div>
+      <div class="sport-card">
+        <img src="Kerwa_Bild2.jpg" alt="Events &amp; Kerwa" class="sport-img">
+        <div class="s-body">
+          <div class="s-name">Events &amp; Kerwa</div>
+          <p class="s-desc">Die Kerwa ist ein Höhepunkt im Bayreuther Vereinsleben – der SC Kreuz ist mittendrin.</p>
+          <a href="Events.html" class="s-link">Zu Events &amp; Kerwa →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="sec sec-white">
+  <div class="sec-inner">
+    <div style="margin-bottom:24px">
+      <p class="sec-label">Kontakt &amp; Anfahrt</p>
+      <h2 class="sec-h2">So erreichen Sie uns</h2>
+    </div>
+    <div class="kontakt-grid">
+      <div>
+        <div class="k-h">Kontaktdaten</div>
+        <div class="k-list">
+          <div class="k-item">
+            <div class="k-info"><strong>Adresse</strong><span>SC Kreuz Bayreuth e.V., Bayreuth, Bayern</span></div>
+          </div>
+          <div class="k-item">
+            <div class="k-info"><strong>Allgemeiner Kontakt</strong><a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a></div>
+          </div>
+          <div class="k-item">
+            <div class="k-info"><strong>Website</strong><span>www.sc-kreuz-bayreuth.de</span></div>
+          </div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:10px">
+          <button class="btn-black" style="font-size:13px;padding:10px 20px">Kontaktformular →</button>
+          <a href="Buchen_Sportheimgaststätte.html"><button class="btn-outline" style="font-size:13px;padding:10px 20px">Raum buchen</button></a>
+        </div>
+      </div>
+      <div style="padding:6px;background:var(--black);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.22);height:100%">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2567.470813507728!2d11.5524869!3d49.9462701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1a2b021cf4c0d%3A0xc707c5870276d698!2sSportplatz%20Kreuz!5e0!3m2!1sde!2sde!4v1778343186238!5m2!1sde!2sde" width="100%" height="100%" style="border:0;display:block;border-radius:13px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="fc">
+      <div class="ft-brand">
+        <div class="ft-badge">
+          <img src="logo.jpg" width="34" height="34" style="object-fit:contain;border-radius:50%" alt="SCK Logo">
+        </div>
+        <div class="ft-bname">
+          <strong>SC Kreuz Bayreuth</strong>
+          <span>e.V. – Gegründet 1928</span>
+        </div>
+      </div>
+      <p>Traditionsreicher Sportverein aus Bayreuth. Mitglied im Bayerischen Fußball-Verband, Bezirk Oberfranken.</p>
+    </div>
+    <div class="fc">
+      <h4>Räume &amp; Buchung</h4>
+      <ul>
+        <li><a href="Buchen_Sportheimgaststätte.html">Räume buchen</a></li>
+        <li><a href="#">Großer Saal</a></li>
+        <li><a href="#">Gastraum</a></li>
+        <li><a href="#">Kleiner Saal</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Sportabteilungen</h4>
+      <ul>
+        <li><a href="fussball.html">Fußball</a></li>
+        <li><a href="dart.html">Dart</a></li>
+        <li><a href="events.html">Events &amp; Kerwa</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Verein</h4>
+      <ul>
+        <li><a href="#">Über den Verein</a></li>
+        <li><a href="#">Mitglied werden</a></li>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 SC Kreuz Bayreuth e.V. – Alle Rechte vorbehalten - Made by BraMa Webdevelopment</span>
+    <div class="ft-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function openSN(){
+  document.getElementById('sidenav').classList.add('open');
+  document.getElementById('sn-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSN(){
+  document.getElementById('sidenav').classList.remove('open');
+  document.getElementById('sn-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSN()});
+</script>

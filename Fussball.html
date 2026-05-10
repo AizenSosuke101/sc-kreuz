@@ -605,6 +605,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
 function openSN(){document.getElementById('sidenav').classList.add('open');document.getElementById('sn-overlay').classList.add('open');document.body.style.overflow='hidden'}
 function closeSN(){document.getElementById('sidenav').classList.remove('open');document.getElementById('sn-overlay').classList.remove('open');document.body.style.overflow=''}
 
+
 function shortDate(d){return d?d.slice(0,5):''}
 function renderNextGames(games){
   const el=document.getElementById('next-games-list');

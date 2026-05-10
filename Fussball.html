@@ -84,78 +84,101 @@ h1,h2,h3,h4,.hero-h1,.hero-badge-year,.sec-h2,.hdr-name strong,.sn-name,.ft-bnam
 .sec-sub-light{color:rgba(255,255,255,.5)}
 .sec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:12px}
 /* MANNSCHAFTEN */
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.team-card{background:var(--white);border:1px solid var(--gray2);border-radius:12px;overflow:hidden;transition:.22s;display:flex;flex-direction:column}
-.team-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.11);transform:translateY(-3px);border-color:var(--black)}
-.team-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.team-img-ph{width:100%;aspect-ratio:4/3;background:linear-gradient(160deg,#111 0%,#2d2d2d 100%);display:flex;align-items:center;justify-content:center}
-.team-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:6px}
-.team-name{font-size:17px;font-weight:800;color:var(--black)}
-.team-liga{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue)}
-.team-trainer{font-size:12px;color:var(--gray4);margin-top:2px}
-.team-trainer strong{color:var(--black);font-weight:600}
-.team-desc{font-size:12.5px;color:var(--gray4);line-height:1.6;flex:1;margin-top:4px}
-.team-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.team-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.1);transition:.22s;display:flex;flex-direction:column;border:1px solid #d8d8d8}
+.team-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.18);transform:translateY(-3px)}
+.team-card-head{background:var(--black);padding:18px 20px 16px}
+.team-name{font-size:16px;font-weight:800;color:#fff;line-height:1.2}
+.team-liga{font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+.team-img{width:100%;aspect-ratio:16/7;object-fit:cover;display:block}
+.team-img-ph{width:100%;aspect-ratio:16/7;background:linear-gradient(160deg,#1a1a1a 0%,#2d2d2d 100%);display:flex;align-items:center;justify-content:center}
+.team-info{padding:14px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.team-info-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px;border-bottom:1px solid var(--gray2);padding-bottom:9px}
+.team-info-row:last-child{border-bottom:none;padding-bottom:0}
+.team-info-row .lbl{color:var(--gray4);font-weight:500;flex-shrink:0}
+.team-info-row .val{color:var(--black);font-weight:700;text-align:right}
+.team-tags{display:flex;flex-wrap:wrap;gap:4px;padding:0 20px 14px}
 .ttag{background:var(--gray1);border:1px solid var(--gray2);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;color:var(--gray4)}
-.team-btn{display:block;width:100%;text-align:center;background:var(--black);color:#fff;padding:11px;font-size:13px;font-weight:700;letter-spacing:.4px;border-radius:7px;border:none;cursor:pointer;transition:.25s;margin-top:14px}
+.team-btn{display:block;width:calc(100% - 40px);margin:0 20px 16px;text-align:center;background:var(--black);color:#fff;padding:10px;font-size:12.5px;font-weight:700;letter-spacing:.4px;border-radius:8px;border:none;cursor:pointer;transition:.25s}
 .team-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,95,170,.4)}
 /* SPIELPLAN + ERGEBNISSE */
-.spiel-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.spiel-box{background:var(--white);border:1px solid var(--gray2);border-radius:12px;overflow:hidden}
-.spiel-box-head{background:var(--black);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
-.spiel-box-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase}
-.spiel-box-head span{font-size:10px;color:rgba(255,255,255,.4);font-weight:600;letter-spacing:.8px;text-transform:uppercase}
-.spiel-list{display:flex;flex-direction:column}
-.spiel-item{padding:12px 18px;border-bottom:1px solid var(--gray2);display:flex;align-items:center;gap:12px;transition:.15s}
-.spiel-item:last-child{border-bottom:none}
-.spiel-item:hover{background:var(--gray1)}
-.spiel-date{font-size:10px;font-weight:700;color:var(--blue);min-width:44px;text-transform:uppercase;letter-spacing:.5px}
-.spiel-teams{flex:1;font-size:13px;font-weight:600;color:var(--black)}
-.spiel-teams span{font-weight:400;color:var(--gray4);font-size:11px;display:block;margin-top:1px}
-.spiel-score{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;min-width:44px;text-align:right}
-.spiel-score.win{color:var(--green)}
-.spiel-score.loss{color:var(--red)}
-.spiel-score.draw{color:var(--gray4)}
-.spiel-uhr{font-size:11px;font-weight:600;color:var(--gray4);min-width:44px;text-align:right}
+.spiel-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.spiel-box{background:#e4e4e4;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0}
+.spiel-box-head{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.spiel-box-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.spiel-box-head-badge{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);background:rgba(255,255,255,.12);padding:3px 9px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.spiel-list{display:flex;flex-direction:column;gap:8px;padding:12px}
+.spiel-item{background:var(--white);border-radius:12px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:.18s}
+.spiel-item:hover{box-shadow:0 6px 18px rgba(0,0,0,.16);transform:translateX(4px)}
+.spiel-date{background:var(--black);border-radius:8px;padding:5px 9px;font-size:10px;font-weight:700;color:#fff;min-width:46px;text-align:center;flex-shrink:0;line-height:1.3}
+.spiel-teams{flex:1;font-size:13px;font-weight:600;color:var(--black);min-width:0;line-height:1.3}
+.spiel-teams span{font-weight:400;color:var(--gray4);font-size:10.5px;display:block;margin-top:2px}
+.spiel-score{font-family:'Oswald',system-ui,sans-serif;font-size:13px;font-weight:800;padding:5px 10px;border-radius:8px;min-width:50px;text-align:center;flex-shrink:0}
+.spiel-score.win{background:#16a34a;color:#fff}
+.spiel-score.loss{background:#dc2626;color:#fff}
+.spiel-score.draw{background:#4b5563;color:#fff}
+.spiel-uhr{background:#e4e4e4;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:700;color:var(--black);min-width:46px;text-align:center;flex-shrink:0}
 /* TABELLE */
-.tabelle-wrap{overflow-x:auto}
-.tabelle{width:100%;border-collapse:collapse;font-size:13px}
-.tabelle thead tr{background:var(--black);color:#fff}
-.tabelle thead th{padding:10px 12px;font-family:'Oswald',system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-align:left;white-space:nowrap}
+.tabelle-wrap{background:#e4e4e4;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0}
+.tabelle-head{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.tabelle-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.tabelle-head-badge{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);background:rgba(255,255,255,.12);padding:3px 9px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.tabelle-inner{overflow-x:auto;padding:12px}
+.tabelle{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13px}
+.tabelle thead th{padding:4px 12px 8px;font-family:'Oswald',system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;white-space:nowrap}
 .tabelle thead th:nth-child(n+3){text-align:center}
-.tabelle tbody tr{border-bottom:1px solid var(--gray2);transition:.12s}
-.tabelle tbody tr:hover{background:var(--gray1)}
-.tabelle tbody tr.highlight{background:#eef3fb;border-left:3px solid var(--blue)}
-.tabelle tbody tr.highlight td{font-weight:700}
-.tabelle td{padding:10px 12px;white-space:nowrap}
+.tabelle tbody tr{background:var(--white);box-shadow:0 2px 6px rgba(0,0,0,.09);transition:.15s}
+.tabelle tbody tr:hover{background:var(--gray1);box-shadow:0 4px 12px rgba(0,0,0,.13)}
+.tabelle tbody tr.highlight{background:var(--black);box-shadow:0 4px 20px rgba(0,0,0,.22)}
+.tabelle tbody tr.highlight td{color:#fff;font-weight:700}
+.tabelle tbody tr.highlight td:nth-child(n+3){color:rgba(255,255,255,.6)}
+.tabelle tbody tr.highlight .tbl-rank{color:#fff}
+.tabelle tbody tr.highlight .tbl-club{color:#fff}
+.tabelle tbody tr.highlight .tbl-pts{color:#fff}
+.tabelle td{padding:11px 12px;white-space:nowrap}
+.tabelle td:first-child{border-radius:10px 0 0 10px}
+.tabelle td:last-child{border-radius:0 10px 10px 0}
 .tabelle td:nth-child(n+3){text-align:center;color:var(--gray4)}
 .tbl-rank{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:var(--black);min-width:24px;display:inline-block}
 .tbl-rank.top{color:var(--green)}
 .tbl-club{font-weight:600;color:var(--black)}
 .tbl-pts{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:var(--black)}
 /* KADER */
-.kader-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px}
-.kader-card{background:var(--white);border:1px solid var(--gray2);border-radius:10px;padding:16px 14px;text-align:center;transition:.2s}
-.kader-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.09);transform:translateY(-2px);border-color:var(--black)}
-.kader-nr{font-family:'Oswald',system-ui,sans-serif;font-size:30px;font-weight:800;color:var(--gray2);line-height:1;margin-bottom:8px}
-.kader-name{font-size:13px;font-weight:700;color:var(--black);line-height:1.2}
-.kader-pos{font-size:10px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
-.pos-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
+.kader-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.kader-card{background:var(--white);border:1px solid var(--gray2);border-radius:12px;overflow:hidden;transition:.22s;cursor:default}
+.kader-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-3px)}
+.kader-band{height:52px;position:relative;display:flex;align-items:center;padding:0 14px}
+.kader-band.tor{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.kader-band.abwehr{background:linear-gradient(135deg,#1a5faa,#2d7dd2)}
+.kader-band.mittelfeld{background:linear-gradient(135deg,#047857,#059669)}
+.kader-band.sturm{background:linear-gradient(135deg,#991b1b,#b71c1c)}
+.kader-pos-icon{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.9)}
+.kader-nr{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-family:'Oswald',system-ui,sans-serif;font-size:34px;font-weight:900;color:rgba(255,255,255,.25);line-height:1}
+.kader-body{padding:13px 14px 15px}
+.kader-name{font-size:13.5px;font-weight:700;color:var(--black);line-height:1.25}
+.kader-pos{font-size:10px;font-weight:600;color:var(--gray4);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+.pos-label{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray4);margin:28px 0 12px}
+.pos-label::before{content:'';width:3px;height:16px;border-radius:2px;flex-shrink:0}
+.pos-label.tor::before{background:#f59e0b}
+.pos-label.abwehr::before{background:var(--blue)}
+.pos-label.mittelfeld::before{background:#059669}
+.pos-label.sturm::before{background:var(--red)}
+.pos-label::after{content:'';flex:1;height:1px;background:var(--gray2)}
 /* TRAINING */
 .training-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.tr-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:24px 20px;transition:.22s}
-.tr-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateY(-3px)}
+.tr-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:24px 20px;transition:.22s}
+.tr-card:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35);transform:translateY(-3px)}
 .tr-day{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
-.tr-time{font-size:24px;font-weight:800;color:var(--blue);margin-bottom:8px}
-.tr-team{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-.tr-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
-.tr-loc{font-size:11px;font-weight:600;color:rgba(255,255,255,.3);margin-top:10px;text-transform:uppercase;letter-spacing:.8px}
+.tr-time{font-size:24px;font-weight:800;color:#60a5fa;margin-bottom:8px}
+.tr-team{font-size:10px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.tr-desc{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6}
+.tr-loc{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);margin-top:10px;text-transform:uppercase;letter-spacing:.8px}
 /* PROBETRAINING */
-.probe-box{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:14px;overflow:hidden;border:1px solid var(--gray2)}
+.probe-box{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0;box-shadow:0 4px 20px rgba(0,0,0,.12)}
 .probe-left{background:var(--black);padding:44px 40px}
 .probe-left h3{font-family:'Oswald',system-ui,sans-serif;font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;margin-bottom:12px}
 .probe-left p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:24px}
-.probe-right{background:var(--gray1);padding:44px 40px;display:flex;flex-direction:column;gap:18px}
+.probe-right{background:#e4e4e4;padding:44px 40px;display:flex;flex-direction:column;gap:18px}
 .probe-right h4{font-family:'Oswald',system-ui,sans-serif;font-size:16px;font-weight:700;color:var(--black);margin-bottom:4px}
 .probe-item{display:flex;gap:14px;align-items:flex-start}
 .probe-ico{width:36px;height:36px;background:var(--black);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -216,7 +239,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .is-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:10px 20px}
   .is-item:last-child{border-bottom:none}
   .hero-h1{font-size:clamp(24px,7vw,36px)}
-  .kader-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+  .kader-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
 }
 </style>
 
@@ -232,7 +255,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   <div class="sn-sec">
     <p class="sn-sec-lbl">Hauptmenü</p>
     <a href="index.html"><div class="sn-link">Startseite</div></a>
-    <a href="Buchen_Sportheimgaststätte.html"><div class="sn-link">Räume buchen</div></a>
+    <a href="Räumlichkeiten.html"><div class="sn-link">Räume buchen</div></a>
   </div>
   <hr class="sn-hr">
   <div class="sn-sec">
@@ -247,7 +270,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     <a href="index.html"><div class="sn-link">Über den Verein</div></a>
     <div class="sn-link">Mitglied werden</div>
     <div class="sn-link">Kontakt</div>
-    <div class="sn-link">Impressum</div>
+    <a href="Impressum.html"><div class="sn-link">Impressum</div></a>
   </div>
   <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2026<br>Gegründet 1928 · Bezirk Oberfranken</div>
 </nav>
@@ -282,14 +305,6 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   </div>
 </section>
 
-<div id="infostrip">
-  <div class="is-inner">
-    <div class="is-item"><div><strong>BFV-Spielbetrieb</strong><span>Bayerischer Fußball-Verband</span></div></div>
-    <div class="is-item"><div><strong>Bezirk Oberfranken</strong><span>Aktiver Ligabetrieb</span></div></div>
-    <div class="is-item"><div><strong>3 Mannschaften</strong><span>Herren &amp; Jugend</span></div></div>
-    <div class="is-item"><div><strong>Seit 1928</strong><span>Das Herzstück des SC Kreuz</span></div></div>
-  </div>
-</div>
 
 <section class="sec sec-gray" id="mannschaften">
   <div class="sec-inner">
@@ -302,37 +317,49 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     </div>
     <div class="team-grid">
       <div class="team-card">
-        <img src="rasen1.jpg" alt="1. Mannschaft" class="team-img">
-        <div class="team-body">
+        <div class="team-card-head">
           <div class="team-name">1. Herrenmannschaft</div>
-          <div class="team-liga">Kreisliga Bayreuth</div>
-          <div class="team-trainer">Trainer: <strong>Wird bekannt gegeben</strong></div>
-          <p class="team-desc">Unser Aushängeschild im Ligabetrieb. Die erste Mannschaft repräsentiert den SC Kreuz im Bezirk Oberfranken.</p>
-          <div class="team-tags"><span class="ttag">Herren</span><span class="ttag">Kreisliga</span><span class="ttag">BFV</span></div>
-          <button class="team-btn" onclick="document.getElementById('kader').scrollIntoView({behavior:'smooth'})">Zum Kader →</button>
+          <div class="team-liga">Kreisliga Bayreuth · BFV Oberfranken</div>
         </div>
+        <img src="fussball2.png" alt="1. Herrenmannschaft" class="team-img">
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">Kreisliga Bayreuth</span></div>
+          <div class="team-info-row"><span class="lbl">Trainer</span><span class="val">Wird bekannt gegeben</span></div>
+          <div class="team-info-row"><span class="lbl">Spieltag</span><span class="val">Sa/So</span></div>
+          <div class="team-info-row"><span class="lbl">Verband</span><span class="val">BFV · Bezirk Oberfranken</span></div>
+        </div>
+        <div class="team-tags"><span class="ttag">Herren</span><span class="ttag">Kreisliga</span><span class="ttag">BFV</span></div>
+        <button class="team-btn" onclick="document.getElementById('kader').scrollIntoView({behavior:'smooth'})">Zum Kader →</button>
       </div>
       <div class="team-card">
-        <div class="team-img-ph"><img src="logo.jpg" width="70" height="70" style="object-fit:contain;opacity:.2;border-radius:50%" alt=""></div>
-        <div class="team-body">
+        <div class="team-card-head">
           <div class="team-name">2. Herrenmannschaft</div>
-          <div class="team-liga">Kreisklasse Bayreuth</div>
-          <div class="team-trainer">Trainer: <strong>Wird bekannt gegeben</strong></div>
-          <p class="team-desc">Regelmäßiger Spielbetrieb für alle Leistungsstufen. Nachwuchs und erfahrene Spieler spielen gemeinsam.</p>
-          <div class="team-tags"><span class="ttag">Herren</span><span class="ttag">Kreisklasse</span></div>
-          <button class="team-btn">Mehr erfahren →</button>
+          <div class="team-liga">Kreisklasse Bayreuth · BFV Oberfranken</div>
         </div>
+        <div class="team-img-ph"><img src="logo.jpg" width="52" height="52" style="object-fit:contain;opacity:.25;border-radius:50%" alt=""></div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">Kreisklasse Bayreuth</span></div>
+          <div class="team-info-row"><span class="lbl">Trainer</span><span class="val">Wird bekannt gegeben</span></div>
+          <div class="team-info-row"><span class="lbl">Spieltag</span><span class="val">Sa/So</span></div>
+          <div class="team-info-row"><span class="lbl">Verband</span><span class="val">BFV · Bezirk Oberfranken</span></div>
+        </div>
+        <div class="team-tags"><span class="ttag">Herren</span><span class="ttag">Kreisklasse</span></div>
+        <button class="team-btn">Mehr erfahren →</button>
       </div>
       <div class="team-card">
-        <div class="team-img-ph"><img src="logo.jpg" width="70" height="70" style="object-fit:contain;opacity:.2;border-radius:50%" alt=""></div>
-        <div class="team-body">
+        <div class="team-card-head">
           <div class="team-name">Jugendmannschaft</div>
-          <div class="team-liga">Junioren · BFV</div>
-          <div class="team-trainer">Trainer: <strong>Wird bekannt gegeben</strong></div>
-          <p class="team-desc">Wir fördern junge Talente aus Bayreuth und Umgebung in einem sportlichen, sozialen Umfeld.</p>
-          <div class="team-tags"><span class="ttag">Jugend</span><span class="ttag">Junioren</span><span class="ttag">Nachwuchs</span></div>
-          <button class="team-btn">Mehr erfahren →</button>
+          <div class="team-liga">Junioren · BFV Oberfranken</div>
         </div>
+        <div class="team-img-ph"><img src="logo.jpg" width="52" height="52" style="object-fit:contain;opacity:.25;border-radius:50%" alt=""></div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">Junioren BFV</span></div>
+          <div class="team-info-row"><span class="lbl">Trainer</span><span class="val">Wird bekannt gegeben</span></div>
+          <div class="team-info-row"><span class="lbl">Spieltag</span><span class="val">Samstag</span></div>
+          <div class="team-info-row"><span class="lbl">Altersklasse</span><span class="val">Jugend & Nachwuchs</span></div>
+        </div>
+        <div class="team-tags"><span class="ttag">Jugend</span><span class="ttag">Junioren</span><span class="ttag">Nachwuchs</span></div>
+        <button class="team-btn">Mehr erfahren →</button>
       </div>
     </div>
   </div>
@@ -349,13 +376,13 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     </div>
     <div class="spiel-grid">
       <div class="spiel-box">
-        <div class="spiel-box-head"><h3>Kommende Spiele</h3><span>Spielplan</span></div>
+        <div class="spiel-box-head"><h3>Kommende Spiele</h3><span class="spiel-box-head-badge">Spielplan</span></div>
         <div class="spiel-list" id="next-games-list">
           <div class="spiel-item" style="justify-content:center;color:var(--gray4);font-size:13px;padding:20px">Lade Spielplan…</div>
         </div>
       </div>
       <div class="spiel-box">
-        <div class="spiel-box-head"><h3>Letzte Spiele</h3><span>Ergebnisse</span></div>
+        <div class="spiel-box-head"><h3>Letzte Spiele</h3><span class="spiel-box-head-badge">Ergebnisse</span></div>
         <div class="spiel-list" id="prev-games-list">
           <div class="spiel-item" style="justify-content:center;color:var(--gray4);font-size:13px;padding:20px">Lade Ergebnisse…</div>
         </div>
@@ -366,14 +393,9 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
 
 <section class="sec sec-gray">
   <div class="sec-inner">
-    <div class="sec-hd">
-      <div>
-        <p class="sec-label">1. Herrenmannschaft</p>
-        <h2 class="sec-h2">Tabelle · Kreisliga Bayreuth</h2>
-      </div>
-    </div>
     <div class="tabelle-wrap">
-      <table class="tabelle">
+      <div class="tabelle-head"><h3>Tabelle · Kreisliga Bayreuth</h3><span class="tabelle-head-badge">1. Herrenmannschaft</span></div>
+      <div class="tabelle-inner"><table class="tabelle">
         <thead><tr><th>#</th><th>Verein</th><th>Sp</th><th>S</th><th>U</th><th>N</th><th>Tore</th><th>Pkt</th></tr></thead>
         <tbody>
           <tr><td><span class="tbl-rank top">1</span></td><td class="tbl-club">TSV Bindlach</td><td>28</td><td>20</td><td>5</td><td>3</td><td>71:28</td><td class="tbl-pts">65</td></tr>
@@ -385,7 +407,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
           <tr><td><span class="tbl-rank">7</span></td><td class="tbl-club">SV Hollfeld</td><td>28</td><td>10</td><td>6</td><td>12</td><td>42:52</td><td class="tbl-pts">36</td></tr>
           <tr><td><span class="tbl-rank">8</span></td><td class="tbl-club">SV Aufseß</td><td>28</td><td>9</td><td>4</td><td>15</td><td>38:58</td><td class="tbl-pts">31</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
     <p style="font-size:11px;color:var(--gray4);margin-top:10px">Tabelle ist beispielhaft und wird nach Saisonbeginn aktualisiert.</p>
   </div>
@@ -400,54 +422,73 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
         <p style="font-size:14px;color:var(--gray4);margin-top:6px">Namen werden nach Saisonstart aktualisiert.</p>
       </div>
     </div>
-    <span class="pos-label">Tor</span>
-    <div class="kader-grid" style="margin-bottom:28px">
-      <div class="kader-card"><div class="kader-nr">1</div><div class="kader-name">N.N.</div><div class="kader-pos">Torwart</div></div>
-      <div class="kader-card"><div class="kader-nr">13</div><div class="kader-name">N.N.</div><div class="kader-pos">Torwart</div></div>
+    <span class="pos-label tor">Tor</span>
+    <div class="kader-grid" style="margin-bottom:8px">
+      <div class="kader-card">
+        <div class="kader-band tor"><span class="kader-pos-icon">TW</span><span class="kader-nr">1</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Torwart</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band tor"><span class="kader-pos-icon">TW</span><span class="kader-nr">13</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Torwart</div></div>
+      </div>
     </div>
-    <span class="pos-label">Abwehr</span>
-    <div class="kader-grid" style="margin-bottom:28px">
-      <div class="kader-card"><div class="kader-nr">2</div><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
-      <div class="kader-card"><div class="kader-nr">3</div><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
-      <div class="kader-card"><div class="kader-nr">4</div><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
-      <div class="kader-card"><div class="kader-nr">5</div><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
+    <span class="pos-label abwehr">Abwehr</span>
+    <div class="kader-grid" style="margin-bottom:8px">
+      <div class="kader-card">
+        <div class="kader-band abwehr"><span class="kader-pos-icon">IV</span><span class="kader-nr">2</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band abwehr"><span class="kader-pos-icon">IV</span><span class="kader-nr">3</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band abwehr"><span class="kader-pos-icon">LV</span><span class="kader-nr">4</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band abwehr"><span class="kader-pos-icon">RV</span><span class="kader-nr">5</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Abwehr</div></div>
+      </div>
     </div>
-    <span class="pos-label">Mittelfeld</span>
-    <div class="kader-grid" style="margin-bottom:28px">
-      <div class="kader-card"><div class="kader-nr">6</div><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
-      <div class="kader-card"><div class="kader-nr">7</div><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
-      <div class="kader-card"><div class="kader-nr">8</div><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
-      <div class="kader-card"><div class="kader-nr">10</div><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
+    <span class="pos-label mittelfeld">Mittelfeld</span>
+    <div class="kader-grid" style="margin-bottom:8px">
+      <div class="kader-card">
+        <div class="kader-band mittelfeld"><span class="kader-pos-icon">DM</span><span class="kader-nr">6</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band mittelfeld"><span class="kader-pos-icon">LM</span><span class="kader-nr">7</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band mittelfeld"><span class="kader-pos-icon">ZM</span><span class="kader-nr">8</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band mittelfeld"><span class="kader-pos-icon">RM</span><span class="kader-nr">10</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Mittelfeld</div></div>
+      </div>
     </div>
-    <span class="pos-label">Angriff</span>
+    <span class="pos-label sturm">Angriff</span>
     <div class="kader-grid">
-      <div class="kader-card"><div class="kader-nr">9</div><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
-      <div class="kader-card"><div class="kader-nr">11</div><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
-      <div class="kader-card"><div class="kader-nr">12</div><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
+      <div class="kader-card">
+        <div class="kader-band sturm"><span class="kader-pos-icon">ST</span><span class="kader-nr">9</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band sturm"><span class="kader-pos-icon">LA</span><span class="kader-nr">11</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
+      </div>
+      <div class="kader-card">
+        <div class="kader-band sturm"><span class="kader-pos-icon">RA</span><span class="kader-nr">12</span></div>
+        <div class="kader-body"><div class="kader-name">N.N.</div><div class="kader-pos">Sturm</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sec sec-gray">
-  <div class="sec-inner">
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="sec-label">Unsere Geschichte</p>
-        <h2 class="sec-h2" style="margin-bottom:18px">Fußball ist unser Herzstück</h2>
-        <p>Die Fußballabteilung des SC Kreuz Bayreuth e.V. ist seit der Vereinsgründung 1928 das Kernstück des Klubs. Jahrzehntelange Tradition, gelebter Teamgeist und echte Leidenschaft für den Sport machen unsere Abteilung zu etwas Besonderem.</p>
-        <p>Als Mitglied im Bayerischen Fußball-Verband (BFV) nehmen unsere Mannschaften am regulären Spielbetrieb im Bezirk Oberfranken teil. Ob erfahrener Kicker oder Neueinsteiger – bei uns findet jeder seinen Platz auf dem Platz.</p>
-        <p>Neben dem sportlichen Wettkampf legen wir großen Wert auf Gemeinschaft, Fairplay und die Förderung junger Nachwuchsspieler aus Bayreuth und der Region.</p>
-        <div class="about-stats">
-          <div class="a-stat"><div class="a-stat-n">1928</div><div class="a-stat-l">Gegründet</div></div>
-          <div class="a-stat"><div class="a-stat-n">3</div><div class="a-stat-l">Mannschaften</div></div>
-          <div class="a-stat"><div class="a-stat-n">BFV</div><div class="a-stat-l">Mitglied</div></div>
-          <div class="a-stat"><div class="a-stat-n">OFR</div><div class="a-stat-l">Bezirk Oberfranken</div></div>
-        </div>
-      </div>
-      <div class="about-img"><img src="rasen1.jpg" alt="Sportplatz SC Kreuz Bayreuth"></div>
-    </div>
-  </div>
-</section>
 
 <section class="sec sec-black">
   <div class="sec-inner">
@@ -528,7 +569,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     <div class="fc">
       <h4>Räume &amp; Buchung</h4>
       <ul>
-        <li><a href="Buchen_Sportheimgaststätte.html">Räume buchen</a></li>
+        <li><a href="Räumlichkeiten.html">Räume buchen</a></li>
         <li><a href="index.html#raeume">Großer Saal</a></li>
         <li><a href="index.html#raeume">Gastraum</a></li>
         <li><a href="index.html#raeume">Kleiner Saal</a></li>
@@ -548,14 +589,14 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
         <li><a href="index.html">Über den Verein</a></li>
         <li><a href="#">Mitglied werden</a></li>
         <li><a href="#">Kontakt</a></li>
-        <li><a href="#">Impressum</a></li>
+        <li><a href="Impressum.html">Impressum</a></li>
         <li><a href="#">Datenschutz</a></li>
       </ul>
     </div>
   </div>
   <div class="ft-bot">
     <span>© 2026 SC Kreuz Bayreuth e.V. – Alle Rechte vorbehalten - Made by BraMa Webdevelopment</span>
-    <div class="ft-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+    <div class="ft-links"><a href="Impressum.html">Impressum</a><a href="#">Datenschutz</a></div>
   </div>
 </footer>
 

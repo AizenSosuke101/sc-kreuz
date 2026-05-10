@@ -1,0 +1,725 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0e0e0e;--black2:#1a1a1a;--black3:#2a2a2a;
+  --white:#ffffff;--gray1:#f6f6f6;--gray2:#ebebeb;--gray3:#c8c8c8;--gray4:#888;
+  --blue:#1a5faa;--green:#1a7a3a;--red:#b71c1c;
+  --gold:#c17f24;--goldhov:#a36a1a;--goldlight:#f5e6c8;
+}
+html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
+body{background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Barlow',system-ui,sans-serif}
+h1,h2,h3,h4,.hero-h1,.hero-badge-year,.sec-h2,.hdr-name strong,.sn-name,.ft-bname strong,.day-label,.tr-time{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+/* SIDENAV */
+#sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
+#sn-overlay.open{opacity:1;pointer-events:all}
+#sidenav{position:fixed;top:0;left:0;width:268px;height:100vh;background:var(--black);z-index:9999;transform:translateX(-100%);transition:.28s ease;display:flex;flex-direction:column;overflow-y:auto}
+#sidenav.open{transform:translateX(0)}
+.sn-head{padding:18px 18px 16px;background:var(--black2);border-bottom:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center}
+.sn-brand{display:flex;align-items:center;gap:11px}
+.sn-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-name{font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;letter-spacing:.4px}
+.sn-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.sn-close:hover{color:#fff}
+.sn-sec{padding:10px 0 4px}
+.sn-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 18px 5px}
+.sn-link{display:flex;align-items:center;gap:12px;padding:10px 14px;margin:3px 10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);border-radius:10px;cursor:pointer;transition:.18s}
+.sn-link:hover,.sn-link.act{color:#fff;background:rgba(255,255,255,.1)}
+.sn-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:6px 18px}
+.sn-foot{margin-top:auto;padding:14px 18px;font-size:10px;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+/* HEADER */
+#hdr{background:var(--black);height:64px;display:flex;align-items:center;padding:0 20px;gap:14px;position:sticky;top:0;z-index:800;border-bottom:1px solid rgba(255,255,255,.07)}
+.hburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+.hburger:hover span{background:var(--gold)}
+.hdr-brand{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.hdr-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-name{color:#fff;min-width:0}
+.hdr-name strong{display:block;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.hdr-name span{font-size:10px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.5px}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-book-hdr{background:var(--gold);color:#fff;padding:8px 16px;font-size:12px;font-weight:700;border:none;border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-book-hdr:hover{background:var(--goldhov);transform:translateY(-1px);box-shadow:0 4px 12px rgba(193,127,36,.4)}
+.btn-ghost-hdr{background:none;color:rgba(255,255,255,.8);padding:8px 14px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.2);border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-ghost-hdr:hover{border-color:rgba(255,255,255,.5);color:#fff}
+/* HERO */
+#hero{position:relative;min-height:520px;overflow:hidden;display:flex;align-items:flex-end;background:var(--black)}
+.hero-photo{position:absolute;inset:0;background-image:url('Kerwa_Bild1.jpg');background-size:cover;background-position:center 50%;filter:brightness(.72) contrast(1.08)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.3) 55%,rgba(0,0,0,.08) 100%)}
+.hero-content{position:relative;z-index:2;width:100%;padding:60px clamp(20px,5vw,72px) 56px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:16px;backdrop-filter:blur(6px)}
+.hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%}
+.hero-h1{font-size:clamp(28px,4.5vw,54px);font-weight:900;color:#fff;line-height:1.06;letter-spacing:-.5px;margin-bottom:14px}
+.hero-h1 em{font-style:normal;color:var(--gray3)}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:28px;max-width:560px;font-weight:400}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-main{background:#fff;color:var(--black);padding:13px 30px;font-size:14px;font-weight:700;letter-spacing:.5px;border:none;border-radius:8px;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.btn-hero-main:hover{background:var(--gray2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.btn-hero-sec{background:transparent;color:#fff;padding:13px 24px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;transition:.25s}
+.btn-hero-sec:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-badge{position:absolute;top:28px;right:28px;z-index:3;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px 16px;text-align:center}
+.hero-badge-year{font-family:'Oswald',system-ui,sans-serif;font-size:22px;font-weight:900;color:#fff;line-height:1}
+.hero-badge-lbl{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
+/* SECTION BASE */
+.sec{padding:64px clamp(20px,5vw,72px)}
+.sec-white{background:var(--white)}
+.sec-gray{background:var(--gray1)}
+.sec-black{background:var(--black)}
+.sec-gold{background:linear-gradient(135deg,#1a1308 0%,#2a1f08 100%)}
+.sec-inner{width:100%}
+.sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.sec-label-light{color:var(--gray3)}
+.sec-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;letter-spacing:-.3px}
+.sec-h2-light{color:var(--white)}
+.sec-sub{font-size:14px;color:var(--gray4);margin-top:6px;margin-bottom:26px;font-weight:400}
+.sec-sub-light{color:rgba(255,255,255,.5)}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+/* KERWA INTRO — split layout */
+.kerwa-intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.kerwa-intro-text p{font-size:14px;color:#444;line-height:1.8;margin-bottom:14px}
+.kerwa-intro-text p:last-child{margin-bottom:0}
+.kerwa-intro-img{border-radius:14px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.16)}
+.kerwa-intro-img img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.kerwa-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.k-stat{border-left:3px solid var(--gold);padding-left:14px}
+.k-stat-n{font-family:'Oswald',system-ui,sans-serif;font-size:28px;font-weight:900;color:var(--black);line-height:1}
+.k-stat-l{font-size:11px;color:var(--gray4);margin-top:3px}
+/* DAY PROGRAM */
+.program-grid{display:flex;flex-direction:column;gap:0}
+.program-day{display:grid;grid-template-columns:140px 1fr;gap:0;border-bottom:1px solid var(--gray2)}
+.program-day:last-child{border-bottom:none}
+.day-col{padding:24px 28px 24px 0;border-right:2px solid var(--gold)}
+.day-label{font-size:18px;font-weight:700;color:var(--black);line-height:1.1}
+.day-date{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+.events-col{padding:24px 0 24px 28px;display:flex;flex-direction:column;gap:10px}
+.ev-item{display:flex;gap:14px;align-items:flex-start}
+.ev-time{font-family:'Oswald',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--gold);min-width:52px;flex-shrink:0;margin-top:1px}
+.ev-text strong{display:block;font-size:13.5px;font-weight:700;color:var(--black);line-height:1.3}
+.ev-text span{font-size:12px;color:var(--gray4);line-height:1.5}
+/* HIGHLIGHTS */
+.highlights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.hl-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 20px;transition:.2s}
+.hl-card:hover{background:rgba(255,255,255,.12);border-color:rgba(193,127,36,.5);transform:translateY(-3px)}
+.hl-title{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.hl-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6}
+.hl-accent{display:inline-block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:10px}
+/* MINI BAYREUTH */
+.mini-box{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.mini-left{background:var(--black);padding:44px 40px}
+.mini-left h3{font-family:'Oswald',system-ui,sans-serif;font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;margin-bottom:12px}
+.mini-left p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:8px}
+.mini-left p:last-of-type{margin-bottom:24px}
+.mini-right{background:#e4e4e4;padding:44px 40px;display:flex;flex-direction:column;gap:16px}
+.mini-right h4{font-family:'Oswald',system-ui,sans-serif;font-size:16px;font-weight:700;color:var(--black);margin-bottom:4px}
+.mini-fact{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #d0d0d0;padding-bottom:12px;font-size:13px}
+.mini-fact:last-child{border-bottom:none;padding-bottom:0}
+.mini-fact .lbl{color:var(--gray4);font-weight:500}
+.mini-fact .val{font-weight:700;color:var(--black);text-align:right}
+/* BUTTONS */
+.btn-gold{display:inline-block;background:var(--gold);color:#fff;padding:12px 24px;font-size:13.5px;font-weight:700;border-radius:8px;border:none;cursor:pointer;transition:.25s}
+.btn-gold:hover{background:var(--goldhov);transform:translateY(-2px);box-shadow:0 4px 16px rgba(193,127,36,.4)}
+.btn-outline-light{display:inline-block;background:transparent;color:#fff;padding:12px 24px;font-size:13.5px;font-weight:600;border-radius:8px;border:1.5px solid rgba(255,255,255,.3);cursor:pointer;transition:.25s}
+.btn-outline-light:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0}
+.ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
+.fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
+.fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
+.fc ul{display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:12.5px;color:rgba(255,255,255,.45);transition:.15s}
+.fc ul li a:hover{color:#fff}
+.fc ul li a::before{content:'›  ';color:var(--gray3);opacity:.6}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ft-badge{width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-bname strong{display:block;font-size:14px;font-weight:800;color:#fff}
+.ft-bname span{font-size:10px;color:rgba(255,255,255,.35)}
+.ft-bot{width:100%;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+.ft-bot a{color:rgba(255,255,255,.25)}
+.ft-bot a:hover{color:var(--gray3)}
+.ft-links{display:flex;gap:16px}
+/* TICKETS */
+.tickets-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.ticket-cards{display:flex;flex-direction:column;gap:10px}
+.ticket-card{background:var(--white);border-radius:12px;border:1px solid var(--gray2);box-shadow:0 2px 10px rgba(0,0,0,.07);display:flex;align-items:center;gap:0;overflow:hidden;transition:.18s}
+.ticket-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.12);transform:translateX(4px)}
+.ticket-day-col{background:var(--black);color:#fff;padding:14px 18px;min-width:110px;text-align:center;flex-shrink:0}
+.ticket-day-col .td-day{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:700;line-height:1.2}
+.ticket-day-col .td-tag{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-top:3px}
+.ticket-info{padding:12px 18px;flex:1}
+.ticket-info .ti-event{font-size:13.5px;font-weight:700;color:var(--black);line-height:1.3}
+.ticket-info .ti-note{font-size:11.5px;color:var(--gray4);margin-top:2px}
+.ticket-price{padding:12px 18px;text-align:right;flex-shrink:0}
+.ticket-price .tp-val{font-family:'Oswald',system-ui,sans-serif;font-size:20px;font-weight:900;color:var(--black);line-height:1}
+.ticket-price .tp-lbl{font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--gray4);margin-top:1px}
+.ticket-price .tp-free{font-family:'Oswald',system-ui,sans-serif;font-size:16px;font-weight:800;color:var(--green)}
+/* RESERVATION FORM */
+.res-form-box{background:var(--white);border-radius:14px;border:1px solid #d0d0d0;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden}
+.res-form-head{background:var(--black);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.res-form-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:.3px}
+.res-form-head span{font-size:10px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.8px;text-transform:uppercase}
+.res-form-body{padding:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.single{grid-template-columns:1fr}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-field label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray4)}
+.form-field input,.form-field select,.form-field textarea{font-family:'Barlow',system-ui,sans-serif;font-size:13.5px;padding:10px 13px;border:1.5px solid var(--gray2);border-radius:8px;color:var(--black);background:var(--gray1);transition:.18s;outline:none;width:100%}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(193,127,36,.12)}
+.form-field textarea{resize:vertical;min-height:72px}
+.form-submit{width:100%;background:var(--gold);color:#fff;padding:13px;font-size:14px;font-weight:700;letter-spacing:.4px;border:none;border-radius:8px;cursor:pointer;transition:.25s;margin-top:4px}
+.form-submit:hover{background:var(--goldhov);transform:translateY(-2px);box-shadow:0 4px 14px rgba(193,127,36,.4)}
+.form-note{font-size:11px;color:var(--gray4);margin-top:10px;line-height:1.5;text-align:center}
+.form-success{display:none;margin-top:12px}
+.form-success.show{display:block}
+.res-ticket{background:var(--black);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.22)}
+.res-ticket-top{background:var(--gold);padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.res-ticket-top span{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(0,0,0,.6)}
+.res-ticket-top strong{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:#000}
+.res-ticket-body{padding:20px 22px}
+.res-ticket-name{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:2px}
+.res-ticket-event{font-family:'Oswald',system-ui,sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:14px}
+.res-ticket-code-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.res-ticket-code{font-family:'Oswald',system-ui,sans-serif;font-size:28px;font-weight:900;color:var(--gold);letter-spacing:4px;background:rgba(255,255,255,.06);border:1px dashed rgba(193,127,36,.4);border-radius:8px;padding:10px 16px;text-align:center;margin-bottom:14px}
+.res-ticket-note{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.6;text-align:center;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .kerwa-intro{grid-template-columns:1fr}
+  .kerwa-intro-img{display:none}
+  .mini-box{grid-template-columns:1fr}
+  .program-day{grid-template-columns:100px 1fr}
+  .tickets-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #hero{min-height:420px}
+  .hero-badge{top:16px;right:16px;padding:9px 12px}
+  .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .btn-ghost-hdr{display:none}
+  .hdr-name span{display:none}
+  .sec{padding:44px clamp(16px,4vw,36px)}
+  .mini-left,.mini-right{padding:28px 24px}
+  .program-day{grid-template-columns:1fr;gap:0}
+  .day-col{border-right:none;border-bottom:2px solid var(--gold);padding:16px 0 12px}
+  .events-col{padding:12px 0 20px}
+  .kerwa-stat-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .highlights-grid{grid-template-columns:1fr 1fr}
+  .kerwa-stat-row{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<div id="sn-overlay" onclick="closeSN()"></div>
+<nav id="sidenav">
+  <div class="sn-head">
+    <div class="sn-brand">
+      <div class="sn-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+      <div class="sn-name">SC Kreuz<br>Bayreuth e.V.</div>
+    </div>
+    <button class="sn-close" onclick="closeSN()">✕</button>
+  </div>
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Hauptmenü</p>
+    <a href="index.html"><div class="sn-link">Startseite</div></a>
+    <a href="Räumlichkeiten.html"><div class="sn-link">Räume buchen</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Sportabteilungen</p>
+    <a href="Fussball.html"><div class="sn-link">Fußball</div></a>
+    <a href="Dart.html"><div class="sn-link">Dart</div></a>
+    <div class="sn-link act">Events &amp; Kerwa</div>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Verein</p>
+    <a href="index.html"><div class="sn-link">Über den Verein</div></a>
+    <div class="sn-link">Mitglied werden</div>
+    <div class="sn-link">Kontakt</div>
+    <a href="Impressum.html"><div class="sn-link">Impressum</div></a>
+  </div>
+  <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2026<br>Gegründet 1928 · Bezirk Oberfranken</div>
+</nav>
+
+<header id="hdr">
+  <button class="hburger" onclick="openSN()"><span></span><span></span><span></span></button>
+  <div class="hdr-brand">
+    <div class="hdr-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+    <div class="hdr-name">
+      <strong>SC Kreuz Bayreuth</strong>
+      <span>Events &amp; Kerwa</span>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a href="index.html"><button class="btn-ghost-hdr">Zur Startseite</button></a>
+    <button class="btn-book-hdr" onclick="document.getElementById('tickets').scrollIntoView({behavior:'smooth'})">Tickets</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-badge"><div class="hero-badge-year">1897</div><div class="hero-badge-lbl">Tradition</div></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Events &amp; Kerwa · SC Kreuz Bayreuth e.V.</div>
+    <h1 class="hero-h1">Die Kreuzer Kerwa.<br><em>Bayreuths letzte Zeltkerwa.</em></h1>
+    <p class="hero-desc">Seit 1897 — fünf Tage Volksfest, Bier, Live-Musik und fränkische Tradition. Jedes Jahr Ende August auf dem SC Kreuz Sportgelände in der Egerstraße.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-main" onclick="document.getElementById('kerwa').scrollIntoView({behavior:'smooth'})">Mehr erfahren</button>
+      <button class="btn-hero-sec" onclick="document.getElementById('programm').scrollIntoView({behavior:'smooth'})">Zum Programm</button>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS & RESERVIERUNG -->
+<section id="tickets" class="sec sec-white">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Eintritte &amp; Reservierung</span>
+        <h2 class="sec-h2">Tickets &amp; Tischreservierung</h2>
+        <p class="sec-sub">Eintrittspreise je Tag sowie Tischreservierungen für das Krenfleischessen und Abendveranstaltungen.</p>
+      </div>
+    </div>
+    <div class="tickets-grid">
+      <div class="ticket-cards">
+        <div class="ticket-card">
+          <div class="ticket-day-col"><div class="td-day">Donnerstag</div><div class="td-tag">Krenfleisch</div></div>
+          <div class="ticket-info"><div class="ti-event">Krenfleischessen</div><div class="ti-note">Tischreservierung erforderlich · begrenzte Plätze</div></div>
+          <div class="ticket-price"><div class="tp-val">ca. 15 €</div><div class="tp-lbl">pro Person</div></div>
+        </div>
+        <div class="ticket-card">
+          <div class="ticket-day-col"><div class="td-day">Freitag</div><div class="td-tag">Eröffnung</div></div>
+          <div class="ticket-info"><div class="ti-event">Festzelt &amp; Feuerwerk</div><div class="ti-note">Freier Eintritt · Bieranstich ab 18:30 Uhr</div></div>
+          <div class="ticket-price"><div class="tp-free">Frei</div><div class="tp-lbl">Eintritt</div></div>
+        </div>
+        <div class="ticket-card">
+          <div class="ticket-day-col"><div class="td-day">Samstag</div><div class="td-tag">Party</div></div>
+          <div class="ticket-info"><div class="ti-event">Hausband Surprise &amp; Familientag</div><div class="ti-note">Abendveranstaltung · Tischreservierung empfohlen</div></div>
+          <div class="ticket-price"><div class="tp-val">8 €</div><div class="tp-lbl">Abendkasse</div></div>
+        </div>
+        <div class="ticket-card">
+          <div class="ticket-day-col"><div class="td-day">Sonntag</div><div class="td-tag">Familien</div></div>
+          <div class="ticket-info"><div class="ti-event">Seniorennachmittag &amp; Abendprogramm</div><div class="ti-note">Seniorennachmittag inkl. Kaffee &amp; Kuchen ca. 5 €</div></div>
+          <div class="ticket-price"><div class="tp-free">Frei</div><div class="tp-lbl">Eintritt</div></div>
+        </div>
+        <div class="ticket-card">
+          <div class="ticket-day-col"><div class="td-day">Montag</div><div class="td-tag">Finale</div></div>
+          <div class="ticket-info"><div class="ti-event">Miss Kreuzer Kerwa &amp; Kerwa-Beats</div><div class="ti-note">Großes Finale · freier Eintritt</div></div>
+          <div class="ticket-price"><div class="tp-free">Frei</div><div class="tp-lbl">Eintritt</div></div>
+        </div>
+      </div>
+      <div class="res-form-box">
+        <div class="res-form-head">
+          <h3>Tischreservierung</h3>
+          <span>Online anfragen</span>
+        </div>
+        <div class="res-form-body">
+          <form id="res-form" onsubmit="submitRes(event)">
+            <input type="hidden" name="_replyto" id="field-replyto">
+            <input type="hidden" name="_subject" id="field-subject">
+            <input type="hidden" name="reservierungscode" id="field-code">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Vorname</label>
+                <input type="text" name="vorname" placeholder="Max" required>
+              </div>
+              <div class="form-field">
+                <label>Nachname</label>
+                <input type="text" name="nachname" placeholder="Mustermann" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>E-Mail</label>
+                <input type="email" name="email" placeholder="max@beispiel.de" required>
+              </div>
+              <div class="form-field">
+                <label>Telefon</label>
+                <input type="tel" name="telefon" placeholder="0921 …">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Veranstaltung</label>
+                <select name="veranstaltung" required>
+                  <option value="" disabled selected>Bitte wählen …</option>
+                  <option value="Donnerstag — Krenfleischessen">Donnerstag — Krenfleischessen</option>
+                  <option value="Freitag — Eröffnungsabend">Freitag — Eröffnungsabend</option>
+                  <option value="Samstag — Hausband Surprise">Samstag — Hausband Surprise</option>
+                  <option value="Sonntag — Abendprogramm">Sonntag — Abendprogramm</option>
+                  <option value="Montag — Miss Kreuzer Kerwa">Montag — Miss Kreuzer Kerwa</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Personenanzahl</label>
+                <select name="personen" required>
+                  <option value="" disabled selected>Anzahl …</option>
+                  <option value="1 Person">1 Person</option>
+                  <option value="2 Personen">2 Personen</option>
+                  <option value="3 Personen">3 Personen</option>
+                  <option value="4 Personen">4 Personen</option>
+                  <option value="5 Personen">5 Personen</option>
+                  <option value="6+ Personen">6+ Personen</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-field">
+                <label>Anmerkungen (optional)</label>
+                <textarea name="anmerkungen" placeholder="Besondere Wünsche, Allergien, …"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="form-submit" id="res-btn">Jetzt reservieren</button>
+            <p class="form-note">Die Reservierung wird direkt online gespeichert. Bestätigung per E-Mail innerhalb von 24 Stunden. Alternativ: <strong>0921 41666</strong></p>
+          </form>
+          <div class="form-success" id="res-success">
+            <div id="res-ticket"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-WIDTH PHOTO STRIP -->
+<div style="width:100%;aspect-ratio:21/9;overflow:hidden">
+  <img src="Kerwa_Bild2.jpg" alt="Kreuzer Kerwa Atmosphäre" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.9)">
+</div>
+
+<!-- PROGRAMM -->
+<section id="programm" class="sec sec-gray">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Ablauf</span>
+        <h2 class="sec-h2">Das Programm</h2>
+        <p class="sec-sub">Fünf Tage, jeden Tag ein anderer Charakter — von traditionellem Krenfleischessen bis zur Montagsparty.</p>
+      </div>
+    </div>
+    <div class="program-grid">
+      <div class="program-day">
+        <div class="day-col">
+          <div class="day-label">Donnerstag</div>
+          <div class="day-date">Tag 1</div>
+        </div>
+        <div class="events-col">
+          <div class="ev-item">
+            <div class="ev-time">11:00</div>
+            <div class="ev-text"><strong>Krenfleischessen</strong><span>Traditionelles fränkisches Krenfleisch (Schweinefleisch mit Meerrettich) im Kreuzer Sportheim. Tischreservierung erforderlich unter 0921 41666.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Abend</div>
+            <div class="ev-text"><strong>Kerwa-Auftakt</strong><span>Geselliger Abend für die Stammgemeinde — der traditionelle Auftakt der Festtage.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="program-day">
+        <div class="day-col">
+          <div class="day-label">Freitag</div>
+          <div class="day-date">Tag 2</div>
+        </div>
+        <div class="events-col">
+          <div class="ev-item">
+            <div class="ev-time">Nachmittag</div>
+            <div class="ev-text"><strong>Kerwaburschen-Umzug</strong><span>Die Kerwaburschen und Kerwamädla ziehen in fränkischer Tracht durch den Kreuz-Stadtbezirk zum Festgelände.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">18:00</div>
+            <div class="ev-text"><strong>Festzeltöffnung</strong><span>Das Festzelt öffnet offiziell seine Pforten für alle Besucher.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">18:30</div>
+            <div class="ev-text"><strong>Bieranstich</strong><span>Der Bayreuther Oberbürgermeister zapft das erste Fass Maislbier an und eröffnet die Kreuzer Kerwa offiziell.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">21:45</div>
+            <div class="ev-text"><strong>Feuerwerk</strong><span>Das Eröffnungsfeuerwerk über dem Festgelände — ein spektakulärer Abschluss des Eröffnungsabends.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="program-day">
+        <div class="day-col">
+          <div class="day-label">Samstag</div>
+          <div class="day-date">Tag 3</div>
+        </div>
+        <div class="events-col">
+          <div class="ev-item">
+            <div class="ev-time">11:00</div>
+            <div class="ev-text"><strong>Kreuzer-Kerwa-Open</strong><span>Vorrundenspiele des Steeldart-Turniers in der Dart-Lounge — organisiert von der Dartabteilung des SC Kreuz.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">14:30</div>
+            <div class="ev-text"><strong>Familiennachmittag</strong><span>Hüpfburgen, Kinderspiele, Spielstraße und Programm für die ganze Familie.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Ab 13:00</div>
+            <div class="ev-text"><strong>SC Kreuz Fußball</strong><span>Jugend- und Aktivenspiele des SC Kreuz auf den Vereinsplätzen.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Abend</div>
+            <div class="ev-text"><strong>Hausband „Surprise"</strong><span>Die Kultband der Kreuzer Kerwa spielt alljährlich am Samstag — Live-Musik bis in die Nacht.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="program-day">
+        <div class="day-col">
+          <div class="day-label">Sonntag</div>
+          <div class="day-date">Tag 4</div>
+        </div>
+        <div class="events-col">
+          <div class="ev-item">
+            <div class="ev-time">11:00</div>
+            <div class="ev-text"><strong>Politisches Frühstück</strong><span>Bayerische Staatsminister und Lokalpolitiker beim traditionellen Frühstück im Festzelt — ein Pflichttermin der Bayreuther Politik.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">14:30</div>
+            <div class="ev-text"><strong>Seniorennachmittag</strong><span>Kaffee und Kuchen für Seniorinnen und Senioren für ca. 5 €. Eine herzliche Einladung an die ältere Generation des Stadtviertels.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Ab 13:00</div>
+            <div class="ev-text"><strong>SC Kreuz Fußball</strong><span>2. Mannschaft 13:00 Uhr, 1. Mannschaft 15:00 Uhr auf dem Vereinsgelände.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Abend</div>
+            <div class="ev-text"><strong>Dart-Finale &amp; Abendprogramm</strong><span>Finale des Kreuzer-Kerwa-Open auf der Hauptbühne im Festzelt, danach DJ-Abend.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="program-day">
+        <div class="day-col">
+          <div class="day-label">Montag</div>
+          <div class="day-date">Tag 5</div>
+        </div>
+        <div class="events-col">
+          <div class="ev-item">
+            <div class="ev-time">19:00</div>
+            <div class="ev-text"><strong>Kerwa-Beats</strong><span>DJ-Set zum großen Abschluss — Party bis zum Ende der Kreuzer Kerwa.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">19:30</div>
+            <div class="ev-text"><strong>Miss Kreuzer Kerwa</strong><span>Die Wahl zur Miss Kreuzer Kerwa — ein Publikumshighlight seit über 10 Jahren, moderiert von Radio Mainwelle.</span></div>
+          </div>
+          <div class="ev-item">
+            <div class="ev-time">Ende</div>
+            <div class="ev-text"><strong>Kerwa begraben</strong><span>Die Kerwaburschen verabschieden die Kerwa feierlich — bis zum nächsten Jahr.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS (dark section) -->
+<section class="sec sec-black">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label sec-label-light">Höhepunkte</span>
+        <h2 class="sec-h2 sec-h2-light">Was die Kreuzer Kerwa besonders macht</h2>
+        <p class="sec-sub sec-sub-light">Highlights, die kein anderes Fest in Bayreuth bietet.</p>
+      </div>
+    </div>
+    <div class="highlights-grid">
+      <div class="hl-card">
+        <div class="hl-accent">Freitag</div>
+        <div class="hl-title">Bieranstich</div>
+        <div class="hl-desc">Der Bayreuther Oberbürgermeister zapft das erste Fass Maisel-Festbier. Kein anderes Stadtteilfest in Bayreuth hat diesen Brauch.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-accent">Freitag</div>
+        <div class="hl-title">Feuerwerk</div>
+        <div class="hl-desc">Das Eröffnungsfeuerwerk am Freitagabend ist eines der Highlights des Bayreuther Veranstaltungskalenders.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-accent">Samstag</div>
+        <div class="hl-title">Hausband Surprise</div>
+        <div class="hl-desc">Die Kultband der Kreuzer Kerwa. Jahr für Jahr spielt „Surprise" am Samstag und bringt das Zelt zum Kochen.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-accent">Samstag</div>
+        <div class="hl-title">Kerwa-Open Dart</div>
+        <div class="hl-desc">Das Steeldart-Turnier der Dartabteilung — Vorrunden in der Lounge, Finale auf der Hauptbühne vor großem Publikum.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-accent">Sonntag</div>
+        <div class="hl-title">Politisches Frühstück</div>
+        <div class="hl-desc">Bayerische Staatsminister beim Frühstück im Festzelt — ein Pflichttermin, der die stadtweite Bedeutung der Kerwa unterstreicht.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-accent">Montag</div>
+        <div class="hl-title">Miss Kreuzer Kerwa</div>
+        <div class="hl-desc">Seit über 10 Jahren wird die Miss Kreuzer Kerwa gekürt — moderiert von Radio Mainwelle, mit Preisen und großem Finale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KERWA INTRO -->
+<section id="kerwa" class="sec sec-white">
+  <div class="sec-inner">
+    <div class="kerwa-intro">
+      <div class="kerwa-intro-text">
+        <span class="sec-label">Tradition seit 1897</span>
+        <h2 class="sec-h2">Was ist die Kreuzer Kerwa?</h2>
+        <p style="margin-top:10px">Die Kreuzer Kerwa ist die größte Kirchweih Bayreuths und die letzte Zeltkerwa der Stadt — ein echtes Festzelt, wie es sie früher in jedem Viertel gab. Heute hält SC Kreuz Bayreuth e.V. diese Tradition als einziger Verein am Leben.</p>
+        <p>Was 1897 als Volksfest der Arbeiter rund um die Zentralhalle begann, ist heute ein stadtweites Ereignis: fünf Tage von Donnerstag bis Montag auf dem Sportgelände an der Egerstraße, mit Bieranstich durch den Bürgermeister, Feuerwerk, Live-Bands, Kerwaburschen-Umzug und dem Kreuzer-Kerwa-Open Dartturnier.</p>
+        <p>Als Hausbrauerei liefert Brauerei Maisel das Festbier. Die Hausband „Surprise" spielt jeden Samstag. Politische Frühstücke mit bayerischen Staatsministern füllen den Sonntag — und die Miss Kreuzer Kerwa krönt den Montag.</p>
+        <div class="kerwa-stat-row">
+          <div class="k-stat"><div class="k-stat-n">128</div><div class="k-stat-l">Jahre Tradition</div></div>
+          <div class="k-stat"><div class="k-stat-n">5</div><div class="k-stat-l">Tage Volksfest</div></div>
+          <div class="k-stat"><div class="k-stat-n">1</div><div class="k-stat-l">letzte Zeltkerwa Bayreuths</div></div>
+        </div>
+      </div>
+      <div class="kerwa-intro-img">
+        <img src="Kerwa_Bild2.jpg" alt="Kreuzer Kerwa Bayreuth">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI BAYREUTH -->
+<section id="mini-bayreuth" class="sec sec-gray">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Weitere Events</span>
+        <h2 class="sec-h2">Mini-Bayreuth</h2>
+        <p class="sec-sub">Das Ferienprogramm für Kinder — seit 1991 ein fester Bestandteil des Bayreuther Sommers.</p>
+      </div>
+    </div>
+    <div class="mini-box">
+      <div class="mini-left">
+        <h3>Eine Woche Kinderwelt auf dem Vereinsgelände</h3>
+        <p>Jeden Sommer verwandelt sich das SC Kreuz Sportgelände in eine eigene kleine Stadt. Kinder zwischen 6 und 12 Jahren erleben eine Woche lang ihr eigenes Bayreuth — mit echter Spielwährung, Workshops, Wahlen und allem, was eine Stadt ausmacht.</p>
+        <p>Bis zu 400–500 Kinder täglich von Montag bis Freitag, 9 bis 16 Uhr.</p>
+        <button class="btn-gold" onclick="window.location.href='mailto:info@sckreuz-bayreuth.de'">Mehr erfahren</button>
+      </div>
+      <div class="mini-right">
+        <h4>Programm &amp; Fakten</h4>
+        <div class="mini-fact"><span class="lbl">Zeitraum</span><span class="val">Sommerferien (Mo–Fr)</span></div>
+        <div class="mini-fact"><span class="lbl">Uhrzeit</span><span class="val">09:00 – 16:00 Uhr</span></div>
+        <div class="mini-fact"><span class="lbl">Alter</span><span class="val">6 – 12 Jahre</span></div>
+        <div class="mini-fact"><span class="lbl">Besucher täglich</span><span class="val">bis zu 500 Kinder</span></div>
+        <div class="mini-fact"><span class="lbl">Spielwährung</span><span class="val">„Knobbern"</span></div>
+        <div class="mini-fact"><span class="lbl">Seit</span><span class="val">1991</span></div>
+        <div class="mini-fact"><span class="lbl">Ort</span><span class="val">Egerstrasse 10, Bayreuth</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="fc">
+      <div class="ft-brand">
+        <div class="ft-badge"><img src="logo.jpg" width="30" height="30" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+        <div class="ft-bname"><strong>SC Kreuz Bayreuth</strong><span>e.V. · Gegründet 1928</span></div>
+      </div>
+      <p>Sportverein und Veranstalter der traditionsreichen Kreuzer Kerwa.<br>Egerstrasse 10 · 95445 Bayreuth</p>
+    </div>
+    <div class="fc">
+      <h4>Events</h4>
+      <ul>
+        <li><a href="#kerwa">Kreuzer Kerwa</a></li>
+        <li><a href="#programm">Programm</a></li>
+        <li><a href="#mini-bayreuth">Mini-Bayreuth</a></li>
+        <li><a href="Räumlichkeiten.html">Räume buchen</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="Fussball.html">Fußball</a></li>
+        <li><a href="Dart.html">Dart</a></li>
+        <li><a href="Räumlichkeiten.html">Räume buchen</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:092141666">0921 41666</a></li>
+        <li><a href="mailto:info@sckreuz-bayreuth.de">info@sckreuz-bayreuth.de</a></li>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 SC Kreuz Bayreuth e.V. — Alle Rechte vorbehalten</span>
+    <div class="ft-links">
+      <a href="Impressum.html">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function genCode(){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let c = 'KRW-';
+  for(let i=0;i<3;i++) c += chars[Math.floor(Math.random()*chars.length)];
+  c += '-';
+  for(let i=0;i<4;i++) c += chars[Math.floor(Math.random()*chars.length)];
+  return c;
+}
+function submitRes(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('res-btn');
+  const code = genCode();
+  const emailVal = form.querySelector('[name="email"]').value;
+  const nameVal = form.querySelector('[name="vorname"]').value + ' ' + form.querySelector('[name="nachname"]').value;
+  const eventVal = form.querySelector('[name="veranstaltung"]').value;
+  const personenVal = form.querySelector('[name="personen"]').value;
+  document.getElementById('field-replyto').value = emailVal;
+  document.getElementById('field-subject').value = 'Reservierungsbestätigung Kreuzer Kerwa — Code ' + code;
+  document.getElementById('field-code').value = code;
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet …';
+  fetch('https://formspree.io/f/mgodpbrq', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify(Object.fromEntries(new FormData(form)))
+  })
+  .then(r => r.ok ? r : Promise.reject())
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('res-ticket').innerHTML =
+      '<div class="res-ticket">' +
+        '<div class="res-ticket-top">' +
+          '<span>Kreuzer Kerwa 2026</span>' +
+          '<strong>Reservierungsbestätigung</strong>' +
+        '</div>' +
+        '<div class="res-ticket-body">' +
+          '<div class="res-ticket-name">' + nameVal + ' · ' + personenVal + '</div>' +
+          '<div class="res-ticket-event">' + eventVal + '</div>' +
+          '<div class="res-ticket-code-lbl">Ihr Reservierungscode</div>' +
+          '<div class="res-ticket-code">' + code + '</div>' +
+          '<div class="res-ticket-note">Bitte zeigen Sie diesen Code dem Servicepersonal vor Ort.<br>Machen Sie einen Screenshot oder notieren Sie sich den Code.<br>Eine Bestätigung wird an <strong style="color:rgba(255,255,255,.65)">' + emailVal + '</strong> gesendet.</div>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('res-success').classList.add('show');
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.textContent = 'Jetzt reservieren';
+    alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 0921 41666');
+  });
+}
+function openSN(){
+  document.getElementById('sidenav').classList.add('open');
+  document.getElementById('sn-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSN(){
+  document.getElementById('sidenav').classList.remove('open');
+  document.getElementById('sn-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>

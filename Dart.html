@@ -1,0 +1,623 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0e0e0e;--black2:#1a1a1a;--black3:#2a2a2a;
+  --white:#ffffff;--gray1:#f6f6f6;--gray2:#ebebeb;--gray3:#c8c8c8;--gray4:#888;
+  --blue:#1a5faa;--bluehov:#134d8e;--green:#1a7a3a;--red:#b71c1c;
+  --dart:#c8392b;--darthov:#a62d21;
+}
+html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
+body{background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Barlow',system-ui,sans-serif}
+h1,h2,h3,h4,.hero-h1,.hero-badge-year,.sec-h2,.hdr-name strong,.sn-name,.ft-bname strong,.team-name,.tr-day,.tr-time{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+/* SIDENAV */
+#sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
+#sn-overlay.open{opacity:1;pointer-events:all}
+#sidenav{position:fixed;top:0;left:0;width:268px;height:100vh;background:var(--black);z-index:9999;transform:translateX(-100%);transition:.28s ease;display:flex;flex-direction:column;overflow-y:auto}
+#sidenav.open{transform:translateX(0)}
+.sn-head{padding:18px 18px 16px;background:var(--black2);border-bottom:2px solid var(--dart);display:flex;justify-content:space-between;align-items:center}
+.sn-brand{display:flex;align-items:center;gap:11px}
+.sn-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-name{font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;letter-spacing:.4px}
+.sn-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.sn-close:hover{color:#fff}
+.sn-sec{padding:10px 0 4px}
+.sn-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dart);padding:10px 18px 5px}
+.sn-link{display:flex;align-items:center;gap:12px;padding:10px 14px;margin:3px 10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);border-radius:10px;cursor:pointer;transition:.18s}
+.sn-link:hover,.sn-link.act{color:#fff;background:rgba(255,255,255,.1)}
+.sn-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:6px 18px}
+.sn-foot{margin-top:auto;padding:14px 18px;font-size:10px;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+/* HEADER */
+#hdr{background:var(--black);height:64px;display:flex;align-items:center;padding:0 20px;gap:14px;position:sticky;top:0;z-index:800;border-bottom:1px solid rgba(255,255,255,.07)}
+.hburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+.hburger:hover span{background:var(--dart)}
+.hdr-brand{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.hdr-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-name{color:#fff;min-width:0}
+.hdr-name strong{display:block;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.hdr-name span{font-size:10px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.5px}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-book-hdr{background:var(--dart);color:#fff;padding:8px 16px;font-size:12px;font-weight:700;border:none;border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-book-hdr:hover{background:var(--darthov);transform:translateY(-1px);box-shadow:0 4px 12px rgba(200,57,43,.4)}
+.btn-ghost-hdr{background:none;color:rgba(255,255,255,.8);padding:8px 14px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.2);border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-ghost-hdr:hover{border-color:rgba(255,255,255,.5);color:#fff}
+/* HERO */
+#hero{position:relative;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;background:var(--black)}
+.hero-photo{position:absolute;inset:0;background-image:url('dart2.png');background-size:cover;background-position:center 40%;filter:brightness(.75) contrast(1.1);transition:.3s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%)}
+.hero-content{position:relative;z-index:2;width:100%;padding:60px clamp(20px,5vw,72px) 56px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:16px;backdrop-filter:blur(6px)}
+.hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--dart);border-radius:50%}
+.hero-h1{font-size:clamp(28px,4.5vw,54px);font-weight:900;color:#fff;line-height:1.06;letter-spacing:-.5px;margin-bottom:14px}
+.hero-h1 em{font-style:normal;color:var(--gray3)}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:28px;max-width:520px;font-weight:400}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-main{background:#fff;color:var(--black);padding:13px 30px;font-size:14px;font-weight:700;letter-spacing:.5px;border:none;border-radius:8px;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.btn-hero-main:hover{background:var(--gray2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.btn-hero-sec{background:transparent;color:#fff;padding:13px 24px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;transition:.25s}
+.btn-hero-sec:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-badge{position:absolute;top:28px;right:28px;z-index:3;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px 16px;text-align:center}
+.hero-badge-year{font-size:22px;font-weight:900;color:#fff;line-height:1}
+.hero-badge-lbl{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
+/* SECTION BASE */
+.sec{padding:64px clamp(20px,5vw,72px)}
+.sec-white{background:var(--white)}
+.sec-gray{background:var(--gray1)}
+.sec-black{background:var(--black)}
+.sec-inner{width:100%}
+.sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dart);margin-bottom:7px}
+.sec-label-light{color:var(--gray3)}
+.sec-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;letter-spacing:-.3px}
+.sec-h2-light{color:var(--white)}
+.sec-sub{font-size:14px;color:var(--gray4);margin-top:6px;margin-bottom:26px;font-weight:400}
+.sec-sub-light{color:rgba(255,255,255,.5)}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+/* MANNSCHAFTEN */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.team-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.1);transition:.22s;display:flex;flex-direction:column;border:1px solid #d8d8d8}
+.team-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.18);transform:translateY(-3px)}
+.team-card-head{background:var(--black);padding:16px 20px 14px}
+.team-name{font-size:16px;font-weight:800;color:#fff;line-height:1.2}
+.team-liga{font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+.team-info{padding:14px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.team-info-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px;border-bottom:1px solid var(--gray2);padding-bottom:9px}
+.team-info-row:last-child{border-bottom:none;padding-bottom:0}
+.team-info-row .lbl{color:var(--gray4);font-weight:500;flex-shrink:0}
+.team-info-row .val{color:var(--black);font-weight:700;text-align:right}
+.team-rank-badge{display:inline-block;background:var(--dart);color:#fff;font-family:'Oswald',system-ui,sans-serif;font-size:18px;font-weight:800;padding:3px 10px;border-radius:6px;line-height:1.3}
+.team-rank-badge.good{background:#1a7a3a}
+/* TABELLE */
+.tabelle-wrap{background:#e4e4e4;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0}
+.tabelle-head{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.tabelle-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.tabelle-head-badge{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);background:rgba(255,255,255,.12);padding:3px 9px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.tabelle-inner{overflow-x:auto;padding:12px}
+.tabelle{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13px}
+.tabelle thead th{padding:4px 12px 8px;font-family:'Oswald',system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;white-space:nowrap}
+.tabelle thead th:nth-child(n+3){text-align:center}
+.tabelle tbody tr{background:var(--white);box-shadow:0 2px 6px rgba(0,0,0,.09);transition:.15s}
+.tabelle tbody tr:hover{background:var(--gray1);box-shadow:0 4px 12px rgba(0,0,0,.13)}
+.tabelle tbody tr.highlight{background:var(--black);box-shadow:0 4px 20px rgba(0,0,0,.22)}
+.tabelle tbody tr.highlight td{color:#fff;font-weight:700}
+.tabelle tbody tr.highlight td:nth-child(n+3){color:rgba(255,255,255,.6)}
+.tabelle tbody tr.highlight .tbl-rank,.tabelle tbody tr.highlight .tbl-club,.tabelle tbody tr.highlight .tbl-pts{color:#fff}
+.tabelle td{padding:11px 12px;white-space:nowrap}
+.tabelle td:first-child{border-radius:10px 0 0 10px}
+.tabelle td:last-child{border-radius:0 10px 10px 0}
+.tabelle td:nth-child(n+3){text-align:center;color:var(--gray4)}
+.tbl-rank{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:var(--black);min-width:24px;display:inline-block}
+.tbl-rank.top{color:var(--dart)}
+.tbl-club{font-weight:600;color:var(--black)}
+.tbl-pts{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:var(--black)}
+/* RANGLISTE */
+.rang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.rang-card{background:var(--white);border:1px solid var(--gray2);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(0,0,0,.07);transition:.2s}
+.rang-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.13);transform:translateY(-2px)}
+.rang-pos{font-family:'Oswald',system-ui,sans-serif;font-size:22px;font-weight:900;color:var(--gray3);min-width:34px;text-align:center}
+.rang-pos.top3{color:var(--dart)}
+.rang-info{flex:1}
+.rang-name{font-size:14px;font-weight:700;color:var(--black);line-height:1.2}
+.rang-team{font-size:10px;font-weight:600;color:var(--gray4);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+.rang-pts{font-family:'Oswald',system-ui,sans-serif;font-size:18px;font-weight:800;color:var(--dart);text-align:right}
+.rang-pts span{font-size:10px;font-weight:600;color:var(--gray4);display:block;text-align:right}
+/* TRAINING */
+.training-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.tr-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:24px 20px;transition:.22s}
+.tr-card:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35);transform:translateY(-3px)}
+.tr-day{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.tr-time{font-size:24px;font-weight:800;color:#f87171;margin-bottom:8px}
+.tr-team{font-size:10px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.tr-desc{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6}
+.tr-loc{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);margin-top:10px;text-transform:uppercase;letter-spacing:.8px}
+/* ANLAGE */
+.anlage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:24px}
+.anlage-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:18px 16px;text-align:center;transition:.2s}
+.anlage-item:hover{background:rgba(255,255,255,.14)}
+.anlage-icon{font-size:26px;margin-bottom:8px}
+.anlage-val{font-family:'Oswald',system-ui,sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1}
+.anlage-lbl{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+/* PROBE BOX */
+.probe-box{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:18px;overflow:hidden;border:1px solid #d0d0d0;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.probe-left{background:var(--black);padding:44px 40px}
+.probe-left h3{font-family:'Oswald',system-ui,sans-serif;font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;margin-bottom:12px}
+.probe-left p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:24px}
+.probe-right{background:#e4e4e4;padding:44px 40px;display:flex;flex-direction:column;gap:18px}
+.probe-right h4{font-family:'Oswald',system-ui,sans-serif;font-size:16px;font-weight:700;color:var(--black);margin-bottom:4px}
+.probe-item{display:flex;gap:14px;align-items:flex-start}
+.probe-ico{width:36px;height:36px;background:var(--black);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.probe-txt strong{display:block;font-size:13px;font-weight:700;color:var(--black)}
+.probe-txt span{font-size:12px;color:var(--gray4)}
+/* BUTTONS */
+.btn-dart{display:inline-block;background:var(--dart);color:#fff;padding:12px 24px;font-size:13.5px;font-weight:700;border-radius:8px;border:none;cursor:pointer;transition:.25s}
+.btn-dart:hover{background:var(--darthov);transform:translateY(-2px);box-shadow:0 4px 16px rgba(200,57,43,.35)}
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0}
+.ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
+.fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
+.fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
+.fc ul{display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:12.5px;color:rgba(255,255,255,.45);transition:.15s}
+.fc ul li a:hover{color:#fff}
+.fc ul li a::before{content:'›  ';color:var(--gray3);opacity:.6}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ft-badge{width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-bname strong{display:block;font-size:14px;font-weight:800;color:#fff}
+.ft-bname span{font-size:10px;color:rgba(255,255,255,.35)}
+.ft-bot{width:100%;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+.ft-bot a{color:rgba(255,255,255,.25)}
+.ft-bot a:hover{color:var(--gray3)}
+.ft-links{display:flex;gap:16px}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .probe-box{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #hero{min-height:400px}
+  .hero-badge{top:16px;right:16px;padding:9px 12px}
+  .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .btn-ghost-hdr{display:none}
+  .hdr-name span{display:none}
+  .sec{padding:44px clamp(16px,4vw,36px)}
+  .probe-left,.probe-right{padding:28px 24px}
+}
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(24px,7vw,36px)}
+  .rang-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+}
+</style>
+
+<div id="sn-overlay" onclick="closeSN()"></div>
+<nav id="sidenav">
+  <div class="sn-head">
+    <div class="sn-brand">
+      <div class="sn-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+      <div class="sn-name">SC Kreuz<br>Bayreuth e.V.</div>
+    </div>
+    <button class="sn-close" onclick="closeSN()">✕</button>
+  </div>
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Hauptmenü</p>
+    <a href="index.html"><div class="sn-link">Startseite</div></a>
+    <a href="Räumlichkeiten.html"><div class="sn-link">Räume buchen</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Sportabteilungen</p>
+    <a href="Fussball.html"><div class="sn-link">Fußball</div></a>
+    <div class="sn-link act">Dart</div>
+    <a href="Events.html"><div class="sn-link">Events &amp; Kerwa</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Verein</p>
+    <a href="index.html"><div class="sn-link">Über den Verein</div></a>
+    <div class="sn-link">Mitglied werden</div>
+    <div class="sn-link">Kontakt</div>
+    <a href="Impressum.html"><div class="sn-link">Impressum</div></a>
+  </div>
+  <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2026<br>Gegründet 1928 · Bezirk Oberfranken</div>
+</nav>
+
+<header id="hdr">
+  <button class="hburger" onclick="openSN()"><span></span><span></span><span></span></button>
+  <div class="hdr-brand">
+    <div class="hdr-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+    <div class="hdr-name">
+      <strong>SC Kreuz Bayreuth</strong>
+      <span>Dartabteilung</span>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a href="index.html"><button class="btn-ghost-hdr">Zur Startseite</button></a>
+    <button class="btn-book-hdr" onclick="document.getElementById('mitmachen').scrollIntoView({behavior:'smooth'})">Mitmachen</button>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-badge"><div class="hero-badge-year">BDV</div><div class="hero-badge-lbl">Bayern</div></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Dartabteilung · SC Kreuz Bayreuth e.V.</div>
+    <h1 class="hero-h1">Dart beim<br><em>SC Kreuz Bayreuth.</em></h1>
+    <p class="hero-desc">Vier Mannschaften, Bayernliga-Spitze und eine leidenschaftliche Gemeinschaft — willkommen bei der Dartabteilung des SC Kreuz Bayreuth.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-main" onclick="document.getElementById('mannschaften').scrollIntoView({behavior:'smooth'})">Unsere Mannschaften</button>
+      <button class="btn-hero-sec" onclick="document.getElementById('mitmachen').scrollIntoView({behavior:'smooth'})">Mitmachen</button>
+    </div>
+  </div>
+</section>
+
+<!-- MANNSCHAFTEN -->
+<section id="mannschaften" class="sec sec-white">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Sportabteilung</span>
+        <h2 class="sec-h2">Unsere Mannschaften</h2>
+        <p class="sec-sub">Vier Teams in unterschiedlichen Ligen — von der Bayernliga bis zur Bezirksliga.</p>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-name">SC Kreuz Bayreuth I</div>
+          <div class="team-liga">Bayernliga</div>
+        </div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Platz</span><span class="val"><span class="team-rank-badge good">1.</span></span></div>
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">Bayernliga</span></div>
+          <div class="team-info-row"><span class="lbl">Punkte</span><span class="val">27 : 5</span></div>
+          <div class="team-info-row"><span class="lbl">Saison</span><span class="val">2025 / 2026</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-name">SC Kreuz Bayreuth II</div>
+          <div class="team-liga">1. Bezirksliga</div>
+        </div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Platz</span><span class="val"><span class="team-rank-badge">4.</span></span></div>
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">1. Bezirksliga</span></div>
+          <div class="team-info-row"><span class="lbl">Punkte</span><span class="val">17 : 13</span></div>
+          <div class="team-info-row"><span class="lbl">Saison</span><span class="val">2025 / 2026</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-name">SC Kreuz Bayreuth III</div>
+          <div class="team-liga">3. Bezirksliga D</div>
+        </div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Platz</span><span class="val"><span class="team-rank-badge">3.</span></span></div>
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">3. Bezirksliga D</span></div>
+          <div class="team-info-row"><span class="lbl">Punkte</span><span class="val">14 : 10</span></div>
+          <div class="team-info-row"><span class="lbl">Saison</span><span class="val">2025 / 2026</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-name">SC Kreuz Bayreuth IV</div>
+          <div class="team-liga">3. Bezirksliga A</div>
+        </div>
+        <div class="team-info">
+          <div class="team-info-row"><span class="lbl">Platz</span><span class="val"><span class="team-rank-badge">8.</span></span></div>
+          <div class="team-info-row"><span class="lbl">Liga</span><span class="val">3. Bezirksliga A</span></div>
+          <div class="team-info-row"><span class="lbl">Punkte</span><span class="val">1 : 27</span></div>
+          <div class="team-info-row"><span class="lbl">Saison</span><span class="val">2025 / 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="width:100%;aspect-ratio:21/9;overflow:hidden;position:relative">
+  <img src="dart1.jpg" alt="SC Kreuz Dart" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+</div>
+
+<!-- TABELLE BAYERNLIGA -->
+<section class="sec sec-gray">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Liga</span>
+        <h2 class="sec-h2">Tabelle Bayernliga</h2>
+        <p class="sec-sub">Aktuelle Tabellensituation — Saison 2025/2026.</p>
+      </div>
+    </div>
+    <div class="tabelle-wrap">
+      <div class="tabelle-head">
+        <h3>Bayernliga</h3>
+        <span class="tabelle-head-badge">2025 / 2026</span>
+      </div>
+      <div class="tabelle-inner">
+        <table class="tabelle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Verein</th>
+              <th>Sp</th>
+              <th>Pkt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td><span class="tbl-rank top">1</span></td>
+              <td><span class="tbl-club">SC Kreuz Bayreuth I</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">27:5</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">2</span></td>
+              <td><span class="tbl-club">DSV 08 Nürnberg</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">27:5</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">3</span></td>
+              <td><span class="tbl-club">DC Elbow</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">22:10</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">4</span></td>
+              <td><span class="tbl-club">DC Pfeil Nürnberg</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">20:12</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">5</span></td>
+              <td><span class="tbl-club">Wicked Darts</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">18:14</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">6</span></td>
+              <td><span class="tbl-club">DC Erlangen</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">14:18</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">7</span></td>
+              <td><span class="tbl-club">DC Forchheim</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">12:20</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">8</span></td>
+              <td><span class="tbl-club">DC Fürth</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">8:24</span></td>
+            </tr>
+            <tr>
+              <td><span class="tbl-rank">9</span></td>
+              <td><span class="tbl-club">DC Kulmbach</span></td>
+              <td>16</td>
+              <td><span class="tbl-pts">4:28</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPIELER-RANGLISTE -->
+<section class="sec sec-white">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Rangliste</span>
+        <h2 class="sec-h2">Spieler-Rangliste</h2>
+        <p class="sec-sub">Die besten Spieler des SC Kreuz Bayreuth — Saison 2025/2026.</p>
+      </div>
+    </div>
+    <div class="rang-grid">
+      <div class="rang-card">
+        <div class="rang-pos top3">1</div>
+        <div class="rang-info"><div class="rang-name">Drechsel Patrick</div><div class="rang-team">Team I · Bayernliga</div></div>
+        <div class="rang-pts">40<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos top3">2</div>
+        <div class="rang-info"><div class="rang-name">Hofmann Andreas</div><div class="rang-team">Team I · Bayernliga</div></div>
+        <div class="rang-pts">37<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos top3">3</div>
+        <div class="rang-info"><div class="rang-name">Weber Stefan</div><div class="rang-team">Team I · Bayernliga</div></div>
+        <div class="rang-pts">34<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos">4</div>
+        <div class="rang-info"><div class="rang-name">Müller Thomas</div><div class="rang-team">Team II · Bezirksliga</div></div>
+        <div class="rang-pts">29<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos">5</div>
+        <div class="rang-info"><div class="rang-name">Fischer Klaus</div><div class="rang-team">Team II · Bezirksliga</div></div>
+        <div class="rang-pts">26<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos">6</div>
+        <div class="rang-info"><div class="rang-name">Schmitt Oliver</div><div class="rang-team">Team I · Bayernliga</div></div>
+        <div class="rang-pts">24<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos">7</div>
+        <div class="rang-info"><div class="rang-name">Bauer Michael</div><div class="rang-team">Team III · Bezirksliga D</div></div>
+        <div class="rang-pts">21<span>Punkte</span></div>
+      </div>
+      <div class="rang-card">
+        <div class="rang-pos">8</div>
+        <div class="rang-info"><div class="rang-name">Lang Jürgen</div><div class="rang-team">Team II · Bezirksliga</div></div>
+        <div class="rang-pts">19<span>Punkte</span></div>
+      </div>
+    </div>
+    <p style="margin-top:18px;font-size:12px;color:var(--gray4)">Vollständige Rangliste: <a href="https://sckreuz-darts.jimdofree.com" target="_blank" style="color:var(--dart);font-weight:600">sckreuz-darts.jimdofree.com</a></p>
+  </div>
+</section>
+
+<!-- TRAINING & ANLAGE -->
+<section class="sec sec-black">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label sec-label-light">Training</span>
+        <h2 class="sec-h2 sec-h2-light">Training &amp; Anlage</h2>
+        <p class="sec-sub sec-sub-light">Jeden Mittwoch in der Egerstraße — moderne Anlage mit 10 Boards.</p>
+      </div>
+    </div>
+    <div class="training-grid">
+      <div class="tr-card">
+        <div class="tr-day">Mittwoch</div>
+        <div class="tr-time">18:00 – 22:00</div>
+        <div class="tr-team">Alle Mannschaften</div>
+        <div class="tr-desc">Offenes Training für alle Mitglieder der Dartabteilung. Neueinsteiger herzlich willkommen — einfach vorbeikommen!</div>
+        <div class="tr-loc">Egerstrasse 10, 95445 Bayreuth</div>
+      </div>
+      <div class="tr-card">
+        <div class="tr-day">Spieltage</div>
+        <div class="tr-time">nach Spielplan</div>
+        <div class="tr-team">Ligabetrieb</div>
+        <div class="tr-desc">Heimspiele aller Mannschaften finden ebenfalls in der Egerstraße statt. Zuschauer sind jederzeit willkommen.</div>
+        <div class="tr-loc">Egerstrasse 10, 95445 Bayreuth</div>
+      </div>
+    </div>
+    <img src="dart3.png" alt="Trainingsanlage" style="width:100%;aspect-ratio:21/9;object-fit:cover;border-radius:14px;margin-top:24px;display:block;opacity:.85">
+    <div class="anlage-grid">
+      <div class="anlage-item">
+        <div class="anlage-val">10</div>
+        <div class="anlage-lbl">Winmau Blade 5 Boards</div>
+      </div>
+      <div class="anlage-item">
+        <div class="anlage-val">2</div>
+        <div class="anlage-lbl">Trainingsräume</div>
+      </div>
+      <div class="anlage-item">
+        <div class="anlage-val">4</div>
+        <div class="anlage-lbl">Aktive Mannschaften</div>
+      </div>
+      <div class="anlage-item">
+        <div class="anlage-val">1×</div>
+        <div class="anlage-lbl">Training pro Woche</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MITMACHEN -->
+<section id="mitmachen" class="sec sec-gray">
+  <div class="sec-inner">
+    <div class="probe-box">
+      <div class="probe-left">
+        <h3>Komm zum Probetraining!</h3>
+        <p>Du hast Interesse am Dartsport? Komm einfach mittwochs zwischen 18 und 22 Uhr in die Egerstraße — kein Anmelden nötig, einfach vorbeischauen und mitmachen.</p>
+        <button class="btn-dart" onclick="window.location.href='mailto:info@sckreuz-darts.de'">Jetzt Kontakt aufnehmen</button>
+      </div>
+      <div class="probe-right">
+        <h4>Kontakt &amp; Infos</h4>
+        <div class="probe-item">
+          <div class="probe-ico">
+            <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="probe-txt">
+            <strong>E-Mail</strong>
+            <span><a href="mailto:info@sckreuz-darts.de" style="color:var(--gray4)">info@sckreuz-darts.de</a></span>
+          </div>
+        </div>
+        <div class="probe-item">
+          <div class="probe-ico">
+            <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div class="probe-txt">
+            <strong>Telefon</strong>
+            <span>0921 41666</span>
+          </div>
+        </div>
+        <div class="probe-item">
+          <div class="probe-ico">
+            <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div class="probe-txt">
+            <strong>Adresse</strong>
+            <span>Egerstrasse 10, 95445 Bayreuth</span>
+          </div>
+        </div>
+        <div class="probe-item">
+          <div class="probe-ico">
+            <svg width="18" height="18" fill="#fff" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="probe-txt">
+            <strong>Facebook</strong>
+            <span><a href="https://www.facebook.com/SCKDarts" target="_blank" style="color:var(--gray4)">SCKDarts</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="fc">
+      <div class="ft-brand">
+        <div class="ft-badge"><img src="logo.jpg" width="30" height="30" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+        <div class="ft-bname"><strong>SC Kreuz Bayreuth</strong><span>e.V. · Gegründet 1928</span></div>
+      </div>
+      <p>Sportverein in Bayreuth mit Fußball-, Dart- und Veranstaltungsabteilung.<br>Egerstrasse 10 · 95445 Bayreuth</p>
+    </div>
+    <div class="fc">
+      <h4>Dartabteilung</h4>
+      <ul>
+        <li><a href="#mannschaften">Mannschaften</a></li>
+        <li><a href="#mitmachen">Probetraining</a></li>
+        <li><a href="https://sckreuz-darts.jimdofree.com" target="_blank">Dart-Website</a></li>
+        <li><a href="mailto:info@sckreuz-darts.de">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="Fussball.html">Fußball</a></li>
+        <li><a href="Events.html">Events &amp; Kerwa</a></li>
+        <li><a href="Räumlichkeiten.html">Räume buchen</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Soziale Netzwerke</h4>
+      <ul>
+        <li><a href="https://www.facebook.com/SCKDarts" target="_blank">Facebook · SCKDarts</a></li>
+        <li><a href="https://www.instagram.com/sc_kreuz_darts" target="_blank">Instagram · sc_kreuz_darts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 SC Kreuz Bayreuth e.V. — Alle Rechte vorbehalten</span>
+    <div class="ft-links">
+      <a href="Impressum.html">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function openSN(){
+  document.getElementById('sidenav').classList.add('open');
+  document.getElementById('sn-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSN(){
+  document.getElementById('sidenav').classList.remove('open');
+  document.getElementById('sn-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>

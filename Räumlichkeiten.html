@@ -1,0 +1,935 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0e0e0e;--black2:#1a1a1a;--black3:#2a2a2a;
+  --white:#ffffff;--gray1:#f6f6f6;--gray2:#ebebeb;--gray3:#c8c8c8;--gray4:#888;
+  --blue:#1a5faa;--bluehov:#134d8e;--green:#1a7a3a;--red:#b71c1c;
+  --room:#1a5faa;--roomhov:#134d8e;
+}
+html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
+body{background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Barlow',system-ui,sans-serif}
+h1,h2,h3,h4,.hero-h1,.hero-badge-year,.sec-h2,.hdr-name strong,.sn-name,.ft-bname strong,.room-name{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+/* SIDENAV */
+#sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
+#sn-overlay.open{opacity:1;pointer-events:all}
+#sidenav{position:fixed;top:0;left:0;width:268px;height:100vh;background:var(--black);z-index:9999;transform:translateX(-100%);transition:.28s ease;display:flex;flex-direction:column;overflow-y:auto}
+#sidenav.open{transform:translateX(0)}
+.sn-head{padding:18px 18px 16px;background:var(--black2);border-bottom:2px solid var(--blue);display:flex;justify-content:space-between;align-items:center}
+.sn-brand{display:flex;align-items:center;gap:11px}
+.sn-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-name{font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;letter-spacing:.4px}
+.sn-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.sn-close:hover{color:#fff}
+.sn-sec{padding:10px 0 4px}
+.sn-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding:10px 18px 5px}
+.sn-link{display:flex;align-items:center;gap:12px;padding:10px 14px;margin:3px 10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);border-radius:10px;cursor:pointer;transition:.18s}
+.sn-link:hover,.sn-link.act{color:#fff;background:rgba(255,255,255,.1)}
+.sn-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:6px 18px}
+.sn-foot{margin-top:auto;padding:14px 18px;font-size:10px;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+/* HEADER */
+#hdr{background:var(--black);height:64px;display:flex;align-items:center;padding:0 20px;gap:14px;position:sticky;top:0;z-index:800;border-bottom:1px solid rgba(255,255,255,.07)}
+.hburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+.hburger:hover span{background:var(--blue)}
+.hdr-brand{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.hdr-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-name{color:#fff;min-width:0}
+.hdr-name strong{display:block;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.hdr-name span{font-size:10px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.5px}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-book-hdr{background:var(--blue);color:#fff;padding:8px 16px;font-size:12px;font-weight:700;border:none;border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-book-hdr:hover{background:var(--bluehov);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,95,170,.4)}
+.btn-ghost-hdr{background:none;color:rgba(255,255,255,.8);padding:8px 14px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.2);border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-ghost-hdr:hover{border-color:rgba(255,255,255,.5);color:#fff}
+/* HERO */
+#hero{position:relative;min-height:440px;overflow:hidden;display:flex;align-items:flex-end;background:var(--black)}
+.hero-photo{position:absolute;inset:0;background-image:url('sportheim_ausen_weit_weg.png');background-size:cover;background-position:center 50%;filter:brightness(.7) contrast(1.08)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.3) 55%,rgba(0,0,0,.08) 100%)}
+.hero-content{position:relative;z-index:2;width:100%;padding:56px clamp(20px,5vw,72px) 52px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:16px;backdrop-filter:blur(6px)}
+.hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--blue);border-radius:50%}
+.hero-h1{font-size:clamp(26px,4vw,50px);font-weight:900;color:#fff;line-height:1.06;letter-spacing:-.5px;margin-bottom:12px}
+.hero-h1 em{font-style:normal;color:var(--gray3)}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:28px;max-width:520px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-main{background:#fff;color:var(--black);padding:13px 30px;font-size:14px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.btn-hero-main:hover{background:var(--gray2);transform:translateY(-3px)}
+.btn-hero-sec{background:transparent;color:#fff;padding:13px 24px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;transition:.25s}
+.btn-hero-sec:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+/* SECTION BASE */
+.sec{padding:64px clamp(20px,5vw,72px)}
+.sec-white{background:var(--white)}
+.sec-gray{background:var(--gray1)}
+.sec-black{background:var(--black)}
+.sec-inner{width:100%}
+.sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.sec-label-light{color:var(--gray3)}
+.sec-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;letter-spacing:-.3px}
+.sec-h2-light{color:var(--white)}
+.sec-sub{font-size:14px;color:var(--gray4);margin-top:6px;margin-bottom:26px}
+.sec-sub-light{color:rgba(255,255,255,.5)}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+/* ROOM CARDS */
+.room-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.room-card{background:var(--white);border-radius:16px;overflow:hidden;border:1px solid #d8d8d8;box-shadow:0 3px 16px rgba(0,0,0,.09);transition:.22s;display:flex;flex-direction:column}
+.room-card:hover{box-shadow:0 10px 32px rgba(0,0,0,.15);transform:translateY(-4px)}
+.room-card.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,95,170,.18),0 10px 32px rgba(0,0,0,.12)}
+.room-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.room-img-ph{width:100%;aspect-ratio:16/9;background:linear-gradient(160deg,#1a1a1a,#2d2d2d);display:flex;align-items:center;justify-content:center}
+.room-img-ph span{font-family:'Oswald',system-ui,sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase}
+.room-body{padding:20px 22px;flex:1;display:flex;flex-direction:column}
+.room-name{font-size:20px;font-weight:800;color:var(--black);margin-bottom:4px}
+.room-cap{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.room-desc{font-size:13px;color:#555;line-height:1.7;margin-bottom:16px;flex:1}
+.room-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.room-feat{background:var(--gray1);border:1px solid var(--gray2);font-size:11px;font-weight:600;padding:4px 10px;border-radius:5px;color:var(--gray4)}
+.room-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--gray2)}
+.room-price{display:flex;flex-direction:column}
+.room-price .rp-val{font-family:'Oswald',system-ui,sans-serif;font-size:22px;font-weight:900;color:var(--black);line-height:1}
+.room-price .rp-lbl{font-size:10px;color:var(--gray4);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-top:1px}
+.btn-select-room{background:var(--black);color:#fff;padding:10px 20px;font-size:12.5px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:.22s;letter-spacing:.3px}
+.btn-select-room:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 4px 14px rgba(26,95,170,.35)}
+.btn-select-room.active{background:var(--blue)}
+/* CALENDAR */
+.cal-section-inner{display:grid;grid-template-columns:1fr 290px;gap:22px;align-items:start}
+.cal-box{background:var(--white);border-radius:20px;border:1px solid #e4e8ef;box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden}
+.cal-head{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.cal-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.4px}
+.cal-nav{display:flex;align-items:center;gap:8px}
+.cal-nav-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.15s;line-height:1}
+.cal-nav-btn:hover{background:rgba(255,255,255,.22)}
+.cal-month-label{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:700;color:#fff;min-width:138px;text-align:center}
+.cal-filter{display:flex;gap:6px;padding:12px 16px;background:#f9fafb;border-bottom:1px solid #eee;flex-wrap:wrap}
+.cal-filter-btn{background:#fff;border:1.5px solid #ddd;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;transition:.16s;color:#777;font-family:'Barlow',system-ui,sans-serif}
+.cal-filter-btn:hover{border-color:var(--blue);color:var(--blue)}
+.cal-filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.cal-grid-wrap{padding:16px 14px 8px}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+.cal-wd{text-align:center;font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#bbb;padding:3px 0}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{min-height:66px;border-radius:10px;padding:7px 4px 5px;cursor:pointer;transition:.13s;position:relative;border:2px solid transparent}
+.cal-day:hover:not(.cal-empty):not(.cal-past){background:#f2f6fd;border-color:#d0e0f7}
+.cal-day.cal-empty{cursor:default;pointer-events:none}
+.cal-day.cal-past{opacity:.28;cursor:default;pointer-events:none}
+.cal-day.cal-today{background:#eef4ff;border-color:#c8dafc}
+.cal-day.cal-today .cal-daynum{background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 4px}
+.cal-day.cal-selected{border-color:var(--blue)!important;background:#e5efff!important;box-shadow:0 0 0 1px rgba(26,95,170,.15)}
+.cal-daynum{font-size:12px;font-weight:800;color:#111;text-align:center;margin-bottom:4px;line-height:1}
+.cal-chips{display:flex;flex-direction:column;gap:2px}
+.cal-chip{font-size:8px;font-weight:700;text-align:center;border-radius:3px;padding:2px 3px;line-height:1.3;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;letter-spacing:.1px}
+.cal-chip.free{background:#dcfce7;color:#15803d}
+.cal-chip.booked{background:#fee2e2;color:#b91c1c}
+.cal-legend{display:flex;gap:14px;padding:8px 16px 14px;flex-wrap:wrap}
+.cal-leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#888;font-weight:600}
+.cal-leg-swatch{width:14px;height:10px;border-radius:3px}
+/* CALENDAR DETAIL PANEL */
+.cal-detail{background:var(--white);border-radius:20px;border:1px solid #e4e8ef;box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden;position:sticky;top:84px}
+.cal-detail-head{background:var(--black);padding:16px 20px}
+.cal-detail-head h4{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:700;color:#fff}
+.cal-detail-date{font-size:11px;color:rgba(255,255,255,.4);display:block;margin-top:3px}
+.cal-detail-body{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.cal-detail-empty{font-size:12px;color:#bbb;text-align:center;padding:28px 10px;line-height:1.7}
+.cal-room-card{border-radius:12px;overflow:hidden}
+.cal-room-card.free-card{border:1.5px solid #bbf7d0;background:#f0fdf4}
+.cal-room-card.booked-card{border:1.5px solid #fecaca;background:#fff8f8}
+.cal-room-card-head{padding:10px 13px 8px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid rgba(0,0,0,.05)}
+.cal-room-card-name{font-family:'Oswald',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--black);line-height:1}
+.cal-status-badge{font-size:9.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:20px;flex-shrink:0}
+.cal-status-badge.free{background:#dcfce7;color:#166534}
+.cal-status-badge.booked{background:#fee2e2;color:#991b1b}
+.cal-room-card-body{padding:8px 13px 10px;font-size:12px;color:#666;line-height:1.55}
+.cal-event-label{font-weight:700;color:#111;font-size:12.5px;display:block;margin-bottom:2px}
+.cal-event-time{color:var(--blue);font-weight:700;font-size:12px;display:block}
+.cal-avail-info{font-size:11.5px;color:#666;display:block}
+.btn-book-day{width:100%;background:var(--blue);color:#fff;padding:9px 12px;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:.2s;letter-spacing:.3px;font-family:'Barlow',system-ui,sans-serif}
+.btn-book-day:hover{background:var(--bluehov);transform:translateY(-1px);box-shadow:0 3px 12px rgba(26,95,170,.3)}
+/* BOOKING FORM */
+.booking-wrap{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start}
+.booking-form-box{background:var(--white);border-radius:16px;border:1px solid #d0d0d0;box-shadow:0 4px 24px rgba(0,0,0,.1);overflow:hidden}
+.booking-form-head{background:var(--black);padding:20px 26px;display:flex;align-items:center;justify-content:space-between}
+.booking-form-head h3{font-family:'Oswald',system-ui,sans-serif;font-size:17px;font-weight:700;color:#fff}
+.booking-form-head span{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.8px;text-transform:uppercase}
+.booking-form-body{padding:26px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.single{grid-template-columns:1fr}
+.form-row.triple{grid-template-columns:1fr 1fr 1fr}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-field label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray4)}
+.form-field input,.form-field select,.form-field textarea{font-family:'Barlow',system-ui,sans-serif;font-size:13.5px;padding:10px 13px;border:1.5px solid var(--gray2);border-radius:8px;color:var(--black);background:var(--gray1);transition:.18s;outline:none;width:100%}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 3px rgba(26,95,170,.1)}
+.form-field textarea{resize:vertical;min-height:72px}
+.form-divider{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray3);margin:18px 0 14px;display:flex;align-items:center;gap:10px}
+.form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:var(--gray2)}
+.form-submit{width:100%;background:var(--blue);color:#fff;padding:14px;font-size:14px;font-weight:700;letter-spacing:.4px;border:none;border-radius:8px;cursor:pointer;transition:.25s;margin-top:6px}
+.form-submit:hover{background:var(--bluehov);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,95,170,.4)}
+.form-note{font-size:11px;color:var(--gray4);margin-top:10px;line-height:1.5;text-align:center}
+/* BOOKING SUMMARY SIDEBAR */
+.booking-sidebar{display:flex;flex-direction:column;gap:16px;position:sticky;top:84px}
+.summary-box{background:var(--white);border-radius:14px;border:1px solid #d0d0d0;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden}
+.summary-head{background:var(--black);padding:16px 20px}
+.summary-head h4{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:700;color:#fff}
+.summary-body{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.summary-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;padding-bottom:10px;border-bottom:1px solid var(--gray2)}
+.summary-row:last-child{border-bottom:none;padding-bottom:0}
+.summary-row .s-lbl{color:var(--gray4);font-weight:500}
+.summary-row .s-val{font-weight:700;color:var(--black);text-align:right;max-width:180px}
+.summary-row.total .s-lbl{font-weight:700;color:var(--black);font-size:14px}
+.summary-row.total .s-val{font-family:'Oswald',system-ui,sans-serif;font-size:20px;font-weight:900;color:var(--blue)}
+.summary-empty{font-size:12px;color:var(--gray4);text-align:center;padding:8px 0;font-style:italic}
+/* INFO BOX */
+.info-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.info-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px 18px}
+.info-card-title{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:8px}
+.info-card-body{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
+/* SUCCESS */
+.form-success{display:none;margin-top:16px}
+.form-success.show{display:block}
+.booking-confirm{background:var(--black);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.bc-top{background:var(--blue);padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.bc-top span{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.bc-top strong{font-family:'Oswald',system-ui,sans-serif;font-size:14px;font-weight:800;color:#fff}
+.bc-body{padding:20px 22px}
+.bc-name{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:2px}
+.bc-room{font-family:'Oswald',system-ui,sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:14px}
+.bc-code-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.bc-code{font-family:'Oswald',system-ui,sans-serif;font-size:26px;font-weight:900;color:#60a5fa;letter-spacing:4px;background:rgba(255,255,255,.06);border:1px dashed rgba(96,165,250,.4);border-radius:8px;padding:10px 16px;text-align:center;margin-bottom:14px}
+.bc-note{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.6;text-align:center;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0}
+.ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
+.fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
+.fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
+.fc ul{display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:12.5px;color:rgba(255,255,255,.45);transition:.15s}
+.fc ul li a:hover{color:#fff}
+.fc ul li a::before{content:'›  ';color:var(--gray3);opacity:.6}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ft-badge{width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-bname strong{display:block;font-size:14px;font-weight:800;color:#fff}
+.ft-bname span{font-size:10px;color:rgba(255,255,255,.35)}
+.ft-bot{width:100%;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+.ft-bot a{color:rgba(255,255,255,.25)}
+.ft-bot a:hover{color:var(--gray3)}
+.ft-links{display:flex;gap:16px}
+/* RESPONSIVE */
+@media(max-width:1024px){.booking-wrap{grid-template-columns:1fr}.booking-sidebar{position:static}.cal-section-inner{grid-template-columns:1fr}.cal-detail{position:static}}
+@media(max-width:768px){
+  #hero{min-height:360px}
+  .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .btn-ghost-hdr{display:none}
+  .hdr-name span{display:none}
+  .sec{padding:44px clamp(16px,4vw,36px)}
+  .form-row.triple{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .room-grid{grid-template-columns:1fr}
+}
+</style>
+
+<div id="sn-overlay" onclick="closeSN()"></div>
+<nav id="sidenav">
+  <div class="sn-head">
+    <div class="sn-brand">
+      <div class="sn-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+      <div class="sn-name">SC Kreuz<br>Bayreuth e.V.</div>
+    </div>
+    <button class="sn-close" onclick="closeSN()">✕</button>
+  </div>
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Hauptmenü</p>
+    <a href="index.html"><div class="sn-link">Startseite</div></a>
+    <div class="sn-link act">Räume buchen</div>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Sportabteilungen</p>
+    <a href="Fussball.html"><div class="sn-link">Fußball</div></a>
+    <a href="Dart.html"><div class="sn-link">Dart</div></a>
+    <a href="Events.html"><div class="sn-link">Events &amp; Kerwa</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Verein</p>
+    <a href="index.html"><div class="sn-link">Über den Verein</div></a>
+    <div class="sn-link">Mitglied werden</div>
+    <div class="sn-link">Kontakt</div>
+    <a href="Impressum.html"><div class="sn-link">Impressum</div></a>
+  </div>
+  <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2026<br>Gegründet 1928 · Bezirk Oberfranken</div>
+</nav>
+
+<header id="hdr">
+  <button class="hburger" onclick="openSN()"><span></span><span></span><span></span></button>
+  <div class="hdr-brand">
+    <div class="hdr-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+    <div class="hdr-name">
+      <strong>SC Kreuz Bayreuth</strong>
+      <span>Räume &amp; Sportheim</span>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a href="index.html"><button class="btn-ghost-hdr">Zur Startseite</button></a>
+    <button class="btn-book-hdr" onclick="document.getElementById('buchen').scrollIntoView({behavior:'smooth'})">Jetzt buchen</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sportheimgaststätte · SC Kreuz Bayreuth e.V.</div>
+    <h1 class="hero-h1">Räume buchen im<br><em>Kreuzer Sportheim.</em></h1>
+    <p class="hero-desc">Ob Geburtstag, Vereinstreffen, Firmenfeier oder Familienfeier — unsere Räumlichkeiten bieten den passenden Rahmen für jeden Anlass.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-main" onclick="document.getElementById('raeume').scrollIntoView({behavior:'smooth'})">Räume ansehen</button>
+      <button class="btn-hero-sec" onclick="document.getElementById('buchen').scrollIntoView({behavior:'smooth'})">Direkt buchen</button>
+    </div>
+  </div>
+</section>
+
+<!-- RÄUME -->
+<section id="raeume" class="sec sec-white">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Unsere Räumlichkeiten</span>
+        <h2 class="sec-h2">Drei Räume für jeden Anlass</h2>
+        <p class="sec-sub">Wählen Sie einen Raum aus — die Details werden automatisch ins Buchungsformular übernommen.</p>
+      </div>
+    </div>
+    <div class="room-grid">
+
+      <!-- GROSSER SAAL -->
+      <div class="room-card" id="card-saal">
+        <div class="room-img-ph"><span>Großer Saal</span></div>
+        <div class="room-body">
+          <div class="room-name">Großer Saal</div>
+          <div class="room-cap">bis zu 200 Personen</div>
+          <div class="room-desc">Der große Festsaal des Kreuzers — ideal für Hochzeiten, Vereinsfeste, Firmenfeiern und größere Familienevents. Mit eigener Bühne, Tanzfläche und professioneller Bestuhlung.</div>
+          <div class="room-features">
+            <span class="room-feat">Bühne</span>
+            <span class="room-feat">Tanzfläche</span>
+            <span class="room-feat">Beamer</span>
+            <span class="room-feat">Mikrofon</span>
+            <span class="room-feat">Küche</span>
+            <span class="room-feat">Barrierefrei</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <div class="rp-val">ab 250 €</div>
+              <div class="rp-lbl">pro Abend</div>
+            </div>
+            <button class="btn-select-room" onclick="selectRoom('Großer Saal','200','250')">Auswählen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GASTRAUM -->
+      <div class="room-card" id="card-gastraum">
+        <div class="room-img-ph"><span>Gastraum</span></div>
+        <div class="room-body">
+          <div class="room-name">Gastraum</div>
+          <div class="room-cap">bis zu 80 Personen</div>
+          <div class="room-desc">Die gemütliche Gaststätte des Sportheims — perfekt für Geburtstage, runde Jahrestage und Vereinsabende. Mit Bar, direktem Zugang zur Terrasse und warmem Ambiente.</div>
+          <div class="room-features">
+            <span class="room-feat">Bar</span>
+            <span class="room-feat">Terrasse</span>
+            <span class="room-feat">TV-Bildschirm</span>
+            <span class="room-feat">Küche</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <div class="rp-val">ab 120 €</div>
+              <div class="rp-lbl">pro Abend</div>
+            </div>
+            <button class="btn-select-room" onclick="selectRoom('Gastraum','80','120')">Auswählen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KLEINER SAAL -->
+      <div class="room-card" id="card-kleiner">
+        <div class="room-img-ph"><span>Kleiner Saal</span></div>
+        <div class="room-body">
+          <div class="room-name">Kleiner Saal</div>
+          <div class="room-cap">bis zu 40 Personen</div>
+          <div class="room-desc">Der kleinere Veranstaltungsraum — ideal für Meetings, Schulungen, Taufen, Kinderfeiern und private Treffen. Ruhige Atmosphäre, flexible Bestuhlung.</div>
+          <div class="room-features">
+            <span class="room-feat">Beamer</span>
+            <span class="room-feat">Whiteboard</span>
+            <span class="room-feat">Flexible Bestuhlung</span>
+            <span class="room-feat">Küche</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <div class="rp-val">ab 80 €</div>
+              <div class="rp-lbl">pro Abend</div>
+            </div>
+            <button class="btn-select-room" onclick="selectRoom('Kleiner Saal','40','80')">Auswählen</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KALENDER -->
+<section id="kalender" class="sec sec-gray">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Verfügbarkeit</span>
+        <h2 class="sec-h2">Wann sind die Räume frei?</h2>
+        <p class="sec-sub">Klicken Sie auf einen Tag, um die Raumverfügbarkeit zu sehen. Grün = frei, Rot = belegt.</p>
+      </div>
+    </div>
+    <div class="cal-section-inner">
+
+      <!-- CALENDAR BOX -->
+      <div class="cal-box">
+        <div class="cal-head">
+          <h3>Belegungskalender</h3>
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="calPrev()">&#8249;</button>
+            <span class="cal-month-label" id="cal-month-label">—</span>
+            <button class="cal-nav-btn" onclick="calNext()">&#8250;</button>
+          </div>
+        </div>
+        <div class="cal-filter" id="cal-filter">
+          <button class="cal-filter-btn active" onclick="setCalFilter('Alle',this)">Alle Räume</button>
+          <button class="cal-filter-btn" onclick="setCalFilter('Großer Saal',this)">Großer Saal</button>
+          <button class="cal-filter-btn" onclick="setCalFilter('Gastraum',this)">Gastraum</button>
+          <button class="cal-filter-btn" onclick="setCalFilter('Kleiner Saal',this)">Kleiner Saal</button>
+        </div>
+        <div class="cal-grid-wrap">
+          <div class="cal-weekdays">
+            <div class="cal-wd">Mo</div>
+            <div class="cal-wd">Di</div>
+            <div class="cal-wd">Mi</div>
+            <div class="cal-wd">Do</div>
+            <div class="cal-wd">Fr</div>
+            <div class="cal-wd">Sa</div>
+            <div class="cal-wd">So</div>
+          </div>
+          <div class="cal-days" id="cal-days"></div>
+        </div>
+        <div class="cal-legend">
+          <div class="cal-leg-item"><div class="cal-leg-swatch" style="background:#dcfce7;border:1px solid #bbf7d0"></div>Verfügbar</div>
+          <div class="cal-leg-item"><div class="cal-leg-swatch" style="background:#fee2e2;border:1px solid #fecaca"></div>Belegt</div>
+        </div>
+      </div>
+
+      <!-- DETAIL PANEL -->
+      <div class="cal-detail" id="cal-detail-panel">
+        <div class="cal-detail-head">
+          <h4>Raumverfügbarkeit</h4>
+          <span id="cal-detail-date">Bitte einen Tag auswählen</span>
+        </div>
+        <div class="cal-detail-body" id="cal-detail-body">
+          <div class="cal-detail-empty">Klicken Sie auf einen Tag im Kalender, um die Verfügbarkeit der Räume anzuzeigen.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUCHUNG -->
+<section id="buchen" class="sec sec-white">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label">Buchungsanfrage</span>
+        <h2 class="sec-h2">Raum buchen</h2>
+        <p class="sec-sub">Füllen Sie das Formular aus — wir melden uns innerhalb von 24 Stunden mit einer Bestätigung.</p>
+      </div>
+    </div>
+    <div class="booking-wrap">
+
+      <!-- FORM -->
+      <div class="booking-form-box">
+        <div class="booking-form-head">
+          <h3>Buchungsformular</h3>
+          <span>Online anfragen</span>
+        </div>
+        <div class="booking-form-body">
+          <form id="book-form" onsubmit="submitBooking(event)">
+            <input type="hidden" name="_replyto" id="b-replyto">
+            <input type="hidden" name="_subject" id="b-subject">
+            <input type="hidden" name="buchungscode" id="b-code">
+
+            <div class="form-divider">Persönliche Daten</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Vorname</label>
+                <input type="text" name="vorname" placeholder="Max" required>
+              </div>
+              <div class="form-field">
+                <label>Nachname</label>
+                <input type="text" name="nachname" placeholder="Mustermann" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>E-Mail</label>
+                <input type="email" name="email" id="b-email" placeholder="max@beispiel.de" required oninput="updateSummary()">
+              </div>
+              <div class="form-field">
+                <label>Telefon</label>
+                <input type="tel" name="telefon" placeholder="0921 …">
+              </div>
+            </div>
+
+            <div class="form-divider">Veranstaltung</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Raum</label>
+                <select name="raum" id="b-raum" required onchange="updateSummary()">
+                  <option value="" disabled selected>Bitte wählen …</option>
+                  <option value="Großer Saal">Großer Saal (bis 200 Personen)</option>
+                  <option value="Gastraum">Gastraum (bis 80 Personen)</option>
+                  <option value="Kleiner Saal">Kleiner Saal (bis 40 Personen)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Anlass</label>
+                <select name="anlass" id="b-anlass" required onchange="updateSummary()">
+                  <option value="" disabled selected>Art der Veranstaltung …</option>
+                  <option value="Geburtstag">Geburtstag</option>
+                  <option value="Hochzeit">Hochzeit / Jubiläum</option>
+                  <option value="Vereinstreffen">Vereinstreffen</option>
+                  <option value="Firmenveranstaltung">Firmenveranstaltung</option>
+                  <option value="Taufe / Kommunion">Taufe / Kommunion</option>
+                  <option value="Kinderfeier">Kinderfeier</option>
+                  <option value="Trauerfeier">Trauerfeier</option>
+                  <option value="Sonstiges">Sonstiges</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row triple">
+              <div class="form-field">
+                <label>Datum</label>
+                <input type="date" name="datum" id="b-datum" required onchange="updateSummary()">
+              </div>
+              <div class="form-field">
+                <label>Beginn</label>
+                <input type="time" name="beginn" id="b-beginn" required onchange="updateSummary()">
+              </div>
+              <div class="form-field">
+                <label>Ende</label>
+                <input type="time" name="ende" id="b-ende" required onchange="updateSummary()">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Erwartete Gästezahl</label>
+                <input type="number" name="gaeste" id="b-gaeste" min="1" max="200" placeholder="z.B. 60" required onchange="updateSummary()">
+              </div>
+              <div class="form-field">
+                <label>Catering gewünscht?</label>
+                <select name="catering" onchange="updateSummary()">
+                  <option value="Nein">Nein, kein Catering</option>
+                  <option value="Ja, bitte Angebot">Ja, bitte Angebot zusenden</option>
+                  <option value="Nur Getränke">Nur Getränkeservice</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-field">
+                <label>Anmerkungen &amp; Wünsche</label>
+                <textarea name="anmerkungen" placeholder="Besondere Anforderungen, Dekoration, Technik, …"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="form-submit" id="book-btn">Buchungsanfrage senden</button>
+            <p class="form-note">Keine verbindliche Buchung — wir prüfen die Verfügbarkeit und melden uns innerhalb von 24 Stunden. Alternativ: <strong>0921 41666</strong></p>
+          </form>
+          <div class="form-success" id="book-success">
+            <div id="book-ticket"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR SUMMARY -->
+      <div class="booking-sidebar">
+        <div class="summary-box">
+          <div class="summary-head"><h4>Ihre Anfrage</h4></div>
+          <div class="summary-body" id="summary-body">
+            <div class="summary-empty" id="summary-empty">Bitte wählen Sie einen Raum und füllen Sie das Formular aus.</div>
+            <div id="summary-rows" style="display:none;flex-direction:column;gap:10px">
+              <div class="summary-row"><span class="s-lbl">Raum</span><span class="s-val" id="s-raum">—</span></div>
+              <div class="summary-row"><span class="s-lbl">Datum</span><span class="s-val" id="s-datum">—</span></div>
+              <div class="summary-row"><span class="s-lbl">Uhrzeit</span><span class="s-val" id="s-zeit">—</span></div>
+              <div class="summary-row"><span class="s-lbl">Gäste</span><span class="s-val" id="s-gaeste">—</span></div>
+              <div class="summary-row"><span class="s-lbl">Anlass</span><span class="s-val" id="s-anlass">—</span></div>
+              <div class="summary-row total"><span class="s-lbl">Mindestpreis</span><span class="s-val" id="s-preis">—</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-head"><h4>Wichtige Hinweise</h4></div>
+          <div class="summary-body">
+            <div style="font-size:12.5px;color:#555;line-height:1.8;display:flex;flex-direction:column;gap:10px">
+              <p>Die Anfrage ist <strong>nicht verbindlich</strong>. Nach Prüfung der Verfügbarkeit erhalten Sie eine Buchungsbestätigung mit Ihrem persönlichen Buchungscode.</p>
+              <p>Die Preise verstehen sich als Raummiete. Catering, Technik und Dekoration werden separat angeboten.</p>
+              <p>Bei Fragen: <strong>0921 41666</strong> oder <a href="mailto:info@sckreuz-bayreuth.de" style="color:var(--blue)">info@sckreuz-bayreuth.de</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="sec sec-black">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div>
+        <span class="sec-label sec-label-light">Ausstattung &amp; Service</span>
+        <h2 class="sec-h2 sec-h2-light">Was wir bieten</h2>
+        <p class="sec-sub sec-sub-light">Alle Räume befinden sich am Sportgelände Egerstrasse 10, 95445 Bayreuth.</p>
+      </div>
+    </div>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-title">Gastronomie</div>
+        <div class="info-card-body">Unsere Küche steht für Catering zur Verfügung. Auf Wunsch erstellen wir ein individuelles Speisen- und Getränkeangebot für Ihre Veranstaltung.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Technik</div>
+        <div class="info-card-body">Beamer, Leinwand, Mikrofone und Beschallungsanlage stehen im Großen Saal zur Verfügung. Bitte bei der Buchung angeben.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Parkplätze</div>
+        <div class="info-card-body">Ausreichend Parkplätze direkt am Sportheim vorhanden. Zusätzliche Flächen bei größeren Veranstaltungen nach Absprache.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Öffnungszeiten</div>
+        <div class="info-card-body">Buchungen sind täglich ab 10:00 Uhr möglich. Veranstaltungsende spätestens 02:00 Uhr. Abweichungen nach Absprache.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="fc">
+      <div class="ft-brand">
+        <div class="ft-badge"><img src="logo.jpg" width="30" height="30" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+        <div class="ft-bname"><strong>SC Kreuz Bayreuth</strong><span>e.V. · Gegründet 1928</span></div>
+      </div>
+      <p>Sportheimgaststätte mit drei Veranstaltungsräumen.<br>Egerstrasse 10 · 95445 Bayreuth</p>
+    </div>
+    <div class="fc">
+      <h4>Räumlichkeiten</h4>
+      <ul>
+        <li><a href="#raeume">Großer Saal</a></li>
+        <li><a href="#raeume">Gastraum</a></li>
+        <li><a href="#raeume">Kleiner Saal</a></li>
+        <li><a href="#buchen">Buchungsanfrage</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="Fussball.html">Fußball</a></li>
+        <li><a href="Dart.html">Dart</a></li>
+        <li><a href="Events.html">Events &amp; Kerwa</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:092141666">0921 41666</a></li>
+        <li><a href="mailto:info@sckreuz-bayreuth.de">info@sckreuz-bayreuth.de</a></li>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 SC Kreuz Bayreuth e.V. — Alle Rechte vorbehalten</span>
+    <div class="ft-links"><a href="Impressum.html">Impressum</a><a href="#">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script src="bookings.js"></script>
+<script>
+const ROOM_PRICES = {'Großer Saal':250,'Gastraum':120,'Kleiner Saal':80};
+
+function selectRoom(name, cap, price){
+  document.querySelectorAll('.room-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.btn-select-room').forEach(b=>{b.classList.remove('active');b.textContent='Auswählen'});
+  const sel = document.getElementById('b-raum');
+  sel.value = name;
+  const cardMap = {'Großer Saal':'card-saal','Gastraum':'card-gastraum','Kleiner Saal':'card-kleiner'};
+  document.getElementById(cardMap[name]).classList.add('selected');
+  event.target.classList.add('active');
+  event.target.textContent = 'Ausgewählt';
+  document.getElementById('buchen').scrollIntoView({behavior:'smooth'});
+  updateSummary();
+}
+
+function updateSummary(){
+  const raum = document.getElementById('b-raum').value;
+  const datum = document.getElementById('b-datum').value;
+  const beginn = document.getElementById('b-beginn').value;
+  const ende = document.getElementById('b-ende').value;
+  const gaeste = document.getElementById('b-gaeste').value;
+  const anlass = document.getElementById('b-anlass').value;
+  const hasData = raum || datum;
+  document.getElementById('summary-empty').style.display = hasData ? 'none' : 'block';
+  const rows = document.getElementById('summary-rows');
+  rows.style.display = hasData ? 'flex' : 'none';
+  if(raum) document.getElementById('s-raum').textContent = raum;
+  if(datum){
+    const d = new Date(datum);
+    document.getElementById('s-datum').textContent = d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+  }
+  if(beginn && ende) document.getElementById('s-zeit').textContent = beginn + ' – ' + ende + ' Uhr';
+  if(gaeste) document.getElementById('s-gaeste').textContent = gaeste + ' Personen';
+  if(anlass) document.getElementById('s-anlass').textContent = anlass;
+  if(raum && ROOM_PRICES[raum]) document.getElementById('s-preis').textContent = 'ab ' + ROOM_PRICES[raum] + ' €';
+}
+
+function genCode(){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let c = 'SCK-';
+  for(let i=0;i<3;i++) c += chars[Math.floor(Math.random()*chars.length)];
+  c += '-';
+  for(let i=0;i<4;i++) c += chars[Math.floor(Math.random()*chars.length)];
+  return c;
+}
+
+function submitBooking(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('book-btn');
+  const code = genCode();
+  const emailVal = form.querySelector('[name="email"]').value;
+  const nameVal = form.querySelector('[name="vorname"]').value + ' ' + form.querySelector('[name="nachname"]').value;
+  const raumVal = form.querySelector('[name="raum"]').value;
+  const datumVal = form.querySelector('[name="datum"]').value;
+  const beginnVal = form.querySelector('[name="beginn"]').value;
+  const endeVal = form.querySelector('[name="ende"]').value;
+  document.getElementById('b-replyto').value = emailVal;
+  document.getElementById('b-subject').value = 'Buchungsanfrage Sportheim — ' + raumVal + ' — Code ' + code;
+  document.getElementById('b-code').value = code;
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet …';
+  fetch('https://formspree.io/f/mgodpbrq', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(Object.fromEntries(new FormData(form)))
+  })
+  .then(r => r.ok ? r : Promise.reject())
+  .then(() => {
+    form.style.display = 'none';
+    const d = datumVal ? new Date(datumVal).toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}) : '—';
+    document.getElementById('book-ticket').innerHTML =
+      '<div class="booking-confirm">' +
+        '<div class="bc-top"><span>SC Kreuz Bayreuth · Sportheim</span><strong>Anfrage eingegangen</strong></div>' +
+        '<div class="bc-body">' +
+          '<div class="bc-name">' + nameVal + '</div>' +
+          '<div class="bc-room">' + raumVal + ' · ' + d + ' · ' + beginnVal + '–' + endeVal + ' Uhr</div>' +
+          '<div class="bc-code-lbl">Ihr Buchungscode</div>' +
+          '<div class="bc-code">' + code + '</div>' +
+          '<div class="bc-note">Bitte zeigen Sie diesen Code bei der Abholung der Schlüssel vor.<br>Machen Sie einen Screenshot oder notieren Sie sich den Code.<br>Eine Bestätigung wird an <strong style="color:rgba(255,255,255,.65)">' + emailVal + '</strong> gesendet.<br><br>Wir prüfen die Verfügbarkeit und bestätigen innerhalb von 24 Stunden.</div>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('book-success').classList.add('show');
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.textContent = 'Buchungsanfrage senden';
+    alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an: 0921 41666');
+  });
+}
+
+function openSN(){
+  document.getElementById('sidenav').classList.add('open');
+  document.getElementById('sn-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSN(){
+  document.getElementById('sidenav').classList.remove('open');
+  document.getElementById('sn-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ── CALENDAR ── */
+const CAL_ROOMS = ['Großer Saal','Gastraum','Kleiner Saal'];
+const CAL_SHORT = {'Großer Saal':'Gr. Saal','Gastraum':'Gastraum','Kleiner Saal':'Kl. Saal'};
+const CAL_CAP   = {'Großer Saal':'bis 200 Personen','Gastraum':'bis 80 Personen','Kleiner Saal':'bis 40 Personen'};
+const CAL_PRICE = {'Großer Saal':'ab 250 €','Gastraum':'ab 120 €','Kleiner Saal':'ab 80 €'};
+const DE_MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+
+let calYear, calMonth, calFilter = 'Alle', calSelected = null;
+
+(function initCal(){
+  const now = new Date();
+  calYear  = now.getFullYear();
+  calMonth = now.getMonth();
+  buildCalendar();
+})();
+
+function buildCalendar(){
+  document.getElementById('cal-month-label').textContent = DE_MONTHS[calMonth] + ' ' + calYear;
+  const grid = document.getElementById('cal-days');
+  grid.innerHTML = '';
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const first = new Date(calYear, calMonth, 1);
+  let offset  = first.getDay() - 1;
+  if(offset < 0) offset = 6;
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  for(let i = 0; i < offset; i++){
+    const e = document.createElement('div');
+    e.className = 'cal-day cal-empty';
+    grid.appendChild(e);
+  }
+
+  for(let d = 1; d <= daysInMonth; d++){
+    const ds   = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const date = new Date(calYear, calMonth, d);
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+    if(date < today)                        cell.classList.add('cal-past');
+    if(date.getTime() === today.getTime())  cell.classList.add('cal-today');
+    if(ds === calSelected)                  cell.classList.add('cal-selected');
+
+    const num = document.createElement('div');
+    num.className = 'cal-daynum';
+    num.textContent = d;
+    cell.appendChild(num);
+
+    const chips = document.createElement('div');
+    chips.className = 'cal-chips';
+    const filterRooms = calFilter === 'Alle' ? CAL_ROOMS : [calFilter];
+    filterRooms.forEach(room => {
+      const booked = typeof BOOKINGS !== 'undefined' && BOOKINGS.some(b => b.date === ds && b.room === room);
+      const chip = document.createElement('div');
+      chip.className = 'cal-chip ' + (booked ? 'booked' : 'free');
+      chip.textContent = CAL_SHORT[room];
+      chips.appendChild(chip);
+    });
+    cell.appendChild(chips);
+
+    if(!cell.classList.contains('cal-past')){
+      cell.addEventListener('click', () => selectCalDay(ds, cell));
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function selectCalDay(ds, el){
+  document.querySelectorAll('.cal-day.cal-selected').forEach(c => c.classList.remove('cal-selected'));
+  el.classList.add('cal-selected');
+  calSelected = ds;
+  renderCalDetail(ds);
+}
+
+function renderCalDetail(ds){
+  const d     = new Date(ds + 'T00:00:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const isPast = d < today;
+  const label = d.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('cal-detail-date').textContent = label;
+
+  const body = document.getElementById('cal-detail-body');
+  body.innerHTML = '';
+
+  const filterRooms = calFilter === 'Alle' ? CAL_ROOMS : [calFilter];
+  let freeRooms = [];
+
+  filterRooms.forEach(room => {
+    const booking = typeof BOOKINGS !== 'undefined' && BOOKINGS.find(b => b.date === ds && b.room === room);
+    const booked  = !!booking;
+    if(!booked && !isPast) freeRooms.push(room);
+
+    const card = document.createElement('div');
+    card.className = 'cal-room-card ' + (booked || isPast ? 'booked-card' : 'free-card');
+
+    const head = document.createElement('div');
+    head.className = 'cal-room-card-head';
+    head.innerHTML =
+      '<span class="cal-room-card-name">' + room + '</span>' +
+      '<span class="cal-status-badge ' + (booked || isPast ? 'booked' : 'free') + '">' +
+        (booked ? 'Belegt' : isPast ? '—' : 'Frei') +
+      '</span>';
+    card.appendChild(head);
+
+    const cbody = document.createElement('div');
+    cbody.className = 'cal-room-card-body';
+    if(booked){
+      cbody.innerHTML =
+        '<span class="cal-event-label">' + booking.label + '</span>' +
+        (booking.from && booking.to
+          ? '<span class="cal-event-time">' + booking.from + ' – ' + booking.to + ' Uhr</span>'
+          : '');
+    } else if(isPast){
+      cbody.innerHTML = '<span class="cal-avail-info" style="color:#aaa">Vergangenes Datum</span>';
+    } else {
+      cbody.innerHTML =
+        '<span class="cal-avail-info">' + CAL_CAP[room] + '</span>' +
+        '<span class="cal-avail-info" style="font-weight:700;color:#111">' + CAL_PRICE[room] + ' / Abend</span>';
+    }
+    card.appendChild(cbody);
+    body.appendChild(card);
+  });
+
+  if(freeRooms.length > 0){
+    freeRooms.forEach(room => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-book-day';
+      btn.textContent = calFilter === 'Alle' ? room + ' buchen' : 'Diesen Tag buchen';
+      btn.onclick = () => bookCalDay(ds, room);
+      body.appendChild(btn);
+    });
+  }
+}
+
+function bookCalDay(ds, room){
+  document.getElementById('b-datum').value = ds;
+  document.getElementById('b-raum').value  = room;
+  const cardMap = {'Großer Saal':'card-saal','Gastraum':'card-gastraum','Kleiner Saal':'card-kleiner'};
+  document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.btn-select-room').forEach(b => { b.classList.remove('active'); b.textContent = 'Auswählen'; });
+  const card = document.getElementById(cardMap[room]);
+  if(card) card.classList.add('selected');
+  updateSummary();
+  document.getElementById('buchen').scrollIntoView({behavior:'smooth'});
+}
+
+function setCalFilter(filter, btn){
+  calFilter = filter;
+  document.querySelectorAll('.cal-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildCalendar();
+  if(calSelected) renderCalDetail(calSelected);
+}
+
+function calPrev(){
+  calMonth--;
+  if(calMonth < 0){ calMonth = 11; calYear--; }
+  buildCalendar();
+}
+function calNext(){
+  calMonth++;
+  if(calMonth > 11){ calMonth = 0; calYear++; }
+  buildCalendar();
+}
+</script>

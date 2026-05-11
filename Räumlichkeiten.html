@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Räumlichkeiten — SC Kreuz Bayreuth e.V.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -225,13 +230,18 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .hdr-name span{display:none}
   .sec{padding:44px clamp(16px,4vw,36px)}
   .form-row.triple{grid-template-columns:1fr 1fr}
+  input,select,textarea{font-size:16px}
 }
 @media(max-width:480px){
   .ft-inner{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
+  .form-row.triple{grid-template-columns:1fr}
   .room-grid{grid-template-columns:1fr}
+  .cal-grid{grid-template-columns:repeat(7,1fr)}
+  .hero-btns{flex-direction:column;align-items:stretch}
 }
-</style>
+</style></head>
+<body>
 
 <div id="sn-overlay" onclick="closeSN()"></div>
 <nav id="sidenav">
@@ -933,3 +943,5 @@ function calNext(){
   buildCalendar();
 }
 </script>
+</body>
+</html>

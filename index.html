@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC Kreuz Bayreuth e.V.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -315,6 +320,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .btn-ghost-hdr{display:none}
   .hdr-name span{display:none}
   .sec{padding:44px clamp(16px,4vw,36px)}
+  input,select,textarea{font-size:16px}
 }
 @media(max-width:480px){
   .ft-inner{grid-template-columns:1fr}
@@ -325,8 +331,10 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .hero-desc{font-size:13px}
   .btn-book-hdr{font-size:11px;padding:7px 12px}
   .v-stats{grid-template-columns:1fr 1fr}
+  .hero-btns{flex-direction:column;align-items:stretch}
 }
-</style>
+</style></head>
+<body>
 
 <!-- SIDE NAV OVERLAY -->
 <div id="sn-overlay" onclick="closeSN()"></div>
@@ -661,3 +669,6 @@ function closeSN(){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSN()});
 </script>
+
+</body>
+</html>

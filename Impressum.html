@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressum — SC Kreuz Bayreuth e.V.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -112,9 +117,15 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
   .btn-ghost-hdr{display:none}
   .hdr-name span{display:none}
+  .sec{padding:44px clamp(16px,4vw,36px)}
+  .vorstand-grid{grid-template-columns:1fr}
 }
-@media(max-width:480px){.ft-inner{grid-template-columns:1fr}}
-</style>
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .vorstand-grid{grid-template-columns:1fr}
+}
+</style></head>
+<body>
 
 <div id="sn-overlay" onclick="closeSN()"></div>
 <nav id="sidenav">
@@ -401,3 +412,6 @@ function closeSN(){
   document.body.style.overflow='';
 }
 </script>
+
+</body>
+</html>

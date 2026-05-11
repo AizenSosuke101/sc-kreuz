@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fußball — SC Kreuz Bayreuth e.V.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -232,6 +237,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .hdr-name span{display:none}
   .sec{padding:44px clamp(16px,4vw,36px)}
   .probe-left,.probe-right{padding:28px 24px}
+  input,select,textarea{font-size:16px}
 }
 @media(max-width:480px){
   .ft-inner{grid-template-columns:1fr}
@@ -240,8 +246,10 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .is-item:last-child{border-bottom:none}
   .hero-h1{font-size:clamp(24px,7vw,36px)}
   .kader-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .hero-btns{flex-direction:column;align-items:stretch}
 }
-</style>
+</style></head>
+<body>
 
 <div id="sn-overlay" onclick="closeSN()"></div>
 <nav id="sidenav">
@@ -638,3 +646,6 @@ if(typeof FOOTBALL_DATA!=='undefined'){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSN()});
 </script>
+
+</body>
+</html>

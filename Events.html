@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events — SC Kreuz Bayreuth e.V.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -204,13 +209,16 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .day-col{border-right:none;border-bottom:2px solid var(--gold);padding:16px 0 12px}
   .events-col{padding:12px 0 20px}
   .kerwa-stat-row{grid-template-columns:1fr 1fr}
+  input,select,textarea{font-size:16px}
 }
 @media(max-width:480px){
   .ft-inner{grid-template-columns:1fr}
-  .highlights-grid{grid-template-columns:1fr 1fr}
-  .kerwa-stat-row{grid-template-columns:1fr 1fr}
+  .highlights-grid{grid-template-columns:1fr}
+  .kerwa-stat-row{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:stretch}
 }
-</style>
+</style></head>
+<body>
 
 <div id="sn-overlay" onclick="closeSN()"></div>
 <nav id="sidenav">
@@ -723,3 +731,6 @@ function closeSN(){
   document.body.style.overflow='';
 }
 </script>
+
+</body>
+</html>

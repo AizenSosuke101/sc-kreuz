@@ -10,14 +10,14 @@
 :root{
   --black:#0e0e0e;--black2:#1a1a1a;--black3:#2a2a2a;
   --white:#ffffff;--gray1:#f6f6f6;--gray2:#ebebeb;--gray3:#c8c8c8;--gray4:#888;
-  --blue:#1a5faa;--bluehov:#134d8e;--green:#1a7a3a;--red:#b71c1c;
+  --blue:#1a5faa;--bluehov:#134d8e;--blue-light:#e8f0fd;--blue-mid:#c8daf7;
 }
 html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
 body{background:var(--white);overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 button{font-family:'Barlow',system-ui,sans-serif}
-h1,h2,h3,h4,.sec-h2,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
 
 /* SIDENAV */
 #sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
@@ -67,46 +67,61 @@ h1,h2,h3,h4,.sec-h2,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswa
 
 /* SPORT SELECTOR */
 .mg-selector-sec{padding:60px clamp(20px,5vw,72px)}
-.mg-selector-sec .sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
-.mg-selector-sec .sec-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;margin-bottom:8px}
-.mg-selector-sec .sec-sub{font-size:14px;color:var(--gray4);margin-bottom:36px}
-.sport-tabs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
-.sport-tab{display:flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;border:2px solid var(--gray2);background:var(--white);cursor:pointer;transition:.2s;font-size:14px;font-weight:700;color:var(--gray4)}
-.sport-tab:hover{border-color:var(--blue);color:var(--blue);background:#f0f6ff}
-.sport-tab.active{border-color:var(--blue);color:var(--blue);background:#e8f0fd;box-shadow:0 0 0 3px rgba(26,95,170,.12)}
-.sport-tab-icon{font-size:22px}
+.sec-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.sec-h2{font-family:'Oswald',system-ui,sans-serif;font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);line-height:1.15;margin-bottom:8px}
+.sec-sub{font-size:14px;color:var(--gray4);margin-bottom:36px}
+
+/* TABS */
+.sport-tabs{display:flex;gap:0;margin-bottom:44px;border:1.5px solid var(--gray2);border-radius:10px;overflow:hidden;width:fit-content}
+.sport-tab{display:flex;align-items:center;gap:0;padding:13px 32px;border:none;border-right:1.5px solid var(--gray2);background:var(--white);cursor:pointer;transition:.18s;font-size:13.5px;font-weight:700;color:var(--gray4);letter-spacing:.2px}
+.sport-tab:last-child{border-right:none}
+.sport-tab:hover{background:var(--gray1);color:var(--black)}
+.sport-tab.active{background:var(--blue);color:#fff}
 
 /* DOCS PANEL */
 .docs-panel{display:none}
 .docs-panel.active{display:block}
-.docs-intro{background:var(--gray1);border:1px solid var(--gray2);border-radius:14px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:flex-start;gap:18px}
-.docs-intro-icon{font-size:36px;flex-shrink:0;margin-top:2px}
-.docs-intro h3{font-size:17px;font-weight:800;color:var(--black);margin-bottom:6px}
-.docs-intro p{font-size:13.5px;color:var(--gray4);line-height:1.65}
-.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.doc-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:12px;padding:20px 22px;display:flex;align-items:center;gap:16px;transition:.2s;cursor:default}
-.doc-card:hover{border-color:var(--blue);box-shadow:0 4px 18px rgba(26,95,170,.1)}
-.doc-icon{width:46px;height:46px;background:var(--gray1);border-radius:10px;border:1px solid var(--gray2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.doc-info{flex:1;min-width:0}
-.doc-name{font-size:14px;font-weight:700;color:var(--black);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.doc-meta{font-size:11.5px;color:var(--gray4)}
-.doc-btn{flex-shrink:0;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:5px}
-.doc-btn:hover{background:var(--bluehov);transform:translateY(-1px)}
-.doc-btn.placeholder{background:var(--gray2);color:var(--gray4);cursor:not-allowed}
-.doc-btn.placeholder:hover{background:var(--gray2);transform:none}
-.placeholder-notice{margin-top:28px;background:#fff8e1;border:1.5px solid #ffe082;border-radius:10px;padding:16px 20px;font-size:13px;color:#7a6000;display:flex;align-items:center;gap:12px}
-.placeholder-notice strong{display:block;font-size:13.5px;margin-bottom:2px}
 
-/* INFO BOXES */
-.mg-info-sec{background:var(--gray1);padding:52px clamp(20px,5vw,72px)}
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.info-card{background:var(--white);border:1px solid var(--gray2);border-radius:12px;padding:24px 22px}
-.info-card-icon{font-size:28px;margin-bottom:12px}
-.info-card h3{font-size:15px;font-weight:800;color:var(--black);margin-bottom:8px}
-.info-card p{font-size:13px;color:var(--gray4);line-height:1.65}
+.docs-intro{border-left:4px solid var(--blue);background:var(--blue-light);border-radius:0 12px 12px 0;padding:22px 28px;margin-bottom:32px}
+.docs-intro h3{font-family:'Oswald',system-ui,sans-serif;font-size:18px;font-weight:800;color:var(--black);margin-bottom:6px;letter-spacing:.3px}
+.docs-intro p{font-size:13.5px;color:var(--gray4);line-height:1.65}
+
+.docs-list{display:flex;flex-direction:column;gap:12px}
+.doc-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:12px;padding:18px 24px;display:flex;align-items:center;gap:20px;transition:.2s}
+.doc-card:hover{border-color:var(--blue-mid);box-shadow:0 4px 20px rgba(26,95,170,.09);transform:translateY(-1px)}
+.doc-badge{flex-shrink:0;width:52px;height:52px;background:var(--blue-light);border:1.5px solid var(--blue-mid);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.doc-badge-type{font-size:9px;font-weight:900;letter-spacing:1.5px;color:var(--blue);text-transform:uppercase}
+.doc-badge-lines{display:flex;flex-direction:column;gap:3px;margin-top:3px}
+.doc-badge-lines span{display:block;height:2px;border-radius:2px;background:var(--blue-mid)}
+.doc-badge-lines span:nth-child(1){width:22px}
+.doc-badge-lines span:nth-child(2){width:16px}
+.doc-badge-lines span:nth-child(3){width:19px}
+.doc-info{flex:1;min-width:0}
+.doc-name{font-size:14.5px;font-weight:700;color:var(--black);margin-bottom:4px}
+.doc-meta{font-size:12px;color:var(--gray4)}
+.doc-btn{flex-shrink:0;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;letter-spacing:.2px}
+.doc-btn:hover{background:var(--bluehov);transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,95,170,.35)}
+.doc-btn.placeholder{background:var(--gray2);color:var(--gray4);cursor:not-allowed;border:1.5px solid var(--gray2)}
+.doc-btn.placeholder:hover{transform:none;box-shadow:none}
+
+.placeholder-notice{margin-top:24px;background:var(--gray1);border:1.5px solid var(--gray2);border-left:4px solid var(--gray3);border-radius:0 10px 10px 0;padding:16px 22px;font-size:13px;color:var(--gray4)}
+.placeholder-notice strong{display:block;font-size:13.5px;color:var(--black);margin-bottom:3px;font-weight:700}
+
+/* INFO SECTION */
+.mg-info-sec{background:var(--black);padding:60px clamp(20px,5vw,72px)}
+.mg-info-sec .sec-label{color:var(--gray3)}
+.mg-info-sec .sec-h2{color:var(--white);margin-bottom:32px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--black3);border-radius:14px;overflow:hidden;border:1px solid var(--black3)}
+.info-card{background:var(--black2);padding:30px 28px;border-top:3px solid transparent;transition:.2s}
+.info-card:hover{background:#222;border-top-color:var(--blue)}
+.info-card-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.info-card h3{font-family:'Oswald',system-ui,sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:.3px}
+.info-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.7}
+.info-card a{color:rgba(255,255,255,.75);font-weight:600}
+.info-card a:hover{color:#fff}
 
 /* FOOTER */
-footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0}
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0;border-top:1px solid var(--black3)}
 .ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
 .fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
 .fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
@@ -129,18 +144,21 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .btn-ghost-hdr{display:none}
   .hdr-name span{display:none}
   .mg-selector-sec{padding:40px clamp(16px,4vw,28px)}
-  .mg-info-sec{padding:40px clamp(16px,4vw,28px)}
+  .mg-info-sec{padding:44px clamp(16px,4vw,28px)}
   .mg-hero{padding:44px clamp(16px,4vw,28px) 40px}
-  input,select,textarea{font-size:16px}
+  .sport-tabs{width:100%}
+  .sport-tab{flex:1;padding:12px 16px;justify-content:center}
 }
 @media(max-width:480px){
   .ft-inner{grid-template-columns:1fr}
-  .sport-tabs{flex-direction:column}
-  .sport-tab{width:100%}
-  .docs-grid{grid-template-columns:1fr}
-  .doc-card{flex-wrap:wrap}
+  .sport-tabs{flex-direction:column;width:100%}
+  .sport-tab{border-right:none;border-bottom:1.5px solid var(--gray2)}
+  .sport-tab:last-child{border-bottom:none}
+  .doc-card{flex-wrap:wrap;gap:14px}
+  .doc-btn{width:100%;text-align:center}
   .mg-selector-sec{padding:32px 16px}
-  .mg-info-sec{padding:32px 16px}
+  .mg-info-sec{padding:36px 16px}
+  .info-grid{grid-template-columns:1fr}
 }
 </style></head>
 <body>
@@ -213,171 +231,186 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   <p class="sec-sub">Klicke auf die Sportabteilung, für die du die Unterlagen benötigst.</p>
 
   <div class="sport-tabs">
-    <button class="sport-tab active" onclick="selectSport('allgemein', this)">
-      <span class="sport-tab-icon">🏛️</span> Allgemeine Mitgliedschaft
-    </button>
-    <button class="sport-tab" onclick="selectSport('fussball', this)">
-      <span class="sport-tab-icon">⚽</span> Fußball
-    </button>
-    <button class="sport-tab" onclick="selectSport('dart', this)">
-      <span class="sport-tab-icon">🎯</span> Dart
-    </button>
+    <button class="sport-tab active" onclick="selectSport('allgemein', this)">Allgemein</button>
+    <button class="sport-tab" onclick="selectSport('fussball', this)">Fußball</button>
+    <button class="sport-tab" onclick="selectSport('dart', this)">Dart</button>
   </div>
 
   <!-- ALLGEMEIN -->
   <div class="docs-panel active" id="panel-allgemein">
     <div class="docs-intro">
-      <div class="docs-intro-icon">🏛️</div>
-      <div>
-        <h3>Allgemeine Vereinsmitgliedschaft</h3>
-        <p>Für alle, die den SC Kreuz Bayreuth e.V. unterstützen möchten, ohne einer bestimmten Sportabteilung beizutreten. Fördermitglieder sind herzlich willkommen.</p>
-      </div>
+      <h3>Allgemeine Vereinsmitgliedschaft</h3>
+      <p>Für alle, die den SC Kreuz Bayreuth e.V. unterstützen möchten, ohne einer bestimmten Sportabteilung beizutreten. Fördermitglieder sind herzlich willkommen.</p>
     </div>
-    <div class="docs-grid">
+    <div class="docs-list">
       <div class="doc-card">
-        <div class="doc-icon">📄</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Beitrittsformular Allgemein</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📋</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Satzung SC Kreuz Bayreuth e.V.</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">💳</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">SEPA-Lastschriftmandat</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
     </div>
     <div class="placeholder-notice">
-      <span style="font-size:20px">⏳</span>
-      <div><strong>Dokumente folgen in Kürze</strong>Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.</div>
+      <strong>Dokumente folgen in Kürze</strong>
+      Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.
     </div>
   </div>
 
   <!-- FUSSBALL -->
   <div class="docs-panel" id="panel-fussball">
     <div class="docs-intro">
-      <div class="docs-intro-icon">⚽</div>
-      <div>
-        <h3>Fußballabteilung – SC Kreuz Bayreuth</h3>
-        <p>Für aktive Spieler, Jugendspieler und Fördermitglieder der Fußballabteilung. Bei Fragen wende dich direkt an den Abteilungsleiter.</p>
-      </div>
+      <h3>Fußballabteilung – SC Kreuz Bayreuth</h3>
+      <p>Für aktive Spieler, Jugendspieler und Fördermitglieder der Fußballabteilung. Bei Fragen wende dich direkt an den Abteilungsleiter.</p>
     </div>
-    <div class="docs-grid">
+    <div class="docs-list">
       <div class="doc-card">
-        <div class="doc-icon">📄</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Beitrittsformular Fußball</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">👦</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Beitrittsformular Jugend (U18)</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">💳</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">SEPA-Lastschriftmandat</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📋</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Spielerpass-Antrag (BFV)</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
     </div>
     <div class="placeholder-notice">
-      <span style="font-size:20px">⏳</span>
-      <div><strong>Dokumente folgen in Kürze</strong>Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.</div>
+      <strong>Dokumente folgen in Kürze</strong>
+      Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.
     </div>
   </div>
 
   <!-- DART -->
   <div class="docs-panel" id="panel-dart">
     <div class="docs-intro">
-      <div class="docs-intro-icon">🎯</div>
-      <div>
-        <h3>Dartabteilung – SC Kreuz Bayreuth</h3>
-        <p>Für Mitglieder der Dartabteilung, die in Ligen oder als Freizeitdartspieler aktiv werden möchten.</p>
-      </div>
+      <h3>Dartabteilung – SC Kreuz Bayreuth</h3>
+      <p>Für Mitglieder der Dartabteilung, die in Ligen oder als Freizeitdartspieler aktiv werden möchten.</p>
     </div>
-    <div class="docs-grid">
+    <div class="docs-list">
       <div class="doc-card">
-        <div class="doc-icon">📄</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Beitrittsformular Dart</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">💳</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">SEPA-Lastschriftmandat</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📋</div>
+        <div class="doc-badge">
+          <div class="doc-badge-type">PDF</div>
+          <div class="doc-badge-lines"><span></span><span></span><span></span></div>
+        </div>
         <div class="doc-info">
           <div class="doc-name">Ligaanmeldung (BDV)</div>
           <div class="doc-meta">PDF · Platzhalter</div>
         </div>
-        <button class="doc-btn placeholder" disabled>Bald</button>
+        <button class="doc-btn placeholder" disabled>Demnächst</button>
       </div>
     </div>
     <div class="placeholder-notice">
-      <span style="font-size:20px">⏳</span>
-      <div><strong>Dokumente folgen in Kürze</strong>Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.</div>
+      <strong>Dokumente folgen in Kürze</strong>
+      Die Unterlagen werden hier hinterlegt, sobald sie zur Verfügung stehen.
     </div>
   </div>
 </div>
 
-<!-- INFO CARDS -->
+<!-- INFO SECTION -->
 <div class="mg-info-sec">
-  <p class="sec-label" style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:7px">Gut zu wissen</p>
-  <h2 style="font-family:'Oswald',system-ui,sans-serif;font-size:clamp(20px,3vw,26px);font-weight:800;color:var(--black);margin-bottom:28px">Alles rund um die Mitgliedschaft</h2>
+  <p class="sec-label">Gut zu wissen</p>
+  <h2 class="sec-h2">Alles rund um die Mitgliedschaft</h2>
   <div class="info-grid">
     <div class="info-card">
-      <div class="info-card-icon">📬</div>
+      <div class="info-card-label">Einreichen</div>
       <h3>Formular einreichen</h3>
-      <p>Ausgefüllte Formulare können per E-Mail an <a href="mailto:sckreuz@t-online.de" style="color:var(--blue);font-weight:600">sckreuz@t-online.de</a> oder persönlich im Vereinsheim abgegeben werden.</p>
+      <p>Ausgefüllte Formulare können per E-Mail an <a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a> oder persönlich im Vereinsheim abgegeben werden.</p>
     </div>
     <div class="info-card">
-      <div class="info-card-icon">💶</div>
+      <div class="info-card-label">Beitrag</div>
       <h3>Mitgliedsbeitrag</h3>
       <p>Die Beitragshöhe richtet sich nach der Abteilung und der Altersklasse. Details sind im jeweiligen Formular angegeben.</p>
     </div>
     <div class="info-card">
-      <div class="info-card-icon">📍</div>
+      <div class="info-card-label">Anschrift</div>
       <h3>Vereinsheim</h3>
       <p>SC Kreuz Bayreuth e.V.<br>Egerstraße 10<br>95445 Bayreuth<br>Tel: 0921 41666</p>
     </div>
     <div class="info-card">
-      <div class="info-card-icon">❓</div>
+      <div class="info-card-label">Kontakt</div>
       <h3>Fragen?</h3>
       <p>Bei Fragen zur Mitgliedschaft oder zu den Unterlagen steht die Geschäftsstelle gerne zur Verfügung.</p>
     </div>

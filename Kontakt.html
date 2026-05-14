@@ -72,24 +72,21 @@ h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',syst
 /* CONTACT DETAILS */
 .kt-sec-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 .kt-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);margin-bottom:28px;line-height:1.15}
-.kt-block{margin-bottom:28px}
-.kt-block-title{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray4);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gray2)}
+.kt-block{margin-bottom:20px;background:var(--white);border:1.5px solid var(--gray2);border-radius:14px;padding:22px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.kt-block-title{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gray2)}
 .kt-row{display:flex;flex-direction:column;gap:14px}
 .kt-item{display:flex;flex-direction:column;gap:2px}
-.kt-item strong{font-size:13px;font-weight:700;color:var(--black)}
-.kt-item span,.kt-item a{font-size:13.5px;color:var(--gray4);line-height:1.5}
+.kt-item strong{font-size:12px;font-weight:700;color:var(--gray4);text-transform:uppercase;letter-spacing:.6px}
+.kt-item span,.kt-item a{font-size:14px;color:var(--black);line-height:1.5;font-weight:500}
 .kt-item a{color:var(--blue)}
 .kt-item a:hover{text-decoration:underline}
-.kt-divider{border:none;border-top:1px solid var(--gray2);margin:28px 0}
+.kt-divider{display:none}
 
 /* VORSTAND CARDS */
-.vorstand-row{display:flex;flex-direction:column;gap:10px}
-.vorstand-card{background:var(--gray1);border:1px solid var(--gray2);border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.vc-left{}
+.vorstand-row{display:flex;flex-direction:column;gap:8px}
+.vorstand-card{background:var(--gray1);border:1px solid var(--gray2);border-radius:8px;padding:12px 16px}
 .vc-name{font-size:14px;font-weight:700;color:var(--black)}
-.vc-role{font-size:11.5px;color:var(--gray4);margin-top:2px}
-.vc-phone{font-size:13px;color:var(--blue);font-weight:600;white-space:nowrap}
-.vc-phone:hover{text-decoration:underline}
+.vc-role{font-size:12px;color:var(--gray4);margin-top:2px}
 
 /* MAP */
 .kt-map-wrap{background:var(--black);border-radius:18px;padding:7px;box-shadow:0 8px 40px rgba(0,0,0,.22);height:480px}
@@ -224,7 +221,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
         <div class="kt-row">
           <div class="kt-item">
             <strong>Adresse</strong>
-            <span>Egerstraße 10<br>95445 Bayreuth</span>
+            <a href="https://www.google.com/maps/place/Sportplatz+Kreuz/@49.9461238,11.5524482,17z" target="_blank" rel="noopener">Egerstraße 10<br>95445 Bayreuth</a>
           </div>
           <div class="kt-item">
             <strong>Telefon</strong>
@@ -247,23 +244,16 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
         <div class="kt-block-title">Vorstand</div>
         <div class="vorstand-row">
           <div class="vorstand-card">
-            <div class="vc-left">
-              <div class="vc-name">Claudia Roberts</div>
-              <div class="vc-role">1. Vorsitzende</div>
-            </div>
-            <a class="vc-phone" href="tel:+4915209623736">01520 96 23 736</a>
+            <div class="vc-name">Claudia Roberts</div>
+            <div class="vc-role">Vorsitzende</div>
           </div>
           <div class="vorstand-card">
-            <div class="vc-left">
-              <div class="vc-name">Stephan Brütting</div>
-              <div class="vc-role">2. Vorsitzender</div>
-            </div>
+            <div class="vc-name">Stephan Brütting</div>
+            <div class="vc-role">2. Vorsitzender</div>
           </div>
           <div class="vorstand-card">
-            <div class="vc-left">
-              <div class="vc-name">Marcus Körber</div>
-              <div class="vc-role">3. Vorsitzender</div>
-            </div>
+            <div class="vc-name">Marcus Körber</div>
+            <div class="vc-role">3. Vorsitzender</div>
           </div>
         </div>
       </div>
@@ -288,15 +278,10 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     <!-- RIGHT: MAP -->
     <div>
       <div class="kt-map-wrap">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=11.5484%2C49.9438%2C11.5566%2C49.9488&layer=mapnik&marker=49.9462701%2C11.5524869"
-          allowfullscreen=""
-          loading="lazy"
-          title="Karte: Sportplatz Kreuz, Egerstraße 10, Bayreuth">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d448.7340505022981!2d11.552448166143556!3d49.946123812783355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1a2b021cf4c0d%3A0xc707c5870276d698!2sSportplatz%20Kreuz!5e1!3m2!1sde!2sde!4v1778783786136!5m2!1sde!2sde" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <p style="margin-top:10px;font-size:12px;color:var(--gray4);text-align:right">
-        <a href="https://www.openstreetmap.org/?mlat=49.9463&mlon=11.5525#map=16/49.9463/11.5525" target="_blank" rel="noopener" style="color:var(--blue)">Größere Karte ansehen</a>
+        <a href="https://www.google.com/maps/place/Sportplatz+Kreuz/@49.9461238,11.5524482,17z" target="_blank" rel="noopener" style="color:var(--blue)">In Google Maps öffnen</a>
       </p>
     </div>
 

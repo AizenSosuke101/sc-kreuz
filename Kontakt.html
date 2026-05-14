@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — SC Kreuz Bayreuth e.V.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0e0e0e;--black2:#1a1a1a;--black3:#2a2a2a;
+  --white:#ffffff;--gray1:#f6f6f6;--gray2:#ebebeb;--gray3:#c8c8c8;--gray4:#888;
+  --blue:#1a5faa;--bluehov:#134d8e;
+}
+html{font-family:'Barlow',system-ui,sans-serif;color:var(--black)}
+body{background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:'Barlow',system-ui,sans-serif}
+h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',system-ui,sans-serif;letter-spacing:.4px}
+
+/* SIDENAV */
+#sn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9990;opacity:0;pointer-events:none;transition:.25s}
+#sn-overlay.open{opacity:1;pointer-events:all}
+#sidenav{position:fixed;top:0;left:0;width:268px;height:100vh;background:var(--black);z-index:9999;transform:translateX(-100%);transition:.28s ease;display:flex;flex-direction:column;overflow-y:auto}
+#sidenav.open{transform:translateX(0)}
+.sn-head{padding:18px 18px 16px;background:var(--black2);border-bottom:2px solid var(--blue);display:flex;justify-content:space-between;align-items:center}
+.sn-brand{display:flex;align-items:center;gap:11px}
+.sn-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-name{font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;letter-spacing:.4px}
+.sn-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.sn-close:hover{color:#fff}
+.sn-sec{padding:10px 0 4px}
+.sn-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding:10px 18px 5px}
+.sn-link{display:flex;align-items:center;gap:12px;padding:10px 14px;margin:3px 10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.65);border-radius:10px;cursor:pointer;transition:.18s}
+.sn-link:hover,.sn-link.act{color:#fff;background:rgba(255,255,255,.1)}
+.sn-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:6px 18px}
+.sn-foot{margin-top:auto;padding:14px 18px;font-size:10px;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+
+/* HEADER */
+#hdr{background:var(--black);height:64px;display:flex;align-items:center;padding:0 20px;gap:14px;position:sticky;top:0;z-index:800;border-bottom:1px solid rgba(255,255,255,.07)}
+.hburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+.hburger:hover span{background:var(--blue)}
+.hdr-brand{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.hdr-logo-wrap{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-name{color:#fff;min-width:0}
+.hdr-name strong{display:block;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.hdr-name span{font-size:10px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.5px}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-ghost-hdr{background:none;color:rgba(255,255,255,.8);padding:8px 14px;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.2);border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-ghost-hdr:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* HERO */
+.kt-hero{background:var(--black);padding:64px clamp(20px,5vw,72px) 52px;position:relative;overflow:hidden}
+.kt-hero::before{content:'';position:absolute;inset:0;background:url('sportheim_ausen_weit_weg.png') center/cover no-repeat;opacity:.18;filter:blur(2px)}
+.kt-hero-inner{position:relative;z-index:1;max-width:720px}
+.kt-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:18px;backdrop-filter:blur(6px)}
+.kt-eyebrow::before{content:'';width:5px;height:5px;background:var(--blue);border-radius:50%}
+.kt-h1{font-size:clamp(28px,4.5vw,50px);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-.3px;margin-bottom:14px}
+.kt-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;max-width:540px}
+
+/* BREADCRUMB */
+.breadcrumb{background:var(--gray1);border-bottom:1px solid var(--gray2);padding:10px clamp(20px,5vw,72px);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray4)}
+.breadcrumb a{color:var(--blue);font-weight:600}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* MAIN SECTION */
+.kt-body{padding:60px clamp(20px,5vw,72px)}
+.kt-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+
+/* CONTACT DETAILS */
+.kt-sec-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.kt-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);margin-bottom:28px;line-height:1.15}
+.kt-block{margin-bottom:28px}
+.kt-block-title{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray4);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gray2)}
+.kt-row{display:flex;flex-direction:column;gap:14px}
+.kt-item{display:flex;flex-direction:column;gap:2px}
+.kt-item strong{font-size:13px;font-weight:700;color:var(--black)}
+.kt-item span,.kt-item a{font-size:13.5px;color:var(--gray4);line-height:1.5}
+.kt-item a{color:var(--blue)}
+.kt-item a:hover{text-decoration:underline}
+.kt-divider{border:none;border-top:1px solid var(--gray2);margin:28px 0}
+
+/* VORSTAND CARDS */
+.vorstand-row{display:flex;flex-direction:column;gap:10px}
+.vorstand-card{background:var(--gray1);border:1px solid var(--gray2);border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.vc-left{}
+.vc-name{font-size:14px;font-weight:700;color:var(--black)}
+.vc-role{font-size:11.5px;color:var(--gray4);margin-top:2px}
+.vc-phone{font-size:13px;color:var(--blue);font-weight:600;white-space:nowrap}
+.vc-phone:hover{text-decoration:underline}
+
+/* MAP */
+.kt-map-wrap{background:var(--black);border-radius:18px;padding:7px;box-shadow:0 8px 40px rgba(0,0,0,.22);height:480px}
+.kt-map-wrap iframe{width:100%;height:100%;display:block;border:0;border-radius:13px}
+
+/* INFO STRIP */
+.kt-info-strip{background:var(--black);padding:44px clamp(20px,5vw,72px)}
+.kt-strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--black3);border-radius:12px;overflow:hidden;border:1px solid var(--black3)}
+.kt-strip-item{background:var(--black2);padding:26px 24px}
+.kt-strip-item:hover{background:#1e1e1e}
+.kt-strip-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.kt-strip-val{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
+.kt-strip-val a{color:#fff}
+.kt-strip-val a:hover{color:var(--gray3)}
+.kt-strip-sub{font-size:12px;color:rgba(255,255,255,.4)}
+
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20px,5vw,72px) 0;border-top:1px solid var(--black3)}
+.ft-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;width:100%}
+.fc h4{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray3);margin-bottom:13px}
+.fc p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.4)}
+.fc ul{display:flex;flex-direction:column;gap:8px}
+.fc ul li a{font-size:12.5px;color:rgba(255,255,255,.45);transition:.15s}
+.fc ul li a:hover{color:#fff}
+.fc ul li a::before{content:'›  ';color:var(--gray3);opacity:.6}
+.ft-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ft-badge{width:42px;height:42px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-bname strong{display:block;font-size:14px;font-weight:800;color:#fff}
+.ft-bname span{font-size:10px;color:rgba(255,255,255,.35)}
+.ft-bot{width:100%;margin:32px auto 0;border-top:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
+.ft-bot a{color:rgba(255,255,255,.25)}
+.ft-bot a:hover{color:var(--gray3)}
+.ft-links{display:flex;gap:16px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .kt-grid{grid-template-columns:1fr}
+  .kt-map-wrap{height:340px}
+}
+@media(max-width:768px){
+  .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .btn-ghost-hdr{display:none}
+  .hdr-name span{display:none}
+  .kt-body{padding:44px clamp(16px,4vw,28px)}
+  .kt-info-strip{padding:36px clamp(16px,4vw,28px)}
+  .kt-hero{padding:44px clamp(16px,4vw,28px) 40px}
+  input,select,textarea{font-size:16px}
+}
+@media(max-width:480px){
+  .ft-inner{grid-template-columns:1fr}
+  .kt-map-wrap{height:280px}
+  .kt-body{padding:32px 16px}
+  .kt-info-strip{padding:28px 16px}
+  .vorstand-card{flex-direction:column;align-items:flex-start}
+}
+</style></head>
+<body>
+
+<div id="sn-overlay" onclick="closeSN()"></div>
+<nav id="sidenav">
+  <div class="sn-head">
+    <div class="sn-brand">
+      <div class="sn-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+      <div class="sn-name">SC Kreuz<br>Bayreuth e.V.</div>
+    </div>
+    <button class="sn-close" onclick="closeSN()">✕</button>
+  </div>
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Hauptmenü</p>
+    <a href="index.html"><div class="sn-link">Startseite</div></a>
+    <a href="Räumlichkeiten.html"><div class="sn-link">Räume buchen</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Sportabteilungen</p>
+    <a href="Fussball.html"><div class="sn-link">Fußball</div></a>
+    <a href="Dart.html"><div class="sn-link">Dart</div></a>
+    <a href="Events.html"><div class="sn-link">Events &amp; Kerwa</div></a>
+  </div>
+  <hr class="sn-hr">
+  <div class="sn-sec">
+    <p class="sn-sec-lbl">Verein</p>
+    <a href="index.html"><div class="sn-link">Über den Verein</div></a>
+    <a href="Mitgliedschaft.html"><div class="sn-link">Mitglied werden</div></a>
+    <div class="sn-link act">Kontakt</div>
+    <a href="Impressum.html"><div class="sn-link">Impressum</div></a>
+  </div>
+  <div class="sn-foot">SC Kreuz Bayreuth e.V. © 2026<br>Gegründet 1928 · Bezirk Oberfranken</div>
+</nav>
+
+<header id="hdr">
+  <button class="hburger" onclick="openSN()"><span></span><span></span><span></span></button>
+  <div class="hdr-brand">
+    <div class="hdr-logo-wrap"><img src="logo.jpg" width="34" height="34" style="border-radius:50%;object-fit:contain" alt="SC Kreuz"></div>
+    <div class="hdr-name">
+      <strong>SC Kreuz Bayreuth</strong>
+      <span>e.V. · Gegründet 1928</span>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a href="index.html"><button class="btn-ghost-hdr">Zur Startseite</button></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="kt-hero">
+  <div class="kt-hero-inner">
+    <div class="kt-eyebrow">SC Kreuz Bayreuth e.V.</div>
+    <h1 class="kt-h1">Kontakt & Anfahrt</h1>
+    <p class="kt-sub">Haben Sie Fragen oder möchten Sie uns besuchen? Hier finden Sie alle Kontaktdaten und den Weg zu uns.</p>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Startseite</a>
+  <span>›</span>
+  <span>Kontakt</span>
+</div>
+
+<!-- BODY -->
+<div class="kt-body">
+  <div class="kt-grid">
+
+    <!-- LEFT: CONTACT DETAILS -->
+    <div>
+      <p class="kt-sec-label">Kontaktdaten</p>
+      <h2 class="kt-h2">So erreichen Sie uns</h2>
+
+      <div class="kt-block">
+        <div class="kt-block-title">Vereinsheim</div>
+        <div class="kt-row">
+          <div class="kt-item">
+            <strong>Adresse</strong>
+            <span>Egerstraße 10<br>95445 Bayreuth</span>
+          </div>
+          <div class="kt-item">
+            <strong>Telefon</strong>
+            <a href="tel:+4992141666">0921 41666</a>
+          </div>
+          <div class="kt-item">
+            <strong>E-Mail</strong>
+            <a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a>
+          </div>
+          <div class="kt-item">
+            <strong>Website</strong>
+            <span>www.sckreuzbayreuth.de</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="kt-divider">
+
+      <div class="kt-block">
+        <div class="kt-block-title">Vorstand</div>
+        <div class="vorstand-row">
+          <div class="vorstand-card">
+            <div class="vc-left">
+              <div class="vc-name">Claudia Roberts</div>
+              <div class="vc-role">1. Vorsitzende</div>
+            </div>
+            <a class="vc-phone" href="tel:+4915209623736">01520 96 23 736</a>
+          </div>
+          <div class="vorstand-card">
+            <div class="vc-left">
+              <div class="vc-name">Stephan Brütting</div>
+              <div class="vc-role">2. Vorsitzender</div>
+            </div>
+          </div>
+          <div class="vorstand-card">
+            <div class="vc-left">
+              <div class="vc-name">Marcus Körber</div>
+              <div class="vc-role">3. Vorsitzender</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="kt-divider">
+
+      <div class="kt-block">
+        <div class="kt-block-title">Vereinsregister</div>
+        <div class="kt-row">
+          <div class="kt-item">
+            <strong>Registergericht</strong>
+            <span>Amtsgericht Bayreuth</span>
+          </div>
+          <div class="kt-item">
+            <strong>Registernummer</strong>
+            <span>VR 200066</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: MAP -->
+    <div>
+      <div class="kt-map-wrap">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=11.5484%2C49.9438%2C11.5566%2C49.9488&layer=mapnik&marker=49.9462701%2C11.5524869"
+          allowfullscreen=""
+          loading="lazy"
+          title="Karte: Sportplatz Kreuz, Egerstraße 10, Bayreuth">
+        </iframe>
+      </div>
+      <p style="margin-top:10px;font-size:12px;color:var(--gray4);text-align:right">
+        <a href="https://www.openstreetmap.org/?mlat=49.9463&mlon=11.5525#map=16/49.9463/11.5525" target="_blank" rel="noopener" style="color:var(--blue)">Größere Karte ansehen</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="kt-info-strip">
+  <div class="kt-strip-grid">
+    <div class="kt-strip-item">
+      <div class="kt-strip-label">Telefon</div>
+      <div class="kt-strip-val"><a href="tel:+4992141666">0921 41666</a></div>
+      <div class="kt-strip-sub">Vereinsheim Bayreuth</div>
+    </div>
+    <div class="kt-strip-item">
+      <div class="kt-strip-label">E-Mail</div>
+      <div class="kt-strip-val"><a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a></div>
+      <div class="kt-strip-sub">Allgemeiner Kontakt</div>
+    </div>
+    <div class="kt-strip-item">
+      <div class="kt-strip-label">Adresse</div>
+      <div class="kt-strip-val">Egerstraße 10, Bayreuth</div>
+      <div class="kt-strip-sub">95445 Bayern</div>
+    </div>
+    <div class="kt-strip-item">
+      <div class="kt-strip-label">Räume buchen</div>
+      <div class="kt-strip-val"><a href="Räumlichkeiten.html">Zur Buchungsseite</a></div>
+      <div class="kt-strip-sub">Online anfragen</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="fc">
+      <div class="ft-brand">
+        <div class="ft-badge"><img src="logo.jpg" width="34" height="34" style="object-fit:contain;border-radius:50%" alt="SCK Logo"></div>
+        <div class="ft-bname"><strong>SC Kreuz Bayreuth</strong><span>e.V. – Gegründet 1928</span></div>
+      </div>
+      <p>Traditionsreicher Sportverein aus Bayreuth. Mitglied im Bayerischen Fußball-Verband, Bezirk Oberfranken.</p>
+    </div>
+    <div class="fc">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="Fussball.html">Fußball</a></li>
+        <li><a href="Dart.html">Dart</a></li>
+        <li><a href="Events.html">Events &amp; Kerwa</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Verein</h4>
+      <ul>
+        <li><a href="index.html">Über den Verein</a></li>
+        <li><a href="Räumlichkeiten.html">Räume buchen</a></li>
+        <li><a href="Mitgliedschaft.html">Mitglied werden</a></li>
+        <li><a href="Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a></li>
+        <li><a href="tel:+4992141666">0921 41666</a></li>
+        <li><a href="Kontakt.html">Egerstraße 10, Bayreuth</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 SC Kreuz Bayreuth e.V.</span>
+    <div class="ft-links">
+      <a href="Impressum.html">Impressum</a>
+      <a href="Impressum.html">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function openSN(){document.getElementById('sidenav').classList.add('open');document.getElementById('sn-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeSN(){document.getElementById('sidenav').classList.remove('open');document.getElementById('sn-overlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSN()});
+</script>
+
+</body>
+</html>

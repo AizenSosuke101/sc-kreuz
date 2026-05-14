@@ -72,7 +72,8 @@ h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',syst
 /* CONTACT DETAILS */
 .kt-sec-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 .kt-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--black);margin-bottom:28px;line-height:1.15}
-.kt-block{margin-bottom:20px;background:var(--white);border:1.5px solid var(--gray2);border-radius:14px;padding:22px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.kt-block{margin-bottom:20px;background:var(--black);border-radius:18px;padding:7px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.kt-block-inner{background:var(--white);border-radius:12px;padding:22px 24px}
 .kt-block-title{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gray2)}
 .kt-row{display:flex;flex-direction:column;gap:14px}
 .kt-item{display:flex;flex-direction:column;gap:2px}
@@ -217,59 +218,61 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
       <h2 class="kt-h2">So erreichen Sie uns</h2>
 
       <div class="kt-block">
-        <div class="kt-block-title">Vereinsheim</div>
-        <div class="kt-row">
-          <div class="kt-item">
-            <strong>Adresse</strong>
-            <a href="https://www.google.com/maps/place/Sportplatz+Kreuz/@49.9461238,11.5524482,17z" target="_blank" rel="noopener">Egerstraße 10<br>95445 Bayreuth</a>
-          </div>
-          <div class="kt-item">
-            <strong>Telefon</strong>
-            <a href="tel:+4992141666">0921 41666</a>
-          </div>
-          <div class="kt-item">
-            <strong>E-Mail</strong>
-            <a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a>
-          </div>
-          <div class="kt-item">
-            <strong>Website</strong>
-            <span>www.sckreuzbayreuth.de</span>
-          </div>
-        </div>
-      </div>
-
-      <hr class="kt-divider">
-
-      <div class="kt-block">
-        <div class="kt-block-title">Vorstand</div>
-        <div class="vorstand-row">
-          <div class="vorstand-card">
-            <div class="vc-name">Claudia Roberts</div>
-            <div class="vc-role">Vorsitzende</div>
-          </div>
-          <div class="vorstand-card">
-            <div class="vc-name">Stephan Brütting</div>
-            <div class="vc-role">2. Vorsitzender</div>
-          </div>
-          <div class="vorstand-card">
-            <div class="vc-name">Marcus Körber</div>
-            <div class="vc-role">3. Vorsitzender</div>
+        <div class="kt-block-inner">
+          <div class="kt-block-title">Vereinsheim</div>
+          <div class="kt-row">
+            <div class="kt-item">
+              <strong>Adresse</strong>
+              <a href="https://www.google.com/maps/place/Sportplatz+Kreuz/@49.9461238,11.5524482,17z" target="_blank" rel="noopener">Egerstraße 10<br>95445 Bayreuth</a>
+            </div>
+            <div class="kt-item">
+              <strong>Telefon</strong>
+              <a href="tel:+4992141666">0921 41666</a>
+            </div>
+            <div class="kt-item">
+              <strong>E-Mail</strong>
+              <a href="mailto:sckreuz@t-online.de">sckreuz@t-online.de</a>
+            </div>
+            <div class="kt-item">
+              <strong>Website</strong>
+              <span>www.sckreuzbayreuth.de</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <hr class="kt-divider">
+      <div class="kt-block">
+        <div class="kt-block-inner">
+          <div class="kt-block-title">Vorstand</div>
+          <div class="vorstand-row">
+            <div class="vorstand-card">
+              <div class="vc-name">Claudia Roberts</div>
+              <div class="vc-role">Vorsitzende</div>
+            </div>
+            <div class="vorstand-card">
+              <div class="vc-name">Stephan Brütting</div>
+              <div class="vc-role">2. Vorsitzender</div>
+            </div>
+            <div class="vorstand-card">
+              <div class="vc-name">Marcus Körber</div>
+              <div class="vc-role">3. Vorsitzender</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="kt-block">
-        <div class="kt-block-title">Vereinsregister</div>
-        <div class="kt-row">
-          <div class="kt-item">
-            <strong>Registergericht</strong>
-            <span>Amtsgericht Bayreuth</span>
-          </div>
-          <div class="kt-item">
-            <strong>Registernummer</strong>
-            <span>VR 200066</span>
+        <div class="kt-block-inner">
+          <div class="kt-block-title">Vereinsregister</div>
+          <div class="kt-row">
+            <div class="kt-item">
+              <strong>Registergericht</strong>
+              <span>Amtsgericht Bayreuth</span>
+            </div>
+            <div class="kt-item">
+              <strong>Registernummer</strong>
+              <span>VR 200066</span>
+            </div>
           </div>
         </div>
       </div>

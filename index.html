@@ -264,7 +264,7 @@ h1,h2,h3,h4,.hero-h1,.hero-badge-year,.raum-name,.s-name,.a-name,.k-h,.sec-h2,.h
 
 /* ── KONTAKT ─────────────────────────── */
 .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-.k-map-wrap{height:380px}
+.k-map-wrap{height:380px;overflow:hidden}
 .k-map-wrap iframe{width:100%;height:100%;display:block;border:0;border-radius:13px}
 .k-h{font-size:18px;font-weight:800;color:var(--black);margin-bottom:20px}
 .k-list{display:flex;flex-direction:column;gap:14px}
@@ -311,6 +311,10 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
 .btn-outline:hover{background:var(--black);color:#fff;transform:translateY(-2px)}
 
 /* ── RESPONSIVE ──────────────────────── */
+@media(max-width:900px){
+  .kontakt-grid{grid-template-columns:1fr}
+  .k-map-wrap{height:280px}
+}
 @media(max-width:768px){
   #hero{min-height:380px}
   .hero-content{padding:40px clamp(16px,4vw,36px) 40px}
@@ -318,8 +322,6 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .hero-badge-year{font-size:18px}
   .verein-grid{grid-template-columns:1fr}
   .v-card{display:none}
-  .kontakt-grid{grid-template-columns:1fr}
-  .k-map-wrap{height:260px}
   .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
   .btn-ghost-hdr{display:none}
   .hdr-name span{display:none}
@@ -343,6 +345,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
   .sec{padding:32px 16px}
   .anlass-grid{grid-template-columns:1fr 1fr}
   .raum-grid{grid-template-columns:1fr}
+  .k-map-wrap{height:240px}
 }
 </style></head>
 <body>

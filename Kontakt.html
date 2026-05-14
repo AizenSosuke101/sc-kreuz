@@ -67,7 +67,8 @@ h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',syst
 
 /* MAIN SECTION */
 .kt-body{padding:60px clamp(20px,5vw,72px)}
-.kt-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.kt-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+.kt-map-col{display:flex;flex-direction:column}
 
 /* CONTACT DETAILS */
 .kt-sec-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
@@ -90,7 +91,7 @@ h1,h2,h3,h4,.hdr-name strong,.sn-name,.ft-bname strong{font-family:'Oswald',syst
 .vc-role{font-size:12px;color:var(--gray4);margin-top:2px}
 
 /* MAP */
-.kt-map-wrap{background:var(--black);border-radius:18px;padding:7px;box-shadow:0 8px 40px rgba(0,0,0,.22);height:480px}
+.kt-map-wrap{background:var(--black);border-radius:18px;padding:7px;box-shadow:0 8px 40px rgba(0,0,0,.22);flex:1;min-height:300px}
 .kt-map-wrap iframe{width:100%;height:100%;display:block;border:0;border-radius:13px}
 
 /* INFO STRIP */
@@ -124,8 +125,8 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .kt-grid{grid-template-columns:1fr}
-  .kt-map-wrap{height:340px}
+  .kt-grid{grid-template-columns:1fr;align-items:start}
+  .kt-map-wrap{flex:none;height:340px}
 }
 @media(max-width:768px){
   .ft-inner{grid-template-columns:1fr 1fr;gap:20px}
@@ -279,7 +280,7 @@ footer{background:var(--black);color:rgba(255,255,255,.6);padding:44px clamp(20p
     </div>
 
     <!-- RIGHT: MAP -->
-    <div>
+    <div class="kt-map-col">
       <div class="kt-map-wrap">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d448.7340505022981!2d11.552448166143556!3d49.946123812783355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a1a2b021cf4c0d%3A0xc707c5870276d698!2sSportplatz%20Kreuz!5e1!3m2!1sde!2sde!4v1778783786136!5m2!1sde!2sde" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>

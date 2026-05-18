@@ -1,19 +1,12 @@
 const FOOTBALL_DATA = {
-  "updated": "17.05.2026 08:24",
+  "updated": "18.05.2026 10:10",
   "nextGames": [
     {
-      "date": "17.05.2026",
-      "time": "14:00",
-      "home": "1. FC Bayreuth 2",
-      "away": "SC Kreuz Bayreuth 2",
-      "liga": "A Klasse"
-    },
-    {
-      "date": "17.05.2026",
-      "time": "15:00",
-      "home": "SC Kreuz Bayreuth",
-      "away": "SV Schreez 2",
-      "liga": "A Klasse"
+      "date": "24.05.2026",
+      "time": "18:00",
+      "home": "FSV Schnabelwaid",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "Kreisklasse"
     },
     {
       "date": "14.06.2026",
@@ -45,22 +38,6 @@ const FOOTBALL_DATA = {
     }
   ],
   "prevGames": [
-    {
-      "date": "25.04.2026",
-      "time": "13:45",
-      "home": "TSC Mainleus - Kinderfestival",
-      "away": "SC Kreuz Bayreuth II",
-      "liga": "Kinderfußball",
-      "result": null
-    },
-    {
-      "date": "25.04.2026",
-      "time": "16:00",
-      "home": "SC Kreuz Bayreuth zg.",
-      "away": "(SG) Hummelgau",
-      "liga": "Kreisklasse",
-      "result": null
-    },
     {
       "date": "26.04.2026",
       "time": "13:00",
@@ -96,6 +73,24 @@ const FOOTBALL_DATA = {
       "liga": "A Klasse",
       "score": "17:2",
       "result": "loss"
+    },
+    {
+      "date": "03.05.2026",
+      "time": "16:00",
+      "home": "SG Trockau 2",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "A Klasse",
+      "score": "0:8",
+      "result": "win"
+    },
+    {
+      "date": "09.05.2026",
+      "time": "10:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "ASV 1921 Oberpreuschwitz",
+      "liga": "Gruppe",
+      "score": "9:1",
+      "result": "win"
     }
   ]
 };

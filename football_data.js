@@ -1,13 +1,6 @@
 const FOOTBALL_DATA = {
-  "updated": "24.05.2026 08:32",
+  "updated": "25.05.2026 10:13",
   "nextGames": [
-    {
-      "date": "24.05.2026",
-      "time": "18:00",
-      "home": "FSV Schnabelwaid",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "Kreisklasse"
-    },
     {
       "date": "14.06.2026",
       "time": "10:30",
@@ -38,15 +31,6 @@ const FOOTBALL_DATA = {
     }
   ],
   "prevGames": [
-    {
-      "date": "26.04.2026",
-      "time": "13:00",
-      "home": "SC Kreuz Bayreuth 2",
-      "away": "Eintracht Bayreuth 2",
-      "liga": "A Klasse",
-      "score": "3:3",
-      "result": "draw"
-    },
     {
       "date": "26.04.2026",
       "time": "17:00",
@@ -91,6 +75,14 @@ const FOOTBALL_DATA = {
       "liga": "Gruppe",
       "score": "9:1",
       "result": "win"
+    },
+    {
+      "date": "09.05.2026",
+      "time": "13:45",
+      "home": "(SG) Wirsberg III - Kinderfestival",
+      "away": "SC Kreuz Bayreuth II",
+      "liga": "Kinderfußball",
+      "result": null
     }
   ]
 };

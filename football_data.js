@@ -1,6 +1,13 @@
 const FOOTBALL_DATA = {
-  "updated": "26.05.2026 10:01",
+  "updated": "27.05.2026 10:00",
   "nextGames": [
+    {
+      "date": "31.05.2026",
+      "time": "14:00",
+      "home": "SC Kreuz Bayreuth",
+      "away": "1. FC Kirchleus",
+      "liga": "Kreisklasse"
+    },
     {
       "date": "14.06.2026",
       "time": "10:30",

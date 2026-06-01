@@ -1,11 +1,11 @@
 const FOOTBALL_DATA = {
-  "updated": "31.05.2026 08:49",
+  "updated": "01.06.2026 11:40",
   "nextGames": [
     {
-      "date": "31.05.2026",
-      "time": "14:00",
+      "date": "03.06.2026",
+      "time": "18:30",
       "home": "SC Kreuz Bayreuth",
-      "away": "1. FC Kirchleus",
+      "away": "SV Fortuna Untersteinach",
       "liga": "Kreisklasse"
     },
     {
@@ -38,15 +38,6 @@ const FOOTBALL_DATA = {
     }
   ],
   "prevGames": [
-    {
-      "date": "26.04.2026",
-      "time": "17:00",
-      "home": "SC Kreuz Bayreuth",
-      "away": "TSV Mistelbach",
-      "liga": "A Klasse",
-      "score": "4:1",
-      "result": "win"
-    },
     {
       "date": "03.05.2026",
       "time": "10:00",
@@ -90,6 +81,15 @@ const FOOTBALL_DATA = {
       "away": "SC Kreuz Bayreuth II",
       "liga": "Kinderfußball",
       "result": null
+    },
+    {
+      "date": "10.05.2026",
+      "time": "15:00",
+      "home": "(SG1) SSV Warmensteinach I/​SV Weidenberg II",
+      "away": "SC Kreuz Bayreuth 2",
+      "liga": "A Klasse",
+      "score": "4:4",
+      "result": "draw"
     }
   ]
 };

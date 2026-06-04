@@ -1,13 +1,6 @@
 const FOOTBALL_DATA = {
-  "updated": "03.06.2026 11:04",
+  "updated": "04.06.2026 09:59",
   "nextGames": [
-    {
-      "date": "03.06.2026",
-      "time": "18:30",
-      "home": "SC Kreuz Bayreuth",
-      "away": "SV Fortuna Untersteinach",
-      "liga": "Kreisklasse"
-    },
     {
       "date": "14.06.2026",
       "time": "10:30",
@@ -38,15 +31,6 @@ const FOOTBALL_DATA = {
     }
   ],
   "prevGames": [
-    {
-      "date": "03.05.2026",
-      "time": "10:00",
-      "home": "FSV Bayreuth",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "Gruppe",
-      "score": "2:6",
-      "result": "win"
-    },
     {
       "date": "03.05.2026",
       "time": "15:00",
@@ -90,6 +74,14 @@ const FOOTBALL_DATA = {
       "liga": "A Klasse",
       "score": "4:4",
       "result": "draw"
+    },
+    {
+      "date": "17.05.2026",
+      "time": "14:00",
+      "home": "1. FC Bayreuth 2",
+      "away": "SC Kreuz Bayreuth 2",
+      "liga": "A Klasse",
+      "result": null
     }
   ]
 };

@@ -1,13 +1,6 @@
 const FOOTBALL_DATA = {
-  "updated": "13.06.2026 09:19",
+  "updated": "14.06.2026 09:38",
   "nextGames": [
-    {
-      "date": "14.06.2026",
-      "time": "10:30",
-      "home": "SC Kreuz Bayreuth",
-      "away": "(SG) Kirchenlaibach/​Haidenaab II",
-      "liga": "Gruppe"
-    },
     {
       "date": "20.06.2026",
       "time": "13:00",
@@ -20,6 +13,13 @@ const FOOTBALL_DATA = {
       "time": "13:45",
       "home": "(SG) Röhrenhof",
       "away": "SC Kreuz Bayreuth",
+      "liga": "Gruppe"
+    },
+    {
+      "date": "25.06.2026",
+      "time": "18:00",
+      "home": "SC Kreuz Bayreuth",
+      "away": "(SG) Kirchenlaibach/​Haidenaab II",
       "liga": "Gruppe"
     },
     {

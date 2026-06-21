@@ -1,20 +1,6 @@
 const FOOTBALL_DATA = {
-  "updated": "20.06.2026 09:19",
+  "updated": "21.06.2026 09:53",
   "nextGames": [
-    {
-      "date": "20.06.2026",
-      "time": "13:00",
-      "home": "(SG) FC Ludwigschorgast/​1. FC Kupferberg III - Kinderfestival",
-      "away": "SC Kreuz Bayreuth II",
-      "liga": "Kinderfußball"
-    },
-    {
-      "date": "20.06.2026",
-      "time": "13:45",
-      "home": "(SG) Röhrenhof",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "Gruppe"
-    },
     {
       "date": "25.06.2026",
       "time": "18:00",
@@ -31,24 +17,6 @@ const FOOTBALL_DATA = {
     }
   ],
   "prevGames": [
-    {
-      "date": "03.05.2026",
-      "time": "15:00",
-      "home": "ASV Marktschorgast",
-      "away": "SC Kreuz Bayreuth 2",
-      "liga": "A Klasse",
-      "score": "17:2",
-      "result": "loss"
-    },
-    {
-      "date": "03.05.2026",
-      "time": "16:00",
-      "home": "SG Trockau 2",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "A Klasse",
-      "score": "0:8",
-      "result": "win"
-    },
     {
       "date": "09.05.2026",
       "time": "10:30",
@@ -82,6 +50,23 @@ const FOOTBALL_DATA = {
       "away": "SC Kreuz Bayreuth 2",
       "liga": "A Klasse",
       "result": null
+    },
+    {
+      "date": "17.05.2026",
+      "time": "15:00",
+      "home": "SC Kreuz Bayreuth",
+      "away": "SV Schreez 2",
+      "liga": "A Klasse",
+      "result": null
+    },
+    {
+      "date": "24.05.2026",
+      "time": "18:00",
+      "home": "FSV Schnabelwaid",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "Kreisklasse",
+      "score": "2:3",
+      "result": "win"
     }
   ]
 };

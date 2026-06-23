@@ -1,5 +1,5 @@
 const FOOTBALL_DATA = {
-  "updated": "22.06.2026 12:09",
+  "updated": "23.06.2026 09:45",
   "nextGames": [
     {
       "date": "25.06.2026",
@@ -14,6 +14,13 @@ const FOOTBALL_DATA = {
       "home": "SC Kreuz Bayreuth",
       "away": "FC Eintracht 1974 Bayreuth",
       "liga": "Gruppe"
+    },
+    {
+      "date": "02.07.2026",
+      "time": "18:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "BSC Saas-Bayreuth",
+      "liga": "Kreispokal"
     }
   ],
   "prevGames": [

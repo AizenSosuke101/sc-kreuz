@@ -1,18 +1,18 @@
 const FOOTBALL_DATA = {
-  "updated": "24.06.2026 09:34",
+  "updated": "25.06.2026 09:26",
   "nextGames": [
-    {
-      "date": "25.06.2026",
-      "time": "18:00",
-      "home": "SC Kreuz Bayreuth",
-      "away": "(SG) Kirchenlaibach/​Haidenaab II",
-      "liga": "Gruppe"
-    },
     {
       "date": "28.06.2026",
       "time": "10:30",
       "home": "SC Kreuz Bayreuth",
       "away": "FC Eintracht 1974 Bayreuth",
+      "liga": "Gruppe"
+    },
+    {
+      "date": "02.07.2026",
+      "time": "17:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "(SG) Kirchenlaibach/​Haidenaab II",
       "liga": "Gruppe"
     },
     {

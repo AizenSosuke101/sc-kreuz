@@ -1,13 +1,6 @@
 const FOOTBALL_DATA = {
-  "updated": "25.06.2026 09:26",
+  "updated": "26.06.2026 09:31",
   "nextGames": [
-    {
-      "date": "28.06.2026",
-      "time": "10:30",
-      "home": "SC Kreuz Bayreuth",
-      "away": "FC Eintracht 1974 Bayreuth",
-      "liga": "Gruppe"
-    },
     {
       "date": "02.07.2026",
       "time": "17:30",
@@ -23,11 +16,32 @@ const FOOTBALL_DATA = {
       "liga": "Kreispokal"
     },
     {
+      "date": "05.07.2026",
+      "time": "10:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "FC Eintracht 1974 Bayreuth",
+      "liga": "Gruppe"
+    },
+    {
+      "date": "26.07.2026",
+      "time": "15:00",
+      "home": "SC Kreuz Bayreuth",
+      "away": "(SG2) SV Ramsenthal II /​ TSV Bindlach II",
+      "liga": "A Klasse"
+    },
+    {
       "date": "26.07.2026",
       "time": "15:30",
       "home": "FC Eintracht 1974 Bayreuth - Kinderfestival",
       "away": "SC Kreuz Bayreuth",
       "liga": "Vereinsturnier"
+    },
+    {
+      "date": "31.07.2026",
+      "time": "17:30",
+      "home": "SV Lanzendorf II flex",
+      "away": "SC Kreuz Bayreuth II",
+      "liga": "B Klasse"
     }
   ],
   "prevGames": [

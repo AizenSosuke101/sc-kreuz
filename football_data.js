@@ -1,26 +1,12 @@
 const FOOTBALL_DATA = {
-  "updated": "29.06.2026 11:04",
+  "updated": "30.06.2026 09:41",
   "nextGames": [
-    {
-      "date": "02.07.2026",
-      "time": "17:30",
-      "home": "SC Kreuz Bayreuth",
-      "away": "(SG) Kirchenlaibach/​Haidenaab II",
-      "liga": "Gruppe"
-    },
     {
       "date": "02.07.2026",
       "time": "18:30",
       "home": "SC Kreuz Bayreuth",
       "away": "BSC Saas-Bayreuth",
       "liga": "Kreispokal"
-    },
-    {
-      "date": "05.07.2026",
-      "time": "10:30",
-      "home": "SC Kreuz Bayreuth",
-      "away": "FC Eintracht 1974 Bayreuth",
-      "liga": "Gruppe"
     },
     {
       "date": "26.07.2026",
@@ -30,18 +16,32 @@ const FOOTBALL_DATA = {
       "liga": "A Klasse"
     },
     {
-      "date": "26.07.2026",
-      "time": "15:30",
-      "home": "FC Eintracht 1974 Bayreuth - Kinderfestival",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "Vereinsturnier"
-    },
-    {
       "date": "31.07.2026",
       "time": "17:30",
       "home": "SV Lanzendorf II flex",
       "away": "SC Kreuz Bayreuth II",
       "liga": "B Klasse"
+    },
+    {
+      "date": "02.08.2026",
+      "time": "15:00",
+      "home": "TFC Bayreuth",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "A Klasse"
+    },
+    {
+      "date": "09.08.2026",
+      "time": "15:00",
+      "home": "SC Kreuz Bayreuth",
+      "away": "TSV 07 Bayreuth-St.Johannis 2",
+      "liga": "A Klasse"
+    },
+    {
+      "date": "16.08.2026",
+      "time": "13:00",
+      "home": "1. FC Bayreuth 2",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "A Klasse"
     }
   ],
   "prevGames": [

@@ -1,15 +1,7 @@
 const FOOTBALL_DATA = {
-  "updated": "05.07.2026 08:55",
+  "updated": "06.07.2026 10:27",
   "nextGames": [],
   "prevGames": [
-    {
-      "date": "09.05.2026",
-      "time": "13:45",
-      "home": "(SG) Wirsberg III - Kinderfestival",
-      "away": "SC Kreuz Bayreuth II",
-      "liga": "Kinderfußball",
-      "result": null
-    },
     {
       "date": "10.05.2026",
       "time": "15:00",
@@ -51,6 +43,15 @@ const FOOTBALL_DATA = {
       "away": "1. FC Kirchleus",
       "liga": "Kreisklasse",
       "score": "1:2",
+      "result": "loss"
+    },
+    {
+      "date": "03.06.2026",
+      "time": "18:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "SV Fortuna Untersteinach",
+      "liga": "Kreisklasse",
+      "score": "1:9",
       "result": "loss"
     }
   ]

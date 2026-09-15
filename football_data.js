@@ -1,5 +1,5 @@
 const FOOTBALL_DATA = {
-  "updated": "14.09.2026 12:08",
+  "updated": "15.09.2026 11:19",
   "nextGames": [],
   "prevGames": [
     {

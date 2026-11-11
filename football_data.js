@@ -1,16 +1,7 @@
 const FOOTBALL_DATA = {
-  "updated": "10.11.2026 14:30",
+  "updated": "11.11.2026 13:45",
   "nextGames": [],
   "prevGames": [
-    {
-      "date": "10.05.2026",
-      "time": "15:00",
-      "home": "(SG1) SSV Warmensteinach I/​SV Weidenberg II",
-      "away": "SC Kreuz Bayreuth 2",
-      "liga": "A Klasse",
-      "score": "4:4",
-      "result": "draw"
-    },
     {
       "date": "17.05.2026",
       "time": "14:00",
@@ -53,6 +44,14 @@ const FOOTBALL_DATA = {
       "liga": "Kreisklasse",
       "score": "1:9",
       "result": "loss"
+    },
+    {
+      "date": "20.06.2026",
+      "time": "13:00",
+      "home": "(SG) FC Ludwigschorgast/​1. FC Kupferberg III - Kinderfestival",
+      "away": "SC Kreuz Bayreuth II",
+      "liga": "Kinderfußball",
+      "result": null
     }
   ]
 };

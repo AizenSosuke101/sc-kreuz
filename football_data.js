@@ -1,23 +1,7 @@
 const FOOTBALL_DATA = {
-  "updated": "17.11.2026 15:39",
+  "updated": "18.11.2026 15:17",
   "nextGames": [],
   "prevGames": [
-    {
-      "date": "17.05.2026",
-      "time": "14:00",
-      "home": "1. FC Bayreuth 2",
-      "away": "SC Kreuz Bayreuth 2",
-      "liga": "A Klasse",
-      "result": null
-    },
-    {
-      "date": "17.05.2026",
-      "time": "15:00",
-      "home": "SC Kreuz Bayreuth",
-      "away": "SV Schreez 2",
-      "liga": "A Klasse",
-      "result": null
-    },
     {
       "date": "24.05.2026",
       "time": "18:00",
@@ -52,6 +36,24 @@ const FOOTBALL_DATA = {
       "away": "SC Kreuz Bayreuth II",
       "liga": "Kinderfußball",
       "result": null
+    },
+    {
+      "date": "20.06.2026",
+      "time": "13:45",
+      "home": "(SG) Röhrenhof",
+      "away": "SC Kreuz Bayreuth",
+      "liga": "Gruppe",
+      "score": "2:4",
+      "result": "win"
+    },
+    {
+      "date": "02.07.2026",
+      "time": "17:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "(SG) Kirchenlaibach/​Haidenaab II",
+      "liga": "Gruppe",
+      "score": "4:3",
+      "result": "win"
     }
   ]
 };

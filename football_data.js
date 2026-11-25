@@ -1,16 +1,7 @@
 const FOOTBALL_DATA = {
-  "updated": "24.11.2026 17:08",
+  "updated": "25.11.2026 16:55",
   "nextGames": [],
   "prevGames": [
-    {
-      "date": "24.05.2026",
-      "time": "18:00",
-      "home": "FSV Schnabelwaid",
-      "away": "SC Kreuz Bayreuth",
-      "liga": "Kreisklasse",
-      "score": "2:3",
-      "result": "win"
-    },
     {
       "date": "31.05.2026",
       "time": "14:00",
@@ -54,6 +45,15 @@ const FOOTBALL_DATA = {
       "liga": "Gruppe",
       "score": "4:3",
       "result": "win"
+    },
+    {
+      "date": "05.07.2026",
+      "time": "10:30",
+      "home": "SC Kreuz Bayreuth",
+      "away": "FC Eintracht 1974 Bayreuth",
+      "liga": "Gruppe",
+      "score": "2:3",
+      "result": "loss"
     }
   ]
 };
